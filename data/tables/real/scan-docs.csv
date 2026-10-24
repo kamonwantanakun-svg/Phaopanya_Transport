@@ -3,7 +3,7 @@ ScanDocs,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,
 ScanDocs,ID_ScanDocs,Text,ALWAYS,Yes,No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,455
 ScanDocs,Scan_Invoice,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=AND(
  IN([_THIS], ตารางงานประจำวัน[Invoice No]),
- LOOKUP([_THIS], ""ตารางงาน ประจำวัน"", ""Invoice No"", ""Plan Delivery"") = [_THISROW].[เลือกวันที่],
+ LOOKUP([_THIS], ""ตารางงาน ประจำวัน"", ""Invoice No"", ""Plan Delivery"") = [_THISROW].[เลือก วันที่],
  LOOKUP([_THIS], ""ตารางงานประจำวัน"", ""Invoice No"", ""จำนวน_Invoice_ที่ต้องสแกน"") > 0,
  ISBLANK(
  SELECT(ScanDocs[ID_ScanDocs], 
@@ -11,27 +11,32 @@ ScanDocs,Scan_Invoice,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=AND(
  )
  )
 )",,,=ISBLANK([Select_Invoice]),,"=""Invoice นี้ไม่ถูกต้อง, ไม่ใช่งาน วันที่เลือก หรือสแกนรับไป แล้ว""",,455
-ScanDocs,Select_Invoice,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
- ตารางงานประจำวัน[Invoice No],
- AND(
- [Plan Delivery] = [_THISROW].[เลือกวันที่],
- OR(ISBLANK([ScanStatus]), [ScanStatus] <> ""สแกนรับแล้ว""),
- [จำนวน_Invoice_ที่ต้องสแกน] > 0 
- )
-)
-- ScanDocs[Scan_Invoice]
-- ScanDocs[Select_Invoice]",,,=ISBLANK([Scan_Invoice]),,"=""เลข Invoice ไม่ถูกต้อง, ไม่ใช่งานของวันนี้/เมื่อวาน หรือถูกสแกนรับไป แล้ว""",,456
-ScanDocs,Scan_DateTime,"DateTime {""MinValue"":null,""MaxValue"":null,""UseLongDateFormat"":false,""Ign",ALWAYS,No,No,No,No,No,No,Yes,,=NOW(),,,,,,,,,457
+ScanDocs,Select_Invoice,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,456
+ScanDocs,Scan_DateTime,DateTime,ALWAYS,No,No,No,No,No,No,Yes,,=NOW(),,,,,,,,,457
 ScanDocs,Scan_By,Email,ALWAYS,No,No,No,No,No,No,Yes,,=USEREMAIL(),,,,,,,,,458
 ScanDocs,Scan_Method,Enum,ALWAYS,No,No,No,No,No,No,Yes,,"=IF(ISNOTBLANK([Select_Invoice]), ""Manual"", ""Barcode"")",,,,,,=ISBLAN K([_THIS]),,,459
-ScanDocs,Invoice_No,"Ref {""ReferencedTableName"":""ตารางงานประจำ วัน"",""ReferencedRootTableName"":""ตารางงานประจำ วัน"",""ReferencedType"":""Text"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",ALWAYS,No,No,No,No,No,No,Yes,"=ANY( SELECT(ตารางงานประจำวัน[ID_งานประจำวัน], [Invoice No] = IF(ISNOTBLANK([Scan_Invoice]), [Scan_Invoice], [Select_Invoice]) ) )",,,,,,,,,,459
+ScanDocs,Invoice_No,Ref,ALWAYS,No,No,No,No,No,No,Yes,"=ANY( SELECT(ตารางงานประจำวัน[ID_งานประจำวัน], [Invoice No] = IF(ISNOTBLANK([Scan_Invoice]), [Scan_Invoice], [Select_Invoice]) ) )",,,"=AND(
+ ISNOTBLANK([_THIS]),
+ IN(
+LOOKUP([_THIS], ""ตารางงานประจำวัน"", ""ID_งานประจำวัน"",""Plan Delivery""),
+ LIST(TODAY(), TODAY() - 1)
+ ),
+ISBLANK(
+ SELECT(ScanDocs[ID_ScanDocs], 
+ AND(
+[Invoice_No] = [_THIS], 
+ [ID_ScanDocs] <> [_THISROW].[ID_ScanDocs]
+ )
+ )
+)
+)",,,,,,,459
 ScanDocs,ชื่อเจ้าของสินค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,=[Invoice_No].[ชื่อเจ้าของสินค้า],,,,,,,,,461
-ScanDocs,ทะเบียนรถ,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,=[Invoice_No].[ทะเบียนรถ],,,,,,,,,461
+ScanDocs,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,=[Invoice_No].[ทะเบียนรถ],,,,,,,,,461
 ScanDocs,Shipment No,Text,ALWAYS,No,No,No,No,No,No,Yes,,=[Invoice_No].[Shipment No],,,,,,,,,462
 ScanDocs,วันที่ส่งสินค้า,Date,ALWAYS,No,No,No,No,No,No,Yes,,=[Invoice_No].[Plan Delivery],,,,,,,,,463
 ScanDocs,หมายเหตุการรับเอกสาร,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,=ISNOTBLANK([Invoice_No]),,,,463
-ScanDocs,จำนวน_ทั้งหมด,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,Yes,No,No,No,No,Yes,Yes,"=COUNT( UNIQUE( SELECT( ตารางงานประจำวัน[Invoice No], [Plan Delivery] = [_THISROW].[เลือกวันที่] ) ) )",,,,,,,,,,464
-ScanDocs,จำนวน_สแกนแล้ว,Number,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=COUNT( UNIQUE( SELECT( ตารางงานประจำวัน[Invoice No], AND( [Plan Delivery] = [_THISROW].[เลือกวันที่], [ScanStatus] = ""สแกนรับแล้ว"" ) ) ) )",,,,,,,,,,465
+ScanDocs,จำนวน_ทั้งหมด,Number,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=COUNT( UNIQUE( SELECT( ตารางงานประจำวัน[Invoice No], [Plan Delivery] = [_THISROW].[เลือกวันที่] ) ) )",,,,,,,,,,464
+ScanDocs,จำนวน_สแกนแล้ว,Number,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=COUNT( UNIQUE( SELECT( ตารางงานประจำวัน[Invoice No], AND( [Plan Delivery] = [_THISROW].[เลือกวันที่], [ScanStatus] = ""สแกนรับแล้ว"" ) ) ) )",,,,,,,,,,465
 ScanDocs,จำนวน_รอสแกน,Number,ALWAYS,Yes,No,No,No,No,Yes,Yes,=[จำนวน_ทั้งหมด] - [จำนวน_สแกนแล้ว],,,,,,,,,,466
 ScanDocs,สรุปยอด,Text,ALWAYS,Yes,No,No,No,No,Yes,Yes,,,,,,,,,,,466
 ScanDocs,เลือกวันที่,Date,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=IF( TOTALHOURS(NOW() - TODAY()) >= 16, TODAY(), TODAY() - 1 )",,,,,,,,,,467

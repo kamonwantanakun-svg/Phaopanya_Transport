@@ -3,9 +3,9 @@ Scan 📋,form,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,view_config_col
 หน้าหลัก,gallery,หน้าหลัก,home,data/tables/real/home.csv,exact_name,high,หน้าหลัก,1743
 ฟอร์มรับทราบประกาศ,form,Acknowledge_Logs,acknowledge-logs,data/tables/real/acknowledge-logs.csv,view_config_columns,medium,ข้อความประกาศ; หมายเหตุ; เลือกเพื่อยืนยัน; ลงชื่อ พนักงาน; วันที่และเวลารับทราบ; ชื่อ - นามสกุล,1743
 รอการอนุมัติ,table,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,slice_name,high,รอการอนุมัติ,1744
-📦 สรุป_Shipment,deck,สรุป_Shipment,shipment-summary,data/tables/real/shipment-summary.csv,name_contains_table,medium,สรุป_Shipment,1745
-📦 สรุปรับเอกสาร,deck,สรุป_เจ้าของสินค้า,cargo-owner-summary,data/tables/real/cargo-owner-summary.csv,view_config_columns,medium,SoldToName; สรุป ยอด; PlanDelivery; _RowNumber,1745
-🧾 ที่สแกนรับ ✅,table,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,view_config_columns,medium,Scan_Invoice; Select_Invoice; ทะเบียนรถ; Shipment No; วันที่ส่ง สินค้า; _RowNumber,1746
+📦 สรุป_Shipment App owner,deck,สรุป_Shipment,shipment-summary,data/tables/real/shipment-summary.csv,name_contains_table,medium,สรุป_Shipment,1745
+📦 สรุปรับเอกสาร App owner,deck,สรุป_เจ้าของสินค้า,cargo-owner-summary,data/tables/real/cargo-owner-summary.csv,view_config_columns,medium,SoldToName; สรุป ยอด; PlanDelivery,1745
+🧾 ที่สแกนรับ ✅ App owner,table,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,view_config_columns,medium,Scan_Invoice; Select_Invoice; ทะเบียนรถ; Shipment No; วันที่ส่ง สินค้า; _RowNumber,1746
 Acknowledge_Logs_Table,table,Acknowledge_Logs,acknowledge-logs,data/tables/real/acknowledge-logs.csv,name_pattern,high,Acknowledge_Logs_Table,1746
 Document_Return,table,,,,unmatched,none,,1747
 FILTER,detail,FILTER,filter,data/tables/real/filter.csv,exact_name,high,FILTER,1747
@@ -107,8 +107,8 @@ View ราคาไม่ตรง_Detail,detail,ข้อมูลการว
 สรุป_Shipment_Form,form,สรุป_Shipment,shipment-summary,data/tables/real/shipment-summary.csv,name_pattern,high,สรุป_Shipment_Form,1801
 สรุป_เจ้าของสินค้า_Detail,detail,สรุป_เจ้าของสินค้า,cargo-owner-summary,data/tables/real/cargo-owner-summary.csv,name_pattern,high,สรุป_เจ้าของสินค้า_Detail,1802
 สรุป_เจ้าของสินค้า_Form,form,สรุป_เจ้าของสินค้า,cargo-owner-summary,data/tables/real/cargo-owner-summary.csv,name_pattern,high,สรุป_เจ้าของสินค้า_Form,1802
-สรุปงานประจำวัน_Detail,detail,,,,unmatched,none,,1802
-สรุปงานประจำวัน_Form,form,,,,unmatched,none,,1803
+สรุปงานประจำวัน_Detail,detail,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,slice_name_stripped,medium,สรุปงานประจำวัน,1802
+สรุปงานประจำวัน_Form,form,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,slice_name_stripped,medium,สรุปงานประจำวัน,1803
 สรุปเบิกส่วนต่าง_Detail,detail,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,name_pattern,high,สรุปเบิกส่วนต่าง_Detail,1803
 สรุปเบิกส่วนต่าง_Form,form,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,name_pattern,high,สรุปเบิกส่วนต่าง_Form,1804
 สรุปเบิกส่วนต่าง_Inline,table,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,name_pattern,high,สรุปเบิกส่วนต่าง_Inline,1804

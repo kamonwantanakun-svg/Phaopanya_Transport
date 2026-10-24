@@ -1,38 +1,12 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,761
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ID_ทำเบิกส่วนต่างScgวังน้อย,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,762
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ID_SCGนครหลวงJWDภูมิภาค,"Ref {""ReferencedTableName"":""SCGนครหลวงJWDภูมิภาค"",""Reference dRootTableName"":""SCGนครหลวงJWDภูมิภาค"",""ReferencedType"": ""Text"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,762
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(USERROLE() = ""ADMIN"",
- SORT(
- UNIQUE(
- LIST([_THIS]) + 
- SELECT(
- SCGนครหลวงJWDภูมิภาค[Shipment No],
- AND(
- [วันที่ส่งสินค้า] >= EOMONTH(TODAY(), -2) + 1,
- NOT(IN([Shipment No], ทำเบิก ส่วนต่างScgวังน้อย[Shipment No]))
- )
- )
- )
- ),
- SORT(
- UNIQUE(
- LIST([_THIS]) + 
- SELECT(
- SCGนครหลวงJWDภูมิภาค[Shipment No],
- AND(
- [Email พนักงาน] = USEREMAIL(),
- [วันที่ส่งสินค้า] >= TODAY() - 1,
- NOT(IN([Shipment No], ทำเบิกส่วนต่างScgวังน้อย[Shipment No]))
- )
- )
- )
- )
-)",,,,,,,763
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ID_SCGนครหลวงJWDภูมิภาค,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,762
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,763
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,วันที่ส่งสินค้า,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,=[ตรวจสอบข้อมูล] =1,,,,,"=""Shipment นี้มีจุดส่งที่ไม่ผ่าน การตรวจสอบ กรุณาติดต่อผู้ดูแล ระบบ""",,764
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=[ตรวจสอบข้อมูล] =1,,,,,"=""Shipment นี้มีจุดส่งที่ไม่ผ่าน การตรวจสอบ กรุณาติดต่อผู้ดูแล ระบบ""",,765
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ต้นทาง,"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,766
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,GoogleMapsRoutesAPI,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,766
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ต้นทาง,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,766
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,GoogleMapsRoutesAPI,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,766
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,แสดงแผนที่_GoogleMapsRoutesAPI,Url,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,767
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ระยะทาง_GoogleMapAPI_Km,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,768
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(
@@ -48,48 +22,57 @@ Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Pro
  SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
  [Shipment No] = [_THISROW].[Shipment No]
 )",,,,,,,769
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_02,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,770
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_02,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_01]),,,,770
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_03,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
  SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
  AND(
  [Shipment No] = [_THISROW].[Shipment No], 
- NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
- [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_02] 
  ), "" , ""))
  )
-))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_02]),,,,770
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_04,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_02]),,,,770
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_04,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,771
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_05,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
  SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
  AND(
  [Shipment No] = [_THISROW].[Shipment No], 
- NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
- [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
- [_THISROW].[Lat/Long_ปลายทาง_03]
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04]
  ), "" , ""))
  )
-))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_03]),,,,771
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_05,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\n SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n [Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่ง",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,772
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_04]),,,,772
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_06,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
  SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
  AND(
  [Shipment No] = [_THISROW].[Shipment No], 
- NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
- [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
  [_THISROW]. [Lat/Long_ปลายทาง_05]
  ), "" , ""))
  )
-))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_05]),,,,773
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_07,Text,ALWAYS,No,No,No,No,No,Yes No,,,,,"=SELECT(
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_05]),,,,773
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_07,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
  SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
  AND(
  [Shipment No] = [_THISROW].[Shipment No], 
- NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
- [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
@@ -97,13 +80,13 @@ Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Pro
  [_THISROW]. [Lat/Long_ปลายทาง_06] 
  ), "" , ""))
  )
-))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_06]),,,,774
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_06]),,,,774
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_08,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
  SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
  AND(
  [Shipment No] = [_THISROW].[Shipment No], 
- NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
- [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
@@ -112,13 +95,13 @@ Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Pro
  [_THISROW]. [Lat/Long_ปลายทาง_07]
  ), "" , ""))
  )
-))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_07]),,,,775
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_07]),,,,775
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_09,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
  SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
  AND(
  [Shipment No] = [_THISROW].[Shipment No], 
- NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
- [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
  [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
@@ -128,8 +111,24 @@ Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Pro
  [_THISROW]. [Lat/Long_ปลายทาง_08]
  ), "" , ""))
  )
-))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_08]),,,,776
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_10,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\n SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n [Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่ง",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,776
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_08]),,,,776
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_10,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_09]),,,,776
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_11,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
  SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
  AND(
@@ -208,7 +207,28 @@ Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Pro
  ), "" , ""))
  )
 ))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_13]),,,,780
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_15,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\n SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n [Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่ง",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,781
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_15,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_14]),,,,781
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_16,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
  SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
  AND(
@@ -256,8 +276,7 @@ Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Pro
  ), "" , ""))
  )
 ))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_16]),,,,784
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_18,"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลายทาง_01] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_02] & \"" ,\"" & \n [_THISROW].[Lat/Long_ปลายทาง_03] & \"" , \"" & \n[_THISROW].[Lat/Long_ปลายทาง_04] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_05] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_06] & \"" , \"" & \n [_THISROW].",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,785
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_19,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_18,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
  SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
  AND(
  [Shipment No] = [_THISROW].[Shipment No], 
@@ -278,53 +297,27 @@ Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Pro
  [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
  [_THISROW]. [Lat/Long_ปลายทาง_15] & "" , "" & 
  [_THISROW]. [Lat/Long_ปลายทาง_16] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_17] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_18]
+ [_THISROW]. [Lat/Long_ปลายทาง_17] 
  ), "" , ""))
  )
-))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_18]),,,,786
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_20,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
- SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
- AND(
- [Shipment No] = [_THISROW].[Shipment No], 
- NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
- [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
- [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
- [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
- [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_15] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_16] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_17] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_18] & "" , "" & 
- [_THISROW]. [Lat/Long_ปลายทาง_19]
- ), "" , ""))
- )
-))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_19]),,,,787
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=[ตรวจสอบข้อมูล] = 1,,,,,"=""Shipment นี้มีจุดส่งที่ไม่ผ่านการ ตรวจสอบ กรุณาติดต่อผู้ดูแล ระบบ""",,788
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,จำนวนจุดส่งก่อนเริ่มงาน,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits"" :null,""ShowThousandsSeparator"":true,""NumberDisplayMode"":""Au",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,789
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_17]),,,,785
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_19,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,786
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Lat/Long_ปลายทาง_20,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,787
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,788
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,จำนวนจุดส่งก่อนเริ่มงาน,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,789
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,จำนวนจุดส่งงานจริง,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,790
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ตรวจสอบข้อมูล,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,790
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ราคาในระบบก่อนส่งสินค้า,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"": 2,""NumericDigits"":null,""ShowThousandsSeparator"":true,""Number",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,791
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ราคาในระบบก่อนส่งสินค้า,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,791
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ระยะทางในระบบก่อนส่งสินค้า,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,792
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,สร้างPDFเบิกส่วนต่าง,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE( )=""ADMIN""",,,,,792
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,สถานะ,"Enum {""EnumValues"":[""รอตรวจสอบ"",""ผ่านการตรวจสอบ"",""ไม่ผ่านการตรวจ สอบ""],""AllowOtherValues"":false,""AutoCompleteOtherValues"":true,",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,793
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,สถานะ,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE()=""ADMIN """,,,,,793
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,เดือน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,794
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""","=USERROLE() = ""ADMIN""",,,,795
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,สร้างPDFเบิกตามระยะทาง,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,795
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Candidate_2_ระยะทาง_Km,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,796
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Candidate_2_แสดงแผนที่,Url,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,797
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Candidate_3_ระยะทาง_Km,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,797
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Candidate_3_แสดงแผนที่,"Url {""LaunchExternal"":false,""IsHyperLink"":false,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,798
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,Candidate_3_แสดงแผนที่,Url,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,798
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,เรท น้ำมันดีเซล,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,799
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ราคาตามระยะทาง,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,799
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ราคาจุดเพิ่ม,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,800
@@ -337,8 +330,8 @@ Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Pro
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_02,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,805
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปหน้าร้าน_บ้าน02,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,805
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปส่งสินค้า02,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,806
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,03เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,807
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_03,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,807
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,03เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,807
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_03,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,807
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปหน้าร้าน_บ้าน03,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,808
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปส่งสินค้า03,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,809
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,04เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,809
@@ -353,12 +346,12 @@ Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Pro
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_06,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,815
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปหน้าร้าน_บ้าน06,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,816
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปส่งสินค้า06,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,816
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,07เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,817
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,07เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,817
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_07,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,818
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปหน้าร้าน_บ้าน07,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,818
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปส่งสินค้า07,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,819
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,08เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,820
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_08,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,820
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,08เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,820
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_08,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,820
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปหน้าร้าน_บ้าน08,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,821
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปส่งสินค้า08,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,822
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,09เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,822
@@ -373,12 +366,12 @@ Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Pro
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_11,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,828
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปหน้าร้าน_บ้าน11,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,829
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปส่งสินค้า11,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,829
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,12เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,830
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,12เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,830
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_12,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,831
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปหน้าร้าน_บ้าน12,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,831
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปส่งสินค้า12,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,832
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,13เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,833
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_13,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,833
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,13เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,833
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_13,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,833
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปหน้าร้าน_บ้าน13,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,834
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปส่งสินค้า13,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,835
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,14เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,835
@@ -393,12 +386,12 @@ Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Pro
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_16,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,841
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปหน้าร้าน_บ้าน16,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,842
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปส่งสินค้า16,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,842
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,17เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,843
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,17เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,843
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_17,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,844
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปหน้าร้าน_บ้าน17,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,844
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปส่งสินค้า17,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,845
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,18เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,846
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_18,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,846
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,18เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,846
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปบิลส่งสินค้า_18,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,846
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปหน้าร้าน_บ้าน18,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,847
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปส่งสินค้า18,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,848
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,19เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,848
@@ -410,7 +403,7 @@ Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Pro
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปหน้าร้าน_บ้าน20,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,852
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,รูปส่งสินค้า20,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,853
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ราคาที่สมควรได้,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,853
-Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ราคาหลังส่งสินค้า,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"":",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,854
+Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ราคาหลังส่งสินค้า,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,854
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,ขออนุมัติเบิกค่าขนส่งส่วนเพิ่ม,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,855
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,QR code เส้นทางรวม,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,855
 Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table,จุดส่งงานลำดับสุดท้าย,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,856

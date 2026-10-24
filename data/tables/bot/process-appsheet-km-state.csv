@@ -4,7 +4,11 @@ Process for AppSheet_KM - 1 Process Table,head,LongText,ALWAYS,No,No,No,No,No,No
 Process for AppSheet_KM - 1 Process Table,ID_SCGนครหลวงJWDภูมิภาค,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1234
 Process for AppSheet_KM - 1 Process Table,วันที่ส่งสินค้า,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERRO LE()=""ADMIN""",,,,,1234
 Process for AppSheet_KM - 1 Process Table,เวลาที่ส่งสินค้า,Time,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE()=""ADMIN""",,,,,1235
-Process for AppSheet_KM - 1 Process Table,จุดส่งสินค้าปลายทาง,"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1236
+Process for AppSheet_KM - 1 Process Table,จุดส่งสินค้าปลายทาง,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,"=AND(
+ ISNOTBLANK([_THIS]),
+ [_THIS] <> ""0.000000, 0.000000"",
+ [_THIS] <> ""0, 0""
+)",,"=USERROLE ()=""ADMIN""",,,"=""ไม่สามารถให้บันทึกข้อมูล ได้ ไม่มีสัญญาณ GPS""",,1236
 Process for AppSheet_KM - 1 Process Table,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1236
 Process for AppSheet_KM - 1 Process Table,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1237
 Process for AppSheet_KM - 1 Process Table,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SORT(
@@ -13,7 +17,25 @@ Process for AppSheet_KM - 1 Process Table,Shipment No,Number,ALWAYS,No,No,No,No,
  + SM_Today_User[Shipment No]
  )
 )",,,,,,,1238
-Process for AppSheet_KM - 1 Process Table,Invoice No,"EnumList {""ItemSeparator"":"","",""EnumValues"": [],""AllowOtherValues"":true,""AutoCompleteOtherValues"":true,""Bas eType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain Text\"",\""IsMulticolumnKey\"":false,\""Valid_If\"":null,\""Error_Messa ge_If_Invalid\"":null,\""Show_If\"":null,\""Required_If\"":null,\""Editable _If\"":null,\""Reset_If\"":null,\""Suggested_Values\"":null}"",""EnumInpu",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1238
+Process for AppSheet_KM - 1 Process Table,Invoice No,EnumList,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(ISBLANK([Shipment No]),
+LIST(),
+ UNIQUE(
+ IF(USERROLE() = ""ADMIN"",
+SELECT(ตารางงานประจำวัน[Invoice No], [Shipment No] =[_THISROW].[Shipment No]),
+ SELECT(SM_Today_User[InvoiceNo],
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No],
+ 
+NOT(IN([Invoice No], SCGนครหลวงJWDภูมิภาค[Invoice No]))
+)
+ )
+ )
+ + [_THISROW].[Invoice No]
+ ) -LIST("""")
+)",,"=OR(
+ USERROLE() = ""ADMIN"",
+ISBLANK([_THISROW].[InvoiceNo])
+)",,,,,1238
 Process for AppSheet_KM - 1 Process Table,รูปถ่ายบิลส่งสินค้า,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1239
 Process for AppSheet_KM - 1 Process Table,รหัสลูกค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""",=ISNOTBLANK([Invoice No]),=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No],,,1240
 Process for AppSheet_KM - 1 Process Table,ชื่อเจ้าของสินค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""",=ISNOTBLANK([Invoice No]),=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No],,,1241
@@ -21,28 +43,28 @@ Process for AppSheet_KM - 1 Process Table,ชื่อปลายทาง,Text
 Process for AppSheet_KM - 1 Process Table,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE()=""ADMIN""",,,,,1242
 Process for AppSheet_KM - 1 Process Table,LAT,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1243
 Process for AppSheet_KM - 1 Process Table,LONG,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1243
-Process for AppSheet_KM - 1 Process Table,ID_Doc_Return,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERRO LE()=""ADMIN""",,=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No],,,1244
-Process for AppSheet_KM - 1 Process Table,คลังสินค้า เอสซีจี เจดับเบิ้ลยูดี วังน้อย,"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1245
+Process for AppSheet_KM - 1 Process Table,ID_Doc_Return,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1244
+Process for AppSheet_KM - 1 Process Table,คลังสินค้า เอสซีจี เจดับเบิ้ลยูดี วังน้อย,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1245
 Process for AppSheet_KM - 1 Process Table,ที่อยู่ปลายทาง,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""",=ISNOTBLANK([Invoice No]),=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No],,,1246
 Process for AppSheet_KM - 1 Process Table,รูปสินค้าตอนส่ง,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1246
-Process for AppSheet_KM - 1 Process Table,รูปหน้าร้าน / บ้าน,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1247
+Process for AppSheet_KM - 1 Process Table,รูปหน้าร้าน / บ้าน,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1247
 Process for AppSheet_KM - 1 Process Table,หมายเหตุ,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,"=AND(
- ISNOTBLANK([รูปถ่ายบิลส่งสินค้า]),
+ ISNOTBLANK([รูปถ่ายบิลส่ง สินค้า]),
  ISNOTBLANK([รูปสินค้าตอนส่ง]),
- ISNOTBLANK([รูปหน้าร้าน / บ้าน])
+ ISNOTBLANK([รูป หน้าร้าน / บ้าน])
 )",,,,1248
 Process for AppSheet_KM - 1 Process Table,เดือน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1248
 Process for AppSheet_KM - 1 Process Table,ระยะทางจากคลัง_Km,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1249
 Process for AppSheet_KM - 1 Process Table,ชื่อที่อยู่จาก_LatLong,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1250
 Process for AppSheet_KM - 1 Process Table,SM_Link_SCG,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1250
-Process for AppSheet_KM - 1 Process Table,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE()= ""ADMIN""","=USERROLE()= ""ADMIN""",,,,1251
+Process for AppSheet_KM - 1 Process Table,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1251
 Process for AppSheet_KM - 1 Process Table,พิกัดตอนกดบันทึกงาน,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,=ISNOTBLANK([หมายเหตุ]),,,1252
 Process for AppSheet_KM - 1 Process Table,เวลาเริ่มกรอกงาน,Time,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1253
 Process for AppSheet_KM - 1 Process Table,เวลาบันทึกงานสำเร็จ,Time,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,=ISNOTBLANK([หมายเหตุ]),,,1253
 Process for AppSheet_KM - 1 Process Table,ระยะขยับจากจุดเริ่มต้น_เมตร,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1254
 Process for AppSheet_KM - 1 Process Table,ระยะเวลาใช้งาน_นาที,Duration,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1255
 Process for AppSheet_KM - 1 Process Table,ความเร็วการเคลื่อนที่_เมตร_นาที,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1255
-Process for AppSheet_KM - 1 Process Table,ผลการตรวจสอบงานส่ง,"Enum {""EnumValues"": [""PASS"",""WARNING"",""FAIL""],""AllowOtherValues"":false,""AutoCompl eteOtherValues"":true,""BaseType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1256
+Process for AppSheet_KM - 1 Process Table,ผลการตรวจสอบงานส่ง,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1256
 Process for AppSheet_KM - 1 Process Table,เหตุผิดปกติที่ตรวจพบ,EnumList,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1257
 Process for AppSheet_KM - 1 Process Table,เวลาถ่ายรูปหน้าร้าน_หน้าบ้าน,Time,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1258
 Process for AppSheet_KM - 1 Process Table,SYNC_STATUS,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1258
@@ -52,10 +74,10 @@ Process for AppSheet_KM - 1 Process Table,POINTS_AT_TIME,Number,ALWAYS,No,No,No,
 Process for AppSheet_KM - 1 Process Table,STATUS,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1261
 Process for AppSheet_KM - 1 Process Table,เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1262
 Process for AppSheet_KM - 1 Process Table,Document_Return,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1262
-Process for AppSheet_KM - 1 Process Table,Image_Document_Return,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""Image_Doc_Return\"",\""Referenced RootTableName\"":\""Image_Doc_Return\"",\""ReferencedType\"":\"" Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1263
+Process for AppSheet_KM - 1 Process Table,Image_Document_Return,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1263
 Process for AppSheet_KM - 1 Process Table,ที่อยู่ปลายทาง_LatLong_Api,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1264
 Process for AppSheet_KM - 1 Process Table,Related สรุปเบิกส่วนต่างs,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1265
 Process for AppSheet_KM - 1 Process Table,Related ทำเบิกส่วนต่างScgวังน้อยs,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1266
 Process for AppSheet_KM - 1 Process Table,พิกัดตอนกดบันทึก_เปลี่ยนแล้ว,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1267
 Process for AppSheet_KM - 1 Process Table,AppSheet___KM,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1267
-Process for AppSheet_KM - 1 Process Table,New step,"Ref {""ReferencedTableName"":""New step Output 2"",""ReferencedRootTableName"":null,""ReferencedType"":""Text"",""Re ferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain Text\"",\""IsMulticolumnKey\"":false,\""Valid_If\"":null,\""Error_Messa",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1268
+Process for AppSheet_KM - 1 Process Table,New step,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1268

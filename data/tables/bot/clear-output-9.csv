@@ -1,12 +1,12 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
 Clear Output 9,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,884
 Clear Output 9,ID_ปริ๊นใบวางบิล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,884
-Clear Output 9,ชื่องาน,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=ข้อมูลชื่องานต้นทาง",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,885
+Clear Output 9,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=ข้อมูลชื่องานต้นทาง ปลายทาง[ชื่อ งาน],,,,,,,885
 Clear Output 9,StartDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,886
 Clear Output 9,EndDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,886
-Clear Output 9,ราคารวม,"Price {""CurrencySymbol"":""฿"",""MaxValue"":null,""MinValue"":null,""StepValu e"":null,""DecimalDigits"":2,""NumericDigits"":null,""ShowThousandsS",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,887
+Clear Output 9,ราคารวม,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,887
 Clear Output 9,Export to xlsx,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,888
 Clear Output 9,Export to xlsx To Athens,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,888
-Clear Output 9,ปริ๊นใบวางบิลแยกตามชื่องาน,"Yes/No {""YesLabel"":"""",""NoLabel"":"""",""Valid_If"":null,""Error_Message_If_Invali",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,889
+Clear Output 9,ปริ๊นใบวางบิลแยกตามชื่องาน,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,889
 Clear Output 9,วันที่ออกเอกสาร,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,890
 Clear Output 9,ผลลัพท์,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,890

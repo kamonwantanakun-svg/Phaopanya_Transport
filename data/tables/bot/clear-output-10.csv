@@ -1,7 +1,7 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
 Clear Output 10,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,900
-Clear Output 10,ID_ปริ๊นใบวางบิล,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,901
-Clear Output 10,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=ข้อมูลชื่องานต้นทาง ปลายทาง[ชื่องาน],,,,,,,901
+Clear Output 10,ID_ปริ๊นใบวางบิล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,901
+Clear Output 10,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=ข้อมูลชื่องานต้นทาง ปลายทาง[ชื่อ งาน],,,,,,,901
 Clear Output 10,StartDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,902
 Clear Output 10,EndDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,903
 Clear Output 10,ราคารวม,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,903

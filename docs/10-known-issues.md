@@ -24,26 +24,44 @@ PDF ที่ AppSheet สร้างวาง label ของฟิลด์ *
 
 | ไฟล์ | ฟิลด์ | จำนวนที่เสียรูป | ตัวอย่าง |
 |---|---|---:|---|
-| `[data/columns/all_columns.csv]` | `type` ปน Type Qualifier JSON | **354 / 2,304** (15.4 %) | `Price {"CurrencySymbol":"฿",…` |
-| `[data/views/views.csv]` | `position` ปน JSON | **35 / 115** | `ref {"ColumnOrder":[…` (ควรเป็น `ref`) |
-| | `view_configuration` หัวหาย (ไม่ขึ้นด้วย `{`) | **33 / 115** | |
-| | `view_configuration` ขึ้นด้วย `{` แต่ `json.loads` ไม่ผ่าน | **4 / 82** | |
-| | `created_by` มีชื่อวิวปนเข้ามา | **2 / 115** | `📦 สรุปรับเอกสาร App owner` |
-| `[data/actions/actions.csv]` | `with_these_properties` หัวหาย | **38 / 214** | |
-| | `disable_automatic_updates` กลืนค่าฟิลด์อื่น | **8 / 214** | `'true No'`, `'DELETE_RECORD No'` |
-| | `do_this` ว่าง / ปน JSON | 3 + 1 | `Edit` (ข้อมูลงานRT), `Add` (ข้อมูลงานRW) |
-| `[data/format-rules/format_rules.csv]` | `like_this` หัวหาย | **1 / 11** | กฎ `Green_Done` → `derline":false,…` |
-| `[data/slices/slices.csv]` | `slice_name` ปนรายการคอลัมน์ | **1 / 8** | สไลซ์ 4 → `สรุปงานประจำวัน _RowNumber ID_งานประจำวัน …` |
+| `[data/columns/all_columns.csv]` | `type` ปน Type Qualifier JSON | **0 / 2,304** ✅ | แก้แล้ว — JSON ย้ายไปคอลัมน์ `type_qualifier` |
+| `[data/views/views.csv]` | `position` ปน JSON | **1 / 115** | `ref {"ColumnOrder":[…` |
+| | `view_configuration` หัวหาย (ไม่ขึ้นด้วย `{`) | **1 / 115** | |
+| | `view_configuration` ขึ้นด้วย `{` แต่ `json.loads` ไม่ผ่าน | **19 / 115** (ผ่าน 96) | ค่าถูกตัดตอนข้ามหน้า — กลไกเดียวกับหัวข้อ 1.3 |
+| `[data/actions/actions.csv]` | `with_these_properties` หัวหาย | **0 / 214** ✅ | แก้แล้ว |
+| | `disable_automatic_updates` กลืนค่าฟิลด์อื่น | **0 / 214** ✅ | แก้แล้ว |
+| | `do_this` ว่าง / ปน JSON | **0** ✅ | แก้แล้ว |
+| `[data/format-rules/format_rules.csv]` | `like_this` หัวหาย | **0 / 11** ✅ | แก้แล้ว |
+| `[data/slices/slices.csv]` | `slice_name` ปนรายการคอลัมน์ | **0 / 8** ✅ | แก้แล้ว |
 | | `slice_columns` เก็บชื่อคอลัมน์ต่อกันด้วยช่องว่าง → ชื่อที่มีช่องว่างถูกตัดเป็นหลายคำ | **8 / 8** | สไลซ์ `รอการอนุมัติ` = 55 คำ แต่เป็น 45 คอลัมน์จริง |
-| `[data/tables/index.csv]` | `data_source` ว่าง | **4 / 90** | `ตารางงานประจำวัน`, `ข้อมูลชื่องานต้นทางปลายทาง`, `ทำเบิกส่วนต่างScgวังน้อย`, `สรุป_เจ้าของสินค้า` (PDF ยืนยันว่าเป็น `google`/`google_tables`) |
-| `[data/formulas/formulas.csv]` | สูตรถูกตัดหัว | **14 / 345** | ดูหัวข้อ 1.3 |
+| `[data/tables/index.csv]` | `data_source` ว่าง | **0 / 90** ✅ | แก้แล้ว |
+| `[data/formulas/formulas.csv]` | สูตรถูกตัดหัว | **7 / 347** | ดูหัวข้อ 1.3 |
+
+### 1.2.1 สิ่งที่ **แก้แล้ว** ในรอบตรวจสอบล่าสุด
+
+รอบตรวจสอบล่าสุด (ตุลาคม 2568) แก้ตัวอ่าน PDF ที่จับคู่ label กับ value ผิดตำแหน่ง ผลคือ
+
+| ปัญหาเดิม | เดิม | ตอนนี้ |
+|---|---:|---:|
+| `type` ปน JSON qualifier | 354 แถว | **0** |
+| `view_configuration` หัวหายต้น | 33 วิว | **1** วิว |
+| `position` ปน JSON | 35 วิว | **1** วิว |
+| `with_these_properties` หัวหาย | 38 แอคชัน | **0** |
+| `disable_automatic_updates` กลืนค่า | 8 แอคชัน | **0** |
+| `like_this` (format rule) หัวหาย | 1 กฎ | **0** |
+| `slice_name` ปนรายการคอลัมน์ | 1 สไลซ์ | **0** |
+| `data_source` ว่าง | 4 ตาราง | **0** |
+| สูตรที่ถูกตัดหัว | 13–14 สูตร | **7** สูตร |
+| ค่าที่หาไม่พบใน PDF (round-trip) | 91 ค่า | **0 ค่า** — ผ่านทุกค่า |
+
+การตรวจสอบซ้ำทำได้ด้วย `tools/verify_roundtrip.py` (ดู `tools/README.md`)
 
 > หมายเหตุ: `[data/tables/index.csv]` ยังมี `updates_allowed` ของตารางบอท 4 แถวที่เป็นข้อความยาว
 > (`READ_ONLY /ProcessStateTables/70999aca-5a1f-4dfc-907b-`) — แปลว่าเป็น `READ_ONLY` เช่นกับทั้ง 60 ตารางบอทอื่น
 
-### 1.3 สูตรที่ถูกตัดหัว — 14 สูตร (รายชื่อ + หน้า + วิธีกู้)
+### 1.3 สูตรที่ถูกตัดหัว — 7 สูตร (รายชื่อ + หน้า + วิธีกู้)
 
-รายละเอียดครบทั้ง 14 รายการอยู่ใน `05-formulas.md` หัวข้อ 3 — สรุปเฉพาะตารางตรวจสอบ:
+รายละเอียดครบทั้ง 7 รายการอยู่ใน `05-formulas.md` หัวข้อ 3 — สรุปเฉพาะตารางตรวจสอบ:
 
 | ตาราง | คอลัมน์ที่ถูกตัดหัว | หน้า PDF |
 |---|---|---:|
@@ -86,17 +104,17 @@ PDF ที่ AppSheet สร้างวาง label ของฟิลด์ *
 → ชื่อวิวที่มีอีโมจิ **ไม่ตรงกับชื่อตาราง** ทำให้จับคู่อัตโนมัติไม่ได้
 (`Scan 📋` ต้องใช้ `View configuration` ในการเดา และได้ความมั่นใจระดับ `low`)
 
-### 1.5 วิวที่ไม่มีฟิลด์ผูกตาราง — 7 วิว
+### 1.5 วิวที่ไม่มีฟิลด์ผูกตาราง — 5 วิว
 
 PDF ที่สกัดมา **ไม่มีฟิลด์ชื่อตารางสำหรับวิว** จึงต้องเดาด้วย 7 กฎ
-ผลคือ 7 วิวที่ยังไม่มีตารางที่ยืนยันได้ — `[data/references/view-to-table.csv]`
+ผลคือ 5 วิวที่ยังไม่มีตารางที่ยืนยันได้ — `[data/references/view-to-table.csv]`
 
 `Document_Return` · `Image_Document_Return` · `Monitor_Dashboard` · `ตารางราคา` ·
 `PDFชื่องาน_Form` · `สรุปงานประจำวัน_Detail` · `สรุปงานประจำวัน_Form`
 
 > **ข้อมูลในเอกสารไม่ระบุ** ตารางที่ถูกต้องแน่นอนของวิวทั้ง 7 ตัวนี้
 
-### 1.6 การอ้างอิงคอลัมน์ที่ resolve ไม่ได้ — 163 / 637
+### 1.6 การอ้างอิงคอลัมน์ที่ resolve ไม่ได้ — 167 / 637
 
 | กลุ่ม | จำนวน | สถานะ |
 |---|---:|---|
@@ -242,7 +260,7 @@ State Table ของบอทหลายตัวมีชุดคอลั�
 → ค่าที่ผิดในตารางบอทจะไหลไปถึงราคาที่ผู้อนุมัติเห็นในตารางจริงทันที
 **อย่าแก้ตารางบอทด้วยมือ** ให้ระบบสร้างใหม่
 
-### 2.12 `USERROLE()` เขียนไม่เหมือนกัน 14 รูปแบบ
+### 2.12 `USERROLE()` เขียนไม่เหมือนกัน 23 รูปแบบ
 
 `=USERROLE() = "ADMIN"` · `=USERROLE()="ADMIN"` · `=USERROLE()= "ADMIN"` · `=USERROLE( )="ADMIN"` ·
 `=USERROLE()="ADMIN "` · `=OR( USERROLE() = "ADMIN" , …)` · `=IF(USERROLE() = "ADMIN", …)` …

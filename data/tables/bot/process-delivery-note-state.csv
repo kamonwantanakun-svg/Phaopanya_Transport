@@ -5,8 +5,8 @@ Process for ใบป่ ะหน้า - 1 Process Table,ชื่อ - นา
 Process for ใบป่ ะหน้า - 1 Process Table,StartDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,612
 Process for ใบป่ ะหน้า - 1 Process Table,EndDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,613
 Process for ใบป่ ะหน้า - 1 Process Table,ราคารวม,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,613
-Process for ใบป่ ะหน้า - 1 Process Table,Export to XLSX,"Yes/No {""YesLabel"":"""",""NoLabel"":"""",""Valid_If"":null,""Error_Message_If_Invali",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,614
+Process for ใบป่ ะหน้า - 1 Process Table,Export to XLSX,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,614
 Process for ใบป่ ะหน้า - 1 Process Table,ชื่อไฟล์,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,615
 Process for ใบป่ ะหน้า - 1 Process Table,ผลลัพท์.,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,615
 Process for ใบป่ ะหน้า - 1 Process Table,debugstartdate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,616
-Process for ใบป่ ะหน้า - 1 Process Table,debugenddate,"Date {""UseLongDateFormat"":false,""Valid_If"":null,""Error_Message_If_In",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,617
+Process for ใบป่ ะหน้า - 1 Process Table,debugenddate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,617

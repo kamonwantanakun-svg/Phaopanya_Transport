@@ -4,7 +4,7 @@ table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defi
 ข้อมูลงานRT,Shipment (หลัก),Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,254
 ข้อมูลงานRT,Shipment (รับคืน),Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,255
 ข้อมูลงานRT,วันที่เข้ารับ,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,255
-ข้อมูลงานRT,เลขที่เอกสารรับคืน,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,256
+ข้อมูลงานRT,เลขที่เอกสารรับคืน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,256
 ข้อมูลงานRT,ชื่อลูกค้าที่เข้ารับ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,257
 ข้อมูลงานRT,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,257
 ข้อมูลงานRT,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,258

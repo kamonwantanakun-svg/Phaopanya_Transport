@@ -1,26 +1,12 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
-Process for เพิ่มรูปรับคืน - 1 Process Table,Instance Id,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,587
+Process for เพิ่มรูปรับคืน - 1 Process Table,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,587
 Process for เพิ่มรูปรับคืน - 1 Process Table,ID_รับงานคืนได้เงิน200,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,588
 Process for เพิ่มรูปรับคืน - 1 Process Table,สถานะการเข้ารับสินค้า,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,588
-Process for เพิ่มรูปรับคืน - 1 Process Table,วันที่เข้ารับ,"Date {""UseLongDateFormat"":false,""Valid_If"":null,""Error_Message_If_In",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,589
+Process for เพิ่มรูปรับคืน - 1 Process Table,วันที่เข้ารับ,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERRO LE() = ""ADMIN""",,,,,589
 Process for เพิ่มรูปรับคืน - 1 Process Table,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,590
 Process for เพิ่มรูปรับคืน - 1 Process Table,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,591
-Process for เพิ่มรูปรับคืน - 1 Process Table,Shipment (หลัก),Number,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(
-
-USERROLE()= ""ADMIN"",
- SELECT(
- ข้อมูลงานRT[Shipment (หลัก)],
- TRUE
- ),
- SELECT(
- ข้อมูล งานRT[Shipment (หลัก)],
- AND(
- [ชื่อ - นามสกุล] =[_THISROW]. [ID_พนักงาน].[ชื่อ - นามสกุล],
- [วันที่เข้ารับ] = TODAY()
- )
- )
-)",,,"=IN([สถานะการเข้ารับสินค้า],{""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"",""(ไม่ได้เพิ่ม) มีในจุดที่ ส่งงานวันนี้"", ""(ได้เพิ่ม50%) ของค่าเที่ยว"",""(ได้เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้าน ปิ ด""})",,,,591
-Process for เพิ่มรูปรับคืน - 1 Process Table,Shipment (รับคืน),"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,592
+Process for เพิ่มรูปรับคืน - 1 Process Table,Shipment (หลัก),Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,591
+Process for เพิ่มรูปรับคืน - 1 Process Table,Shipment (รับคืน),Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,"=IN([ส ถานะการเข้ารับสินค้า],{""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"",""(ไม่ ได้เพิ่ม) มีในจุดที่ ส่งงานวันนี้"", ""(ได้เพิ่ม50%) ของค่าเที่ยว"",""(ได้ เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้าน ปิ ด""})",,,,592
 Process for เพิ่มรูปรับคืน - 1 Process Table,เลขที่เอกสารรับคืน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF( 
 USERROLE() = ""ADMIN"",
  SELECT(
@@ -33,48 +19,29 @@ USERROLE() = ""ADMIN"",
  AND(
  IN([Shipment (รับคืน)], LIST([_THISROW].[Shipment (รับคืน)])),
  [ชื่อ - นามสกุล] = [_THISROW].[ID_พนักงาน].[ชื่อ - นามสกุล],
- [วันที่เข้ารับ] = TODAY(),
+ [วันที่ เข้ารับ] = TODAY(),
  NOT(IN([เลขที่เอกสารรับคืน], SELECT(รับงาน คืนได้เงิน200[เลขที่เอกสารรับคืน], TRUE)))
  )
  )
-)",,,"=IN([สถานะการเข้ารับสินค้า],{""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"",""(ไม่ได้เพิ่ม) มีในจุดที่ ส่งงานวันนี้"", ""(ได้เพิ่ม50%) ของค่าเที่ยว"",""(ได้เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้าน ปิ ด""})",,,,593
-Process for เพิ่มรูปรับคืน - 1 Process Table,จำนวนสินค้า,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,"=IN([สถานะการเข้ารับสินค้า],{""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"","" (ไม่ได้เพิ่ม) มีในจุดที่ ส่งงานวันนี้"", ""(ได้เพิ่ม50%) ของค่า เที่ยว"",""เบิกค่าขนส่งตามระยะทาง"",""ทำเบิกค่ายกขึ้น ชั้น""})",,,,594
-Process for เพิ่มรูปรับคืน - 1 Process Table,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,=SM_Today_User 2[Shipment No],,,"=IN([สถานะการเข้ารับสินค้า],{""เบิกค่าขนส่งตามระยะทาง"",""ทำเบิกค่ายกขึ้น ชั้น""})",,,,594
-Process for เพิ่มรูปรับคืน - 1 Process Table,Invoice No,EnumList,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(
- ISBLANK([ShipmentNo]),
- LIST(),
- UNIQUE(
- SELECT(
- SM_Today_User2[Invoice No],
- AND(
- [Shipment No] = [_THISROW].[Shipment No],
- NOT(
- IN(
- [Invoice No],
- รับงานคืนได้เงิน200[Invoice No]
- )
- )
- )
- )
- + [_THISROW].[InvoiceNo]
- )
- -LIST("""")
-)",,,"=IN([สถานะการเข้ารับสินค้า],{""เบิกค่าขนส่งตามระยะทาง"",""ทำเบิกค่ายกขึ้นชั้น""})",,,,595
+)",,,"=IN([สถานะการ เข้ารับสินค้า],{""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"",""(ไม่ได้เพิ่ม) มีในจุดที่ ส่งงานวันนี้"", ""(ได้เพิ่ม50%) ของค่าเที่ยว"",""(ได้เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้าน ปิ ด""})",,,,593
+Process for เพิ่มรูปรับคืน - 1 Process Table,จำนวนสินค้า,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,"=IN([ สถานะการเข้ารับสินค้า],{""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"","" (ไม่ได้เพิ่ม) มีในจุดที่ ส่งงานวันนี้"", ""(ได้เพิ่ม50%) ของค่า เที่ยว"",""เบิกค่าขนส่งตามระยะทาง"",""ทำเบิกค่ายกขึ้น ชั้น""})",,,,594
+Process for เพิ่มรูปรับคืน - 1 Process Table,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,=SM_Today_User 2[Shipment No],,,"=IN([สถานะการ เข้ารับสินค้า],{""เบิกค่าขนส่งตามระยะทาง"",""ทำเบิกค่ายกขึ้น ชั้น""})",,,,594
+Process for เพิ่มรูปรับคืน - 1 Process Table,Invoice No,EnumList,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,595
 Process for เพิ่มรูปรับคืน - 1 Process Table,ชื่อเจ้าของสินค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,596
 Process for เพิ่มรูปรับคืน - 1 Process Table,รหัสลูกค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,597
 Process for เพิ่มรูปรับคืน - 1 Process Table,ชื่อลูกค้าที่เข้ารับ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,597
 Process for เพิ่มรูปรับคืน - 1 Process Table,รูปสินค้า,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,598
 Process for เพิ่มรูปรับคืน - 1 Process Table,รูปบิลรับคืน,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,599
 Process for เพิ่มรูปรับคืน - 1 Process Table,หมายเหตุ,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,"=IN([สถานะการเข้ารับสินค้า],{""ทำเบิกค่ายก ขึ้นชั้น"",""เบิกค่าขนส่งตามระยะทาง"",""(ได้เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้าน ปิ ด""})",,,,599
-Process for เพิ่มรูปรับคืน - 1 Process Table,รูปจุดที่ส่งงาน,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_ Message_If_Invalid"":null,""Show_If"":""=IN([สถานะการเข้ารับสินค้า] , {\""(ได้เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้านปิ ด\"",\""(ได้เพิ่ม50%) ของค่า",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,600
+Process for เพิ่มรูปรับคืน - 1 Process Table,รูปจุดที่ส่งงาน,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,"=IN([สถานะการเข้ารับสินค้า] , {""(ได้เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้านปิ ด"",""(ได้เพิ่ม50%) ของค่า เที่ยว"",""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"",""เบิกค่าขนส่งตาม ระยะทาง"",""ทำเบิกค่ายกขึ้น ชั้น""})",,,,600
 Process for เพิ่มรูปรับคืน - 1 Process Table,Lat / Long,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,601
 Process for เพิ่มรูปรับคืน - 1 Process Table,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""",,,,,601
-Process for เพิ่มรูปรับคืน - 1 Process Table,ราคา,"Price {""CurrencySymbol"":""฿"",""MaxValue"":null,""MinValue"":null,""StepValu e"":null,""DecimalDigits"":2,""NumericDigits"":null,""ShowThousandsS eparator"":true,""NumberDisplayMode"":""Auto"",""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,602
+Process for เพิ่มรูปรับคืน - 1 Process Table,ราคา,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""","=IN([สถานะการเข้ารับสินค้า] , {""(ได้เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้านปิ ด"",""(ได้เพิ่ม50%) ของค่า เที่ยว"",""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"",""เบิกค่าขนส่งตาม ระยะทาง"",""ทำเบิกค่ายกขึ้น ชั้น""})",,,,602
 Process for เพิ่มรูปรับคืน - 1 Process Table,สร้างPDFรับคืน,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""","=USERROLE() = ""ADMIN""",,,,603
 Process for เพิ่มรูปรับคืน - 1 Process Table,TimeChange,ChangeCounter,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,604
 Process for เพิ่มรูปรับคืน - 1 Process Table,ตรวจสอบก่อนบันทึกข้อมูล,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,=[ตรวจสอบก่อนบันทึกข้อมูล] >0,,,,,=บันทึกข้อมูลไม่สำเร็จ กรุณา ติดต่อแอดมินเพื่อตรวจ สอบ,,604
 Process for เพิ่มรูปรับคืน - 1 Process Table,เดือน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,605
 Process for เพิ่มรูปรับคืน - 1 Process Table,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""","=USERROLE()= ""ADMIN""",,,,606
 Process for เพิ่มรูปรับคืน - 1 Process Table,LINK_IMAGE,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,606
-Process for เพิ่มรูปรับคืน - 1 Process Table,รายชื่อจุดส่งในตารางงานประจำวัน,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,607
+Process for เพิ่มรูปรับคืน - 1 Process Table,รายชื่อจุดส่งในตารางงานประจำวัน,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,607
 Process for เพิ่มรูปรับคืน - 1 Process Table,New step,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,608

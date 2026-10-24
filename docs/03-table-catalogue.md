@@ -93,13 +93,13 @@
 |---|---|
 | จำนวนตาราง | 29 (`google` 24 + `google_tables` 1 + `Data Source` ว่าง 4) |
 | คอลัมน์ | 595 (ตารางบอท 1,709 รวม 2,304) |
-| คอลัมน์คำนวณ | 313 (App formula 188 + Initial value 125) |
+| คอลัมน์คำนวณ | 318 (App formula 191 + Initial value 127) |
 | ตารางที่มี `Expression for update mode` | 22 |
 | ตารางที่มี `Security filter` | 7 |
 | ตารางที่มีแอกชัน | 29 (ครบทุกตาราง) |
 | ตารางที่มีสไลซ์ | 2 (`ข้อมูลการวางบิล` 3, `ตารางงานประจำวัน` 5) |
 | ตารางที่มีฟอร์แมตรูล | 4 (`ข้อมูลการวางบิล` 4, `ตารางงานประจำวัน` 3, `SCGนครหลวงJWDภูมิภาค` 2, `ทำเบิกส่วนต่าง` 2) |
-| ตารางที่มีวิว | 29 (จับคู่ได้ 108/115 วิว) — ดู `06-views-actions.md` |
+| ตารางที่มีวิว | 29 (จับคู่ได้ 110/115 วิว) — ดู `06-views-actions.md` |
 
 แหล่ง: `[data/tables/index.csv]`, `[data/slices/slices.csv]`, `[data/format-rules/format_rules.csv]`,
 `[data/actions/actions.csv]`, `[data/references/view-to-table.csv]`

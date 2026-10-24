@@ -4,7 +4,7 @@ table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defi
 สรุปเบิกส่วนต่าง,ID_Optimization,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,297
 สรุปเบิกส่วนต่าง,ID_เบิกส่วนต่างSCGวังน้อย,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,297
 สรุปเบิกส่วนต่าง,_ComputedKey_ID_SCGนครหลวงJWDภูมิภาค,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,298
-สรุปเบิกส่วนต่าง,วันที่เริ่มต้น,"Date {""UseLongDateFormat"":false,""Valid_If"":null,""Error_Message_If_In",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,299
+สรุปเบิกส่วนต่าง,วันที่เริ่มต้น,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,299
 สรุปเบิกส่วนต่าง,วันที่สิ้นสุด,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,300
 สรุปเบิกส่วนต่าง,รวมค่าขนส่งส่วนเพิ่ม,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,300
 สรุปเบิกส่วนต่าง,วันที่ออกเอกสาร,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,301

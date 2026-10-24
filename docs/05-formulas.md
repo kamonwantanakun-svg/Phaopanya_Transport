@@ -1,6 +1,6 @@
-# 05 — สูตรทั้ง 345 สูตร: ระดับ รูปแบบ ฟังก์ชัน และสูตรที่ถูกตัดหัว
+# 05 — สูตรทั้ง 347 สูตร: ระดับ รูปแบบ ฟังก์ชัน และสูตรที่ถูกตัดหัว
 
-> ไฟล์ที่ 5 จาก 10 · แหล่ง `[data/formulas/formulas.csv]` (345 แถว),
+> ไฟล์ที่ 5 จาก 10 · แหล่ง `[data/formulas/formulas.csv]` (347 แถว),
 > `[data/references/function-usage.csv]` (50 ฟังก์ชัน), `[data/references/column-references.csv]` (637 รายการ)
 
 ---
@@ -15,7 +15,7 @@
 | `Initial value` | **126** | คอลัมน์ | ค่าเริ่มต้นตอนสร้างแถว · แก้ได้ |
 | `Expression for update mode` | **22** | ตาราง | กำหนดว่าใครแก้ได้ (`SWITCH(USERROLE(), …)`) |
 | `Security filter` | **7** | ตาราง | กำหนดว่าเห็นแถวไหน |
-| **รวม** | **345** | | **ระดับคอลัมน์ 316 + ระดับตาราง 29** |
+| **รวม** | **347** | | **ระดับคอลัมน์ 318 + ระดับตาราง 29** |
 
 แหล่ง: `[data/formulas/formulas.csv]` คอลัมน์ `field`
 
@@ -27,7 +27,7 @@
 | Initial value | 125 | 1 | 126 |
 | Expression for update mode | 22 | 0 | 22 |
 | Security filter | 7 | 0 | 7 |
-| **รวม** | **342** | **3** | **345** |
+| **รวม** | **344** | **3** | **347** |
 
 > 3 สูตรที่อยู่ในตารางบอท อยู่ที่ `_Per User Settings` ทั้งหมด: `_EMAIL` = `USEREMAIL()`,
 > `_NAME` = `USERNAME()`, `_THISUSER` = `onlyvalue` — `[data/formulas/formulas.csv]`
@@ -136,7 +136,7 @@ REF_ROWS("ScanDocs", "Invoice_No")
 | `[_ROWNUMBER]` | 3 | เลขแถว (หาแถวแรก/ค่าต่ำสุด) | เหมือนตัวอย่างด้านบน |
 | `[_THIS]` | 1 | ค่าปัจจุบันของคอลัมน์ | `SCGนครหลวงJWDภูมิภาค.เวลาถ่ายรูปหน้าร้าน_หน้าบ้าน` (Initial value) |
 
-รวม **146 สูตรที่ใช้ `_THISROW`** (42.3 % ของ 345) — แหล่ง `[data/formulas/formulas.csv]`
+รวม **149 สูตรที่ใช้ `_THISROW`** (42.9 % ของ 347) — แหล่ง `[data/formulas/formulas.csv]`
 
 ### 2.3 รูปแบบที่พบเฉพาะในแอปนี้
 
@@ -206,7 +206,7 @@ YEAR([วันที่ส่งสินค้า]) - IF(YEAR([วันที
 
 ---
 
-## 4. ฟังก์ชันที่ใช้: 50 ตัว / 569 ครั้ง
+## 4. ฟังก์ชันที่ใช้: 50 ตัว / 593 ครั้ง
 
 แหล่ง: `[data/references/function-usage.csv]`
 
@@ -263,7 +263,7 @@ YEAR([วันที่ส่งสินค้า]) - IF(YEAR([วันที
 | 49 | `TRIM` | 1 | 1 | ตัดช่องว่าง |
 | 50 | `USERNAME` | 1 | 1 | ชื่อผู้ใช้ปัจจุบัน (`_Per User Settings._NAME`) |
 
-**รวม 569 ครั้ง** — สูตรหนึ่งสูตรเรียกหลายฟังก์ชัน — `[data/references/function-usage.csv]`
+**รวม 593 ครั้ง** — สูตรหนึ่งสูตรเรียกหลายฟังก์ชัน — `[data/references/function-usage.csv]`
 
 ---
 
@@ -271,7 +271,7 @@ YEAR([วันที่ส่งสินค้า]) - IF(YEAR([วันที
 
 | ผลการ resolve | จำนวน | หมายเหตุ |
 |---|---:|---|
-| `yes` (เจอคอลัมน์จริง) | 474 | ปกติ |
+| `yes` (เจอคอลัมน์จริง) | 470 | ปกติ |
 | `no` | 163 | แยกได้เป็น 2 กลุ่ม |
 
 | กลุ่ม | จำนวน | รายละเอียด |
@@ -302,13 +302,13 @@ YEAR([วันที่ส่งสินค้า]) - IF(YEAR([วันที
 
 | มิติ | ค่า | แหล่ง |
 |---|---:|---|
-| สูตรทั้งหมด | 345 | `[data/formulas/formulas.csv]` |
+| สูตรทั้งหมด | 347 | `[data/formulas/formulas.csv]` |
 | ระดับคอลัมน์ | 316 (App formula 190 + Initial value 126) | |
 | ระดับตาราง | 29 (Expression for update mode 22 + Security filter 7) | |
 | ตารางจริง / ตารางบอท | 342 / 3 | |
 | ตารางที่มีสูตร | 30 จาก 90 (สูตรระดับคอลัมน์ 29 = 28 จริง + 1 บอท) | |
-| ฟังก์ชันที่ต่างกัน / จำนวนครั้ง | 50 / 569 | `[data/references/function-usage.csv]` |
-| สูตรที่มี `_THISROW` | 146 | `[data/formulas/formulas.csv]` |
+| ฟังก์ชันที่ต่างกัน / จำนวนครั้ง | 50 / 593 | `[data/references/function-usage.csv]` |
+| สูตรที่มี `_THISROW` | 149 | `[data/formulas/formulas.csv]` |
 | สูตรที่ถูกตัดหัว | 14 | ดูหัวข้อ 3 |
-| การอ้างอิงคอลัมน์ | 637 (resolve ได้ 474 / ไม่ได้ 163 = helper 150 + จับผิดพิมพ์ 13) | `[data/references/column-references.csv]` |
+| การอ้างอิงคอลัมน์ | 637 (resolve ได้ 470 / ไม่ได้ 167 = helper 153 + จับผิดพิมพ์ 14) | `[data/references/column-references.csv]` |
 | สูตรสิทธิ์ระดับคอลัมน์ (นอก `formulas.csv`) | `Valid_If` 224, `Show_If` 212, `Editable_If` 78, `Error_Message_If_Invalid` 31, `Reset_If` 25, `Required_If` 1 | `[data/columns/all_columns.csv]` |

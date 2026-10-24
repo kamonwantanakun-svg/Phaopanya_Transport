@@ -40,7 +40,7 @@
 | คอลัมน์ | **2,304** | `[data/columns/all_columns.csv]` |
 | ├ ในตารางจริง | 595 (คำนวณ 313) | |
 | └ ในตารางบอท | 1,709 | |
-| สูตร / นิพจน์ | **345** | `[data/formulas/formulas.csv]` |
+| สูตร / นิพจน์ | **347** | `[data/formulas/formulas.csv]` |
 | ├ ระดับคอลัมน์ | 316 (App formula 190 + Initial value 126) | |
 | └ ระดับตาราง | 29 (Expression for update mode 22 + Security filter 7) | |
 | Views | **115** | `[data/views/views.csv]` |
@@ -48,8 +48,8 @@
 | Slices | **8** | `[data/slices/slices.csv]` |
 | Format Rules | **11** | `[data/format-rules/format_rules.csv]` |
 | ชนิดคอลัมน์ | 113 | `[data/columns/by-type.csv]` |
-| ฟังก์ชันที่ใช้ | 50 ตัว / 569 ครั้ง | `[data/references/function-usage.csv]` |
-| การอ้างอิงคอลัมน์ในสูตร | 637 (resolve ได้ 474 / ไม่ได้ 163) | `[data/references/column-references.csv]` |
+| ฟังก์ชันที่ใช้ | 50 ตัว / 593 ครั้ง | `[data/references/function-usage.csv]` |
+| การอ้างอิงคอลัมน์ในสูตร | 637 (resolve ได้ 470 / ไม่ได้ 167) | `[data/references/column-references.csv]` |
 | Workflow Rules | 0 (แอปนี้ไม่มี) | หน้า 1 ของ PDF |
 
 ตัวเลขทุกตัวตรงกับที่แอปสรุปไว้เองในหน้าแรกของ PDF
@@ -95,7 +95,7 @@ Phaopanya_Transport/
 │   ├── 02-data-model.md          ตารางเชื่อมกันอย่างไร ข้อมูลไหลไปทางไหน
 │   ├── 03-table-catalogue.md     ตารางจริง 29 + ตารางบอท 61 ทีละตาราง
 │   ├── 04-columns.md             คอลัมน์สำคัญของแต่ละโดเมน + ชนิดข้อมูล 113 ชนิด
-│   ├── 05-formulas.md            สูตร 345 สูตร จัดกลุ่มตามรูปแบบ + ข้อควรระวัง
+│   ├── 05-formulas.md            สูตร 347 สูตร จัดกลุ่มตามรูปแบบ + ข้อควรระวัง
 │   ├── 06-views-actions.md       วิว 115 + แอคชัน 214 ว่าใช้ทำอะไร
 │   ├── 07-slices-format-rules.md สไลซ์ 8 (ตัวกรองแถว) + ฟอร์แมตรูล 11 (สัญญาณสี)
 │   ├── 08-security-rules.md      โมเดลสิทธิ์ ADMIN/USER, กฎระดับตารางและระดับคอลัมน์
@@ -105,7 +105,7 @@ Phaopanya_Transport/
 ├── digest/                ← ตารางย่อ "อ่านรีบทันที" (ไม่ต้องเปิด CSV)
 │   ├── tables.md           90 ตาราง 1 บรรทัดต่อตาราง
 │   ├── columns.md          คอลัมน์ของตารางจริง 29 ตาราง 1 บรรทัดต่อตาราง
-│   ├── formulas.md         สูตร 345 สูตร 1 บรรทัดต่อสูตร
+│   ├── formulas.md         สูตร 347 สูตร 1 บรรทัดต่อสูตร
 │   ├── views-actions.md    วิว + แอคชัน 329 รายการ
 │   └── functions.md        ฟังก์ชัน 50 ตัว เรียงตามความถี่
 │
@@ -196,10 +196,11 @@ cd tools
 | ข้อจำกัด | ผลกระทบ |
 |---|---|
 | ค่าที่ขึ้นบรรทัดใน PDF อาจทำให้สูตรที่ไม่ใช่ JSON หายช่องว่างไป 1 ตัว | ตรวจจาก `doc_page` ได้ |
-| สูตร 14 สูตรถูกตัดหัว (ค่าขึ้นบรรทัดกลางนิพจน์) | รายชื่ออยู่ที่ `docs/05-formulas.md` |
+| สูตร 7 สูตรถูกตัดหัว (ค่าขึ้นบรรทัดกลางนิพจน์) | รายชื่ออยู่ที่ `docs/05-formulas.md` |
+| `view_configuration` ของ 19 วิวถูกตัดตอนข้ามหน้า (ต้น PDF ไม่ได้พิมพ์ครบ) | 96 จาก 115 วิวยังเป็น JSON ที่ parse ผ่าน |
 | อีโมจิในสูตรอยู่คนละตำแหน่งกับข้อความ (fallback font) | เนื้อหาไม่เสีย แต่ลำดับในสูตรอาจเพี้ยน |
-| วิว 10 จาก 115 ไม่มีฟิลด์ผูกตารางในเอกสาร | ดูวิธีจับคู่ที่ `data/references/view-to-table.csv` |
-| การอ้างอิงคอลัมน์ 163 รายการ resolve ไม่ได้ | ส่วนใหญ่เป็น helper (`_THISROW` ฯลฯ) ดู `data/references/column-references.csv` |
+| วิว 5 จาก 115 ไม่มีฟิลด์ผูกตารางในเอกสาร | ดูวิธีจับคู่ที่ `data/references/view-to-table.csv` |
+| การอ้างอิงคอลัมน์ 167 รายการ resolve ไม่ได้ | ส่วนใหญ่เป็น helper (`_THISROW` ฯลฯ) ดู `data/references/column-references.csv` |
 
 รายละเอียดทั้งหมด: `docs/10-known-issues.md`
 

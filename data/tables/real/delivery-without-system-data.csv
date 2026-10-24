@@ -2,7 +2,7 @@ table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defi
 ส่งงานที่ยังไม่มีข้อมูลในระบบ,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,500
 ส่งงานที่ยังไม่มีข้อมูลในระบบ,ID_ส่งงานที่ยังไม่มีข้อมูลในระบบ,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,501
 ส่งงานที่ยังไม่มีข้อมูลในระบบ,วันที่ส่งสินค้า,Date,ALWAYS,No,No,No,No,No,No,Yes,,=TODAY(),,,,,,,,,502
-ส่งงานที่ยังไม่มีข้อมูลในระบบ,ชื่อ - นามสกุล,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,=[ID_พนักงาน].[ชื่อ - นามสกุล],,,,,,,,,503
+ส่งงานที่ยังไม่มีข้อมูลในระบบ,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,=[ID_พนักงาน].[ชื่อ - นามสกุล],,,,,,,,,503
 ส่งงานที่ยังไม่มีข้อมูลในระบบ,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,=[ID_พนักงาน].[ทะเบียนรถ],,,,,,,,,503
 ส่งงานที่ยังไม่มีข้อมูลในระบบ,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,504
 ส่งงานที่ยังไม่มีข้อมูลในระบบ,Invoice No,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,505
@@ -10,7 +10,7 @@ table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defi
 ส่งงานที่ยังไม่มีข้อมูลในระบบ,ที่อยู่ปลายทาง,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,506
 ส่งงานที่ยังไม่มีข้อมูลในระบบ,รูปถ่ายบิลส่งสินค้า,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,507
 ส่งงานที่ยังไม่มีข้อมูลในระบบ,รูปสินค้าตอนส่ง,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,507
-ส่งงานที่ยังไม่มีข้อมูลในระบบ,รูปหน้าร้าน / บ้าน,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,508
+ส่งงานที่ยังไม่มีข้อมูลในระบบ,รูปหน้าร้าน / บ้าน,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,508
 ส่งงานที่ยังไม่มีข้อมูลในระบบ,จุดส่งสินค้าปลายทาง,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,=HERE(),,,,,,,,,509
 ส่งงานที่ยังไม่มีข้อมูลในระบบ,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,=USEREMAIL(),,,,,,,,,509
-ส่งงานที่ยังไม่มีข้อมูลในระบบ,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,"=LOOKUP(USEREMAIL(), ""ข้อมูลพนักงาน"", ""Email พนักงาน"", ""ID_พนักงาน"")",,,,,"=USERROLE()= ""ADMIN""",,,,510
+ส่งงานที่ยังไม่มีข้อมูลในระบบ,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,"=LOOKUP(USEREMAIL(), ""ข้อมูลพนักงาน"", ""Email พนักงาน"", ""ID_พนักงาน"")",,,,,,,,,510

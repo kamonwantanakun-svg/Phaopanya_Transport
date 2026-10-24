@@ -1,7 +1,7 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
 ปริ๊นใบวางบิล,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,189
 ปริ๊นใบวางบิล,ID_ปริ๊นใบวางบิล,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,190
-ปริ๊นใบวางบิล,ชื่องาน,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,190
+ปริ๊นใบวางบิล,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=ข้อมูลชื่องานต้นทาง ปลายทาง[ชื่อ งาน],,,,,,,190
 ปริ๊นใบวางบิล,StartDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,191
 ปริ๊นใบวางบิล,EndDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,192
 ปริ๊นใบวางบิล,ราคารวม,Price,ALWAYS,No,No,No,No,No,No,Yes,"=SUM(SELECT(ข้อมูลการวางบิล[ราคา], AND([ชื่องาน]= [_THISROW].[ชื่องาน],[วันที่] >= [_THISROW].[Startdate], [วันที่] <= [_THISROW].[Enddate])))",,,,,,,,,,192

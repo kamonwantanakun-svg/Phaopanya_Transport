@@ -18,9 +18,9 @@ FILTER,filter,filter.csv,data/tables/real/filter.csv,real,,14,9,9
 สรุปเบิกส่วนต่าง,expense-summary,expense-summary.csv,data/tables/real/expense-summary.csv,real,,12,3,10
 Doc_Return,doc-return,doc-return.csv,data/tables/real/doc-return.csv,real,,7,3,11
 Image_Doc_Return,image-doc-return,image-doc-return.csv,data/tables/real/image-doc-return.csv,real,,4,1,11
-ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,scg-wan-noy-expense.csv,data/tables/real/scg-wan-noy-expense.csv,real,,136,104,12
+ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,scg-wan-noy-expense.csv,data/tables/real/scg-wan-noy-expense.csv,real,,136,105,12
 ข้อมูลงานRW,rw-job-data,rw-job-data.csv,data/tables/real/rw-job-data.csv,real,,15,1,12
-สร้างเอกสาร,create-document,create-document.csv,data/tables/real/create-document.csv,real,,25,14,13
+สร้างเอกสาร,create-document,create-document.csv,data/tables/real/create-document.csv,real,,25,15,13
 ScanDocs,scan-docs,scan-docs.csv,data/tables/real/scan-docs.csv,real,,18,13,14
 สรุป_เจ้าของสินค้า,cargo-owner-summary,cargo-owner-summary.csv,data/tables/real/cargo-owner-summary.csv,real,,13,8,14
 สรุป_Shipment,shipment-summary,shipment-summary.csv,data/tables/real/shipment-summary.csv,real,,14,6,14

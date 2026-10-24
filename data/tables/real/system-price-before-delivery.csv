@@ -1,9 +1,9 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
 ราคาในระบบก่อนส่งสินค้า,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,175
 ราคาในระบบก่อนส่งสินค้า,ID_ราคา,Number,ALWAYS,Yes,Yes,No,No,No,No,Yes,,,,,,,,,,,176
-ราคาในระบบก่อนส่งสินค้า,Shipment No,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,No,No,Yes,Yes,No,No,Yes,,,,,,,,,,,177
+ราคาในระบบก่อนส่งสินค้า,Shipment No,Number,ALWAYS,No,No,Yes,Yes,No,No,Yes,,,,,,,,,,,177
 ราคาในระบบก่อนส่งสินค้า,วันที่ส่งสินค้า,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,177
-ราคาในระบบก่อนส่งสินค้า,ชื่อต้นทาง,Text,ALWAYS,No,No,No,No,No,Yes No,,,,,,,,,,,,178
+ราคาในระบบก่อนส่งสินค้า,ชื่อต้นทาง,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,178
 ราคาในระบบก่อนส่งสินค้า,ชื่อปลายทาง,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,179
 ราคาในระบบก่อนส่งสินค้า,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,179
 ราคาในระบบก่อนส่งสินค้า,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,180
@@ -12,5 +12,5 @@ table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defi
 ราคาในระบบก่อนส่งสินค้า,น้ำหนัก,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,182
 ราคาในระบบก่อนส่งสินค้า,ระยะทาง (km),Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,183
 ราคาในระบบก่อนส่งสินค้า,ราคา,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,184
-ราคาในระบบก่อนส่งสินค้า,ราคาหลังส่งสินค้า,"Price {""CurrencySymbol"":""฿"",""MaxValue"":null,""MinValue"":null,""StepValu",ALWAYS,"e"":null,""DecimalDigits"":2,""NumericDigits"":null,""ShowThousandsS eparator"":true,""NumberDisplayMode"":""Auto"",""Valid_If"":null,""Error_ Message_If_Invalid"":null,""Show_If"":null,""Required_If"":null,""Editabl e_If"":null,""Reset_If"":null,""Suggested_Values"":null} Yes",No,No,No,No,No,Yes,,,,,,,,,,,184
+ราคาในระบบก่อนส่งสินค้า,ราคาหลังส่งสินค้า,Price,ALWAYS,Yes,No,No,No,No,No,Yes,,,,,,,,,,,184
 ราคาในระบบก่อนส่งสินค้า,เดือน,Text,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=IF( ISBLANK([วันที่ส่งสินค้า]), """", CONCATENATE( YEAR([วันที่ส่งสินค้า]) - IF(YEAR([วันที่ส่งสินค้า]) > 2500, 543, 0), ""-"", TEXT([วันที่ส่งสินค้า], ""MM"") ) )",,,,,,,,,,185

@@ -6,4 +6,4 @@ Price_Table,เรทน้ำมัน_Minimum,Decimal,ALWAYS,No,No,No,No,No,No
 Price_Table,เรทน้ำมัน_Maximum,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,497
 Price_Table,ระยะทาง_Minimum,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,498
 Price_Table,ระยะทาง_Maximum,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,499
-Price_Table,Price,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"":",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,500
+Price_Table,Price,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,500

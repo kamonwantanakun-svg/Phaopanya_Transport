@@ -7,7 +7,7 @@ table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defi
 ข้อมูลการเข้าบำรุงรักษา,รูปถ่ายเลขไมล์รถยนต์ก่อนเข้าบำรุงรักษา,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,100
 ข้อมูลการเข้าบำรุงรักษา,OCR_เลขไมล์รถยนต์ก่อนเข้าบำรุงรักษา,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,101
 ข้อมูลการเข้าบำรุงรักษา,รูปถ่ายบิลหรือใบเสร็จ รายการเข้าบำรุงรักษา,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,101
-ข้อมูลการเข้าบำรุงรักษา,OCR_รายการเข้าบำรุงรักษา,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,102
+ข้อมูลการเข้าบำรุงรักษา,OCR_รายการเข้าบำรุงรักษา,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,102
 ข้อมูลการเข้าบำรุงรักษา,ราคา,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,103
 ข้อมูลการเข้าบำรุงรักษา,กรุณากรอกเลขไมล์รถยนต์ รอบบำรุงรักษาครั้งถัดไป,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,104
 ข้อมูลการเข้าบำรุงรักษา,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,=USEREMAIL(),,,,"=USERROLE() = ""ADMIN""",,,,,104

@@ -1,15 +1,15 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
 สรุป_Shipment,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,479
-สรุป_Shipment,ShipmentKey,Text,ALWAYS,"{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":null,""Error_Message_If_I nvalid"":null,""Show_If"":null,""Required_If"":null,""Editable_If"":null,""Res et_If"":null,""Suggested_Values"":null} No",No,Yes,Yes,No,No,Yes,,,,,,,,,,,479
+สรุป_Shipment,ShipmentKey,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,,,,,,,,,,479
 สรุป_Shipment,ShipmentNo,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,480
 สรุป_Shipment,TruckLicense,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,481
 สรุป_Shipment,PlanDelivery,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,481
-สรุป_Shipment,จำนวน_ทั้งหมด,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,482
+สรุป_Shipment,จำนวน_ทั้งหมด,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,482
 สรุป_Shipment,จำนวน_E-POD_ทั้งหมด,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,483
 สรุป_Shipment,LastUpdated,DateTime,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,483
 สรุป_Shipment,รายการ_ทั้งหมด,List,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=FILTER( ""ตารางงานประจำวัน"", [Shipment No] = [_THISROW]. [ShipmentNo] )",,,,,,,,,,484
 สรุป_Shipment,รายการ_สแกนแล้ว,List,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=FILTER( ""ตารางงานประจำวัน"", AND( [Shipment No] = [_THISROW].[ShipmentNo], [ScanStatus] = ""สแกนรับแล้ว"" ) )",,,,,,,,,,485
 สรุป_Shipment,รายการ_รอสแกน,List,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=FILTER( ""ตารางงานประจำวัน"", AND( [Shipment No] = [_THISROW].[ShipmentNo], OR( ISBLANK([ScanStatus]), [ScanStatus] <> ""สแกนรับแล้ว"" ) ) )",,,,,,,,,,486
 สรุป_Shipment,จำนวน_สแกนแล้ว,Number,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=COUNT( UNIQUE( SELECT( ตารางงานประจำวัน[Invoice No], AND( [Shipment No] = [_THISROW].[ShipmentNo], [ScanStatus] = ""สแกนรับแล้ว"" ) ) ) )",,,,,,,,,,487
-สรุป_Shipment,จำนวน_รอสแกน,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,Yes,No,No,No,No,Yes,Yes,=[จำนวน_ทั้งหมด] - [จำนวน_สแกนแล้ว],,,,,,,,,,488
+สรุป_Shipment,จำนวน_รอสแกน,Number,ALWAYS,Yes,No,No,No,No,Yes,Yes,=[จำนวน_ทั้งหมด] - [จำนวน_สแกนแล้ว],,,,,,,,,,488
 สรุป_Shipment,สรุปยอด,Text,ALWAYS,Yes,No,No,No,No,Yes,Yes,"="" ""&[จำนวน_ทั้งหมด] &"" ""&[จำนวน_สแกนแล้ว] &"" ""&[จำนวน_รอสแกน] &IF([จำนวน_E-POD_ทั้งหมด]>0,"" ""&[จำนวน_E-POD_ทั้งหมด],"""")",,,,,,,,,,489

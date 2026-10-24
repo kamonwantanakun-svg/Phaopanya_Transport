@@ -1,114 +1,24 @@
 type,column_count,table_count,doc_page
-Image,503,22,66
-Text,474,90,51
-LongText,177,28,59
-Date,140,66,61
-Yes/No,136,62,96
-Number,119,43,48
-Decimal,80,17,70
-List,67,41,94
-Ref,62,37,78
-Price,59,40,103
-"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",50,40,67
-"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",48,10,90
-"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",32,12,209
-LatLong,25,20,50
-Email,24,23,49
-Enum,24,20,120
-"Date {""UseLongDateFormat"":false,""Valid_If"":null,""Error_Message_If_In",21,18,174
-"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",19,17,64
-Url,18,8,351
-"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\n SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n [Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่ง",14,6,322
-"Yes/No {""YesLabel"":"""",""NoLabel"":"""",""Valid_If"":null,""Error_Message_If_Invali",14,14,580
+Text,561,90,51
+Image,536,23,66
+LongText,227,28,59
+Date,162,70,61
+Yes/No,151,65,96
+Number,148,46,48
+Decimal,99,18,70
+List,95,52,92
+Ref,80,44,71
+Price,76,49,103
+LatLong,35,21,50
+Enum,33,27,84
+Email,29,28,49
+Url,24,8,320
+EnumList,13,10,65
 Time,12,3,61
-"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"":",11,8,76
-DateTime,10,10,98
-EnumList,9,9,216
-"Price {""CurrencySymbol"":""฿"",""MaxValue"":null,""MinValue"":null,""StepValu",9,8,121
-"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_",8,6,80
-"Price {""CurrencySymbol"":""฿"",""MaxValue"":null,""MinValue"":null,""StepValu e"":null,""DecimalDigits"":2,""NumericDigits"":null,""ShowThousandsS",6,6,136
-"Url {""LaunchExternal"":false,""IsHyperLink"":false,""Valid_If"":null,""Error_",6,6,320
-"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"": 2,""NumericDigits"":null,""ShowThousandsSeparator"":true,""Number",5,5,83
-"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits"" :null,""ShowThousandsSeparator"":true,""NumberDisplayMode"":""Au",5,4,789
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":""",4,4,92
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedRootTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain",4,4,532
-"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลาย",4,4,324
-"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลายทาง_01] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_02] & \"" ,\"" & \n [_THISROW].[Lat/Long_ปลายทาง_03] & \"" , \"" & \n[_THISROW].[Lat/Long_ปลายทาง_04] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_05] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_06] & \"" , \"" & \n [_THISROW].",4,4,336
+DateTime,11,11,98
 ChangeCounter,3,3,247
 Duration,3,3,82
-"Ref {""ReferencedTableName"":""ข้อมูล พนักงาน"",""ReferencedRootTableName"":""ข้อมูล พนักงาน"",""ReferencedType"":""Text"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",3,3,226
-"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=ข้อมูลชื่องานต้นทาง",3,3,619
-"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลายทาง_01] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_02] & \"" ,\"" & \n [_THISROW].[Lat/Long_ปลายทาง_03] & \"" , \"" & \n[_THISROW].[Lat/Long_ปลายทาง_04] & \"" , \"" & \n [_THISROW].",3,3,1056
-"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"": 2,""NumericDigits"":null,""ShowThousandsSeparator"":false,""Numbe",2,2,320
-"Email {""Valid_If"":""=IF(\n\n USERROLE() = \""ADMIN\"",\n\n ข้อมูล",2,2,1447
-"Email {""Valid_If"":null,""Error_Message_If_Invalid"":null,""Show_If"":null,""Req",2,2,279
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedRootTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier \"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er",2,2,283
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedRootTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier \"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er ror_Message_If_Invalid\\\"":null,\\\""Show_If\\\"":null,\\\""Required",2,2,661
-"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":null,""Error_Message_If_I",2,2,1285
 Name,2,2,49
-"Ref {""ReferencedTableName"":""SCGนครหลวงJWDภูมิภาค"",""Reference dRootTableName"":""SCGนครหลวงJWDภูมิภาค"",""ReferencedType"": ""Text"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",2,2,762
-"Ref {""ReferencedTableName"":""ข้อมูล พนักงาน"",""ReferencedRootTableName"":""ข้อมูล พนักงาน"",""ReferencedType"":""Text"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain",2,2,583
 Show,2,2,51
-"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\n SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n",2,2,325
-"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลายทาง_01] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_02] & \"" ,",2,2,951
-"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลายทาง_01] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_02] & \"" ,\"" & \n [_THISROW].[Lat/Long_ปลายทาง_03] & \"" , \"" & \n",2,1,1057
-"Date {""UseLongDateFormat"":false,""Valid_If"":""=[ตรวจสอบข้อมูล]",1,1,1443
-"DateTime {""MinValue"":null,""MaxValue"":null,""UseLongDateFormat"":false,""Ign",1,1,457
-"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"": 6,""NumericDigits"":null,""ShowThousandsSeparator"":false,""Numbe",1,1,1280
-"Email {""Valid_If"":""=IF(\n\n USERROLE() = \""ADMIN\"",\n\n ข้อมูล พนักงาน[Email พนักงาน],\n\n",1,1,946
-"Enum {""EnumValues"": [""PASS"",""WARNING"",""FAIL""],""AllowOtherValues"":false,""AutoCompl eteOtherValues"":true,""BaseType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",1,1,84
-"Enum {""EnumValues"": [""PASS"",""WARNING"",""FAIL""],""AllowOtherValues"":false,""AutoCompl eteOtherValues"":true,""BaseType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain",1,1,1256
-"Enum {""EnumValues"":[""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"",""(ไม่ได้เพิ่ม) มี ในจุดที่ ส่งงานวันนี้"",""(ได้เพิ่ม50%) ของค่าเที่ยว"",""(ได้เพิ่ม200) ไม่มี สินค้าคืน หรือ ร้านปิ ด"",""ทำเบิกค่ายกขึ้นชั้น"",""เบิกค่าขนส่งตามระยะ ทาง""],""AllowOtherValues"":false,""AutoCompleteOtherValues"":true,"" BaseType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",1,1,230
-"Enum {""EnumValues"":[""กฎระเบียบและข้อบังคับ"",""แจ้งข้อมูล ข่าวสาร"",""ความปลอดภัยและอุบัติเหตุ"",""สอบถามและรับฟั งความคิด เห็น""],""AllowOtherValues"":false,""AutoCompleteOtherValues"":true,"" BaseType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",1,1,522
-"Enum {""EnumValues"":[""กรอกเอง"",""ราคาคงที่"",""ระยะทาง คงที่"",""จากShipment""],""AllowOtherValues"":false,""AutoCompleteOt herValues"":true,""BaseType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",1,1,293
-"Enum {""EnumValues"":[""งานMeSpace+แพ็คสินค้า"",""จองรถ",1,1,125
-"Enum {""EnumValues"":[""รอตรวจสอบ"",""ผ่านการตรวจสอบ"",""ไม่ผ่านการตรวจ สอบ""],""AllowOtherValues"":false,""AutoCompleteOtherValues"":true,",1,1,793
-"Enum {""EnumValues"":[""รอตรวจสอบ"",""ผ่านการตรวจสอบ"",""ไม่ผ่านการตรวจ สอบ""],""AllowOtherValues"":false,""AutoCompleteOtherValues"":true, ""BaseType"":""Text"",""BaseTypeQualifier"":""",1,1,971
-"Enum {""EnumValues"":[""ไม่ได้ตรวจสอบ"",""ตรวจสอบข้อมูล เรียบร้อย""],""AllowOtherValues"":false,""AutoCompleteOtherValues"":",1,1,126
-"EnumList {""ItemSeparator"":"","",""EnumValues"": [],""AllowOtherValues"":true,""AutoCompleteOtherValues"":true,""Bas eType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",1,1,85
-"EnumList {""ItemSeparator"":"","",""EnumValues"": [],""AllowOtherValues"":true,""AutoCompleteOtherValues"":true,""Bas eType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain Text\"",\""IsMulticolumnKey\"":false,\""Valid_If\"":null,\""Error_Messa ge_If_Invalid\"":null,\""Show_If\"":null,\""Required_If\"":null,\""Editable",1,1,65
-"EnumList {""ItemSeparator"":"","",""EnumValues"": [],""AllowOtherValues"":true,""AutoCompleteOtherValues"":true,""Bas eType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain Text\"",\""IsMulticolumnKey\"":false,\""Valid_If\"":null,\""Error_Messa ge_If_Invalid\"":null,\""Show_If\"":null,\""Required_If\"":null,\""Editable _If\"":null,\""Reset_If\"":null,\""Suggested_Values\"":null}"",""EnumInpu",1,1,1238
-"EnumList {""ItemSeparator"":"","",""EnumValues"": [],""AllowOtherValues"":true,""AutoCompleteOtherValues"":true,""Bas eType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain Text\"",\""IsMulticolumnKey\"":false,\""Valid_If\"":null,\""Error_Messa ge_If_Invalid\"":null,\""Show_If\"":null,\""Required_If\"":null,\""Editable _If\"":null,\""Reset_If\"":null,\""Suggested_Values\"":null}"",""EnumInpu tMode"":""Dropdown"",""Valid_If"":""=IF(ISBLANK([Shipment No]),\n",1,1,1276
-"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_ Message_If_Invalid"":null,""Show_If"":""=IN([สถานะการเข้ารับสินค้า] , {\""(ได้เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้านปิ ด\"",\""(ได้เพิ่ม50%) ของค่า",1,1,600
-"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_ If"":""=AND(\n ISNOTBLANK([_THIS]),\n [_THIS] <> \""0.000000,",1,1,1273
-"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_ If"":""=AND(\n ISNOTBLANK([_THIS]),\n [_THIS] <> \""0.000000, 0.000000\"",\n [_THIS] <> \""0,",1,1,62
-"List {""ElementType"":""Number"",""ElementTypeQualifier"":"" {\""MaxValue\"":null,\""MinValue\"":null,\""StepValue\"":null,\""Numeri cDigits\"":null,\""ShowThousandsSeparator\"":true,\""NumberDispl ayMode\"":\""Auto\"",\""Valid_If\"":null,\""Error_Message_If_Invalid\"":",1,1,660
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""Image_Doc_Return\"",\""Referenced RootTableName\"":\""Image_Doc_Return\"",\""ReferencedType\"":\"" Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor",1,1,1263
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""Image_Doc_Return\"",\""Referenced RootTableName\"":\""Image_Doc_Return\"",\""ReferencedType\"":\"" Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er ror_Message_If_Invalid\\\"":null,\\\""Show_If\\\"":null,\\\""Required",1,1,308
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ScanDocs\"",\""ReferencedRootTabl eName\"":\""ScanDocs\"",\""ReferencedType\"":\""Text\"",\""Reference dTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er",1,1,171
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedRootTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\""",1,1,735
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedRootTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er",1,1,1390
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedRootTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er ror_Message_If_Invalid\\\"":null,\\\""Show_If\\\"":null,\\\""Required",1,1,1430
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ตารางงานประจำ วัน\"",\""ReferencedRootTableName\"":\""ตารางงานประจำ วัน\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain",1,1,473
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ตารางงานประจำ วัน\"",\""ReferencedRootTableName\"":\""ตารางงานประจำ วัน\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er",1,1,475
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ตารางงานประจำ วัน\"",\""ReferencedRootTableName\"":\""ตารางงานประจำ วัน\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er ror_Message_If_Invalid\\\"":null,\\\""Show_If\\\"":null,\\\""Required",1,1,474
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ทำเบิกส่วน ต่างScgวังน้อย\"",\""ReferencedRootTableName\"":\""ทำเบิกส่วน ต่างScgวังน้อย\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQ ualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain",1,1,445
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedRootTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier",1,1,649
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedRootTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier \"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor",1,1,934
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ส่งงานที่ยังไม่มีข้อมูลใน ระบบ\"",\""ReferencedRootTableName\"":\""ส่งงานที่ยังไม่มีข้อมูลใน ระบบ\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"": \"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er",1,1,287
-"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""แจ้งปั ญหาระหว่าง วัน\"",\""ReferencedRootTableName\"":\""แจ้งปั ญหาระหว่าง วัน\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain",1,1,170
-"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits"" :null,""ShowThousandsSeparator"":false,""NumberDisplayMode"":""A",1,1,117
-"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits"" :null,""ShowThousandsSeparator"":false,""NumberDisplayMode"":""A uto"",""Valid_If"":""=IF(USERROLE() = \""ADMIN\"",\n SORT(\n UNIQUE(\n LIST([_THIS]) + \n SELECT(\n SCGนครหลวงJWDภูมิภาค[Shipment No],\n AND(\n [วันที่ส่งสินค้า] >= EOMONTH(TODAY(), -2) + 1,\n NOT(IN([Shipment No], ทำเบิก",1,1,1138
-"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits"" :null,""ShowThousandsSeparator"":false,""NumberDisplayMode"":""A uto"",""Valid_If"":""=IF(\n\nUSERROLE()= \""ADMIN\"",\n SELECT(\n ข้อมูลงานRT[Shipment (หลัก)],\n TRUE\n ),\n SELECT(\n ข้อมูล",1,1,233
-"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits"" :null,""ShowThousandsSeparator"":false,""NumberDisplayMode"":""A uto"",""Valid_If"":null,""Error_Message_If_Invalid"":null,""Show_If"":""=IN( [ชื่องาน], LIST(\""เบทาโกร+เหมาตู้\"",\""ออเรนจ์โคร\"",\""ไอโรบอท\"",\""อิ ริคสัน\"",\""เอเทน\"",\""MeSpace\"",\""ฟ้าใส (SCG Express)\"",\""รูทรังสิต",1,1,116
-"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits"" :null,""ShowThousandsSeparator"":true,""NumberDisplayMode"":""Au to"",""Valid_If"":null,""Error_Message_If_Invalid"":null,""Show_If"":""=IN([",1,1,571
-"Phone {""Callable"":true,""Textable"":true,""Valid_If"":null,""Error_Message_If_I",1,1,276
-"Price {""CurrencySymbol"":""฿"",""MaxValue"":null,""MinValue"":null,""StepValu e"":null,""DecimalDigits"":2,""NumericDigits"":null,""ShowThousandsS eparator"":true,""NumberDisplayMode"":""Auto"",""Valid_If"":null,""Error_",1,1,602
-"Price {""CurrencySymbol"":""฿"",""MaxValue"":null,""MinValue"":null,""StepValu e"":null,""DecimalDigits"":2,""NumericDigits"":null,""ShowThousandsS eparator"":true,""NumberDisplayMode"":""Auto"",""Valid_If"":null,""Error_ Message_If_Invalid"":null,""Show_If"":""=IN([สถานะการเข้ารับสินค้า] ,",1,1,579
-"Ref {""ReferencedTableName"":""Clear Output 10"",""ReferencedRootTableName"":null,""ReferencedType"":""Text"",""R eferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",1,1,899
-"Ref {""ReferencedTableName"":""Clear Output 3"",""ReferencedRootTableName"":null,""ReferencedType"":""Text"",""Re ferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain",1,1,688
-"Ref {""ReferencedTableName"":""Doc_Return"",""ReferencedRootTableN ame"":""Doc_Return"",""ReferencedType"":""Text"",""ReferencedTypeQu alifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",1,1,71
-"Ref {""ReferencedTableName"":""New step Output 2"",""ReferencedRootTableName"":null,""ReferencedType"":""Text"",""Re ferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain Text\"",\""IsMulticolumnKey\"":false,\""Valid_If\"":null,\""Error_Messa",1,1,1268
-"Ref {""ReferencedTableName"":""New step3 Output"",""ReferencedRootTableName"":null,""ReferencedType"":""Tex t"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",1,1,1537
-"Ref {""ReferencedTableName"":""SCGนครหลวงJWDภูมิภาค"",""Reference",1,1,1638
-"Ref {""ReferencedTableName"":""SCGนครหลวงJWDภูมิภาค"",""Reference dRootTableName"":""SCGนครหลวงJWDภูมิภาค"",""ReferencedType"": ""Text"",""ReferencedTypeQualifier"":""",1,1,637
-"Ref {""ReferencedTableName"":""Telegram_แจ้งปั ญหา2 Output"",""ReferencedRootTableName"":null,""ReferencedType"":""Tex t"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",1,1,562
-"Ref {""ReferencedTableName"":""ข้อมูล",1,1,1345
-"Ref {""ReferencedTableName"":""ตารางงานประจำ วัน"",""ReferencedRootTableName"":""ตารางงานประจำ วัน"",""ReferencedType"":""Text"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",1,1,459
-"Ref {""ReferencedTableName"":""ปริ๊นใบวางบิล_step Output"",""ReferencedRootTableName"":null,""ReferencedType"":""Tex t"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",1,1,533
+Phone,1,1,276
 Signature,1,1,518
-"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\n ข้อมูลชื่อ งานต้นทางปลายทาง[ชื่องาน],\n AND\n (TRUE,NOT(IN([ชื่องาน],",1,1,109
-"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=ข้อมูลพนักงาน[ชื่อ -",1,1,435
-"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":null,""Error_Message_If_I",1,1,1313
-"Yes/No {""YesLabel"":"""",""NoLabel"":"""",""Valid_If"":""=OR(\n ISBLANK([กดปุ่ มนี้",1,1,1306
-"สรุปเบิกส่วนต่าง entries that reference this entry in the _ComputedKey_ID_SCGนครหลวงJWDภูมิภาค column List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""สรุปเบิกส่วน ต่าง\"",\""ReferencedRootTableName\"":\""สรุปเบิกส่วน ต่าง\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\ "" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er",1,1,93

@@ -1,30 +1,61 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
 New step Output 2,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,1270
 New step Output 2,head,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1271
-New step Output 2,ID_SCGนครหลวงJWDภูมิภาค,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1271
+New step Output 2,ID_SCGนครหลวงJWDภูมิภาค,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1271
 New step Output 2,วันที่ส่งสินค้า,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERRO LE()=""ADMIN""",,,,,1272
 New step Output 2,เวลาที่ส่งสินค้า,Time,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE()=""ADMIN""",,,,,1272
-New step Output 2,จุดส่งสินค้าปลายทาง,"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_ If"":""=AND(\n ISNOTBLANK([_THIS]),\n [_THIS] <> \""0.000000,",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1273
+New step Output 2,จุดส่งสินค้าปลายทาง,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,"=AND(
+ ISNOTBLANK([_THIS]),
+ [_THIS] <> ""0.000000, 0.000000"",
+ [_THIS] <> ""0, 0""
+)",,"=USERROLE ()=""ADMIN""",,,"=""ไม่สามารถให้บันทึกข้อมูล ได้ ไม่มีสัญญาณ GPS""",,1273
 New step Output 2,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1274
 New step Output 2,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1275
-New step Output 2,Shipment No,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1275
-New step Output 2,Invoice No,"EnumList {""ItemSeparator"":"","",""EnumValues"": [],""AllowOtherValues"":true,""AutoCompleteOtherValues"":true,""Bas eType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain Text\"",\""IsMulticolumnKey\"":false,\""Valid_If\"":null,\""Error_Messa ge_If_Invalid\"":null,\""Show_If\"":null,\""Required_If\"":null,\""Editable _If\"":null,\""Reset_If\"":null,\""Suggested_Values\"":null}"",""EnumInpu tMode"":""Dropdown"",""Valid_If"":""=IF(ISBLANK([Shipment No]),\n",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1276
+New step Output 2,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SORT(
+ UNIQUE(
+ LIST([_THISROW]. [Shipment No])
+ + SM_Today_User[Shipment No]
+ )
+)",,,,,,,1275
+New step Output 2,Invoice No,EnumList,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(ISBLANK([Shipment No]),
+LIST(),
+ UNIQUE(
+ IF(USERROLE() = ""ADMIN"",
+SELECT(ตารางงานประจำวัน[Invoice No], [Shipment No] =[_THISROW].[Shipment No]),
+ SELECT(SM_Today_User[InvoiceNo],
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No],
+ 
+NOT(IN([Invoice No], SCGนครหลวงJWDภูมิภาค[Invoice No]))
+)
+ )
+ )
+ + [_THISROW].[Invoice No]
+ ) -LIST("""")
+)",,"=OR(
+ USERROLE() = ""ADMIN"",
+ISBLANK([_THISROW].[InvoiceNo])
+)",,,,,1276
 New step Output 2,รูปถ่ายบิลส่งสินค้า,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1277
 New step Output 2,รหัสลูกค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""",=ISNOTBLANK([Invoice No]),=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No],,,1278
-New step Output 2,ชื่อเจ้าของสินค้า,Text,ALWAYS,"{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":null,""Error_Message_If_I nvalid"":null,""Show_If"":""=ISNOTBLANK([Invoice No])"",""Required_If"":null,""Editable_If"":""=USERROLE() = \""ADMIN\"""",""Reset_If"":""=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No]"",""Suggested_Values"":null} No",No,No,No,No,No,Yes,,,,,,,,,,,1278
+New step Output 2,ชื่อเจ้าของสินค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""",=ISNOTBLANK([Invoice No]),=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No],,,1278
 New step Output 2,ชื่อปลายทาง,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""",=ISNOTBLANK([Invoice No]),=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No],,,1279
 New step Output 2,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE()=""ADMIN""",,,,,1280
-New step Output 2,LAT,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"": 6,""NumericDigits"":null,""ShowThousandsSeparator"":false,""Numbe",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1280
+New step Output 2,LAT,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1280
 New step Output 2,LONG,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1281
 New step Output 2,ID_Doc_Return,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERRO LE()=""ADMIN""",,=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No],,,1282
 New step Output 2,คลังสินค้า เอสซีจี เจดับเบิ้ลยูดี วังน้อย,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1282
 New step Output 2,ที่อยู่ปลายทาง,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""",=ISNOTBLANK([Invoice No]),=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No],,,1283
 New step Output 2,รูปสินค้าตอนส่ง,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1284
 New step Output 2,รูปหน้าร้าน / บ้าน,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1284
-New step Output 2,หมายเหตุ,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":null,""Error_Message_If_I",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1285
+New step Output 2,หมายเหตุ,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,"=AND(
+ ISNOTBLANK([รูปถ่ายบิลส่ง สินค้า]),
+ ISNOTBLANK([รูปสินค้าตอนส่ง]),
+ ISNOTBLANK([รูป หน้าร้าน / บ้าน])
+)",,,,1285
 New step Output 2,เดือน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1286
 New step Output 2,ระยะทางจากคลัง_Km,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1286
-New step Output 2,ชื่อที่อยู่จาก_LatLong,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1287
+New step Output 2,ชื่อที่อยู่จาก_LatLong,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1287
 New step Output 2,SM_Link_SCG,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1288
 New step Output 2,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE()= ""ADMIN""","=USERROLE()= ""ADMIN""",,,,1289
 New step Output 2,พิกัดตอนกดบันทึกงาน,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,=ISNOTBLANK([หมายเหตุ]),,,1290
@@ -38,7 +69,7 @@ New step Output 2,เหตุผิดปกติที่ตรวจพบ,E
 New step Output 2,เวลาถ่ายรูปหน้าร้าน_หน้าบ้าน,Time,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1295
 New step Output 2,SYNC_STATUS,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1296
 New step Output 2,MD_LINK,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1296
-New step Output 2,MATCH_KEY,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1297
+New step Output 2,MATCH_KEY,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1297
 New step Output 2,POINTS_AT_TIME,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1298
 New step Output 2,STATUS,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1298
 New step Output 2,เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1299
@@ -47,4 +78,4 @@ New step Output 2,Image_Document_Return,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,
 New step Output 2,ที่อยู่ปลายทาง_LatLong_Api,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1301
 New step Output 2,Related สรุปเบิกส่วนต่างs,List,ALWAYS,Yes,No,No,No,Yes,No,Yes,,,,,,,,,,,1302
 New step Output 2,Related ทำเบิกส่วนต่างScgวังน้อยs,List,ALWAYS,Yes,No,No,No,Yes,No,Yes,,,,,,,,,,,1303
-New step Output 2,พิกัดตอนกดบันทึก_เปลี่ยนแล้ว,Yes/No,ALWAYS,No,No,No,No,No,Yes No,,,,,,,,,,,,1304
+New step Output 2,พิกัดตอนกดบันทึก_เปลี่ยนแล้ว,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1304

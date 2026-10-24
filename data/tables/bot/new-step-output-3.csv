@@ -2,28 +2,28 @@ table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defi
 New step Output 3,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,1327
 New step Output 3,ID_แจ้งปั ญหาระหว่างวัน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1327
 New step Output 3,กดปุ่ มนี้เพื่อส่งข้อมูลแจ้งปั ญหา,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,"=OR(
- ISBLANK([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้งปั ญหา]),
- NOT([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้งปั ญหา])
+ ISBLANK([กดปุ่ มนี้ เพื่อส่งข้อมูลแจ้งปั ญหา]),
+ NOT([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้ง ปั ญหา])
 )",,,"=AND(
  ISNOTBLANK([รูป1]),
  ISNOTBLANK([รูป2]),
  ISNOTBLANK([รูป3]),
- NOT([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้งปั ญหา])
+ NOT([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้ง ปั ญหา])
 )",,,,1328
 New step Output 3,ข้อมูลการแจ้งปั ญหา,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1329
 New step Output 3,รูป1,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1330
 New step Output 3,รูป2,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1330
-New step Output 3,รูป3,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1331
+New step Output 3,รูป3,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1331
 New step Output 3,หมายเหตุ,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1332
-New step Output 3,วันที่+เวลา,DateTime,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""",,,,,1332
+New step Output 3,วันที่+เวลา,DateTime,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1332
 New step Output 3,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1333
 New step Output 3,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1334
-New step Output 3,รหัสผู้รับเหมา,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,=ISNOTBLANK([Invoice No]),,,,1334
+New step Output 3,รหัสผู้รับเหมา,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1334
 New step Output 3,ชื่อผู้รับเหมา,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,=ISNOTBLANK([Invoice No]),,,,1335
 New step Output 3,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(USERROLE() = ""ADMIN"",
  (SM_Today_User[Shipment No] + 
  SELECT(ข้อมูล งานRT[Shipment (รับคืน)], [วันที่เข้ารับ] = TODAY())),
- IF([ข้อมูลการแจ้งปั ญหา] = ""ไม่มีในจุดส่งงานวันนี้ ไม่สามารถเข้ารับงานคืนให้ ได้"",
+ IF([ข้อมูล การแจ้งปั ญหา] = ""ไม่มีในจุดส่งงานวันนี้ ไม่สามารถเข้ารับงานคืนให้ ได้"",
  SELECT(ข้อมูลงานRT[Shipment (รับคืน)], 
  AND([Email พนักงาน] = USEREMAIL(), [วันที่เข้ารับ] = TODAY())
  ),
@@ -54,23 +54,23 @@ AND(
  + [_THISROW].[Invoice No]
 ) -LIST("""")",,,,,,,1337
 New step Output 3,รหัสลูกค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,=ISNOTBLANK([Invoice No]),,,,1338
-New step Output 3,ชื่อปลายทาง,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,=ISNOTBLANK([Invoice No]),,,,1338
-New step Output 3,ใส่ข้อมูลการแจ้งปั ญหา เพื่อนับจุดส่งงาน,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1339
+New step Output 3,ชื่อปลายทาง,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1338
+New step Output 3,ใส่ข้อมูลการแจ้งปั ญหา เพื่อนับจุดส่งงาน,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,=ISNOTBLANK([เพิ่มรูปแคปหน้าจอ นำกลับ คืน คลัง]),,,,1339
 New step Output 3,เพิ่มรูปแคปหน้าจอ นำกลับคืนคลัง,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1340
 New step Output 3,อัพเดตข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,"=OR(
- ISBLANK([อัพเดตข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG]),
- NOT([อัพเดตข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG])
+ ISBLANK([อัพเดต ข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG]),
+ NOT([อัพเดตข้อมูล การแจ้งปั ญหา ไป ตารางส่ง งานSCG])
 )",,,"=AND(
  ISNOTBLANK([ใส่ข้อมูลการแจ้งปั ญหา เพื่อนับจุดส่งงาน]),
  ISNOTBLANK([เพิ่มรูปแคปหน้าจอ นำกลับคืนคลัง]),
- NOT([อัพเดตข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG])
+ NOT([อัพเดต ข้อมูลการแจ้งปั ญหา ไป ตารางส่ง งานSCG])
 )",,,,1340
-New step Output 3,Lat/Long,"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1341
+New step Output 3,Lat/Long,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1341
 New step Output 3,LatLong_ตรวจสอบ,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,=ISNOTBLANK([เพิ่มรูปแคปหน้าจอ นำ กลับคืนคลัง]),,,1342
 New step Output 3,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""",,,,,1342
 New step Output 3,เดือน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1343
 New step Output 3,SM_Link,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1344
-New step Output 3,RT_Link,"Ref {""ReferencedTableName"":""ข้อมูล",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1345
+New step Output 3,RT_Link,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1345
 New step Output 3,SCGนครหลวงJWDภูมิภาค_ID,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1345
 New step Output 3,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""","=USERROLE()= ""ADMIN""",,,,1346
-New step Output 3,LINK_Image_แจ้งปั ญหา,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,"Text"",""IsMulticolumnKey"":false,""Valid_If"":null,""Error_Message_If_I nvalid"":null,""Show_If"":null,""Required_If"":null,""Editable_If"":null,""Res et_If"":null,""Suggested_Values"":null} No",No,No,No,No,No,Yes,,,,,,,,,,,1347
+New step Output 3,LINK_Image_แจ้งปั ญหา,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1347

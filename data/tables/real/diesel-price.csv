@@ -1,5 +1,5 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
-ราคาน้ำมันดีเซล,_RowNumber,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,172
+ราคาน้ำมันดีเซล,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,172
 ราคาน้ำมันดีเซล,ID_น้ำมันดีเซล,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,173
-ราคาน้ำมันดีเซล,วันที่,"Date {""UseLongDateFormat"":false,""Valid_If"":null,""Error_Message_If_In",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,174
-ราคาน้ำมันดีเซล,ราคา/หน่วย,"Price {""CurrencySymbol"":""฿"",""MaxValue"":null,""MinValue"":null,""StepValu e"":null,""DecimalDigits"":2,""NumericDigits"":null,""ShowThousandsS",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,174
+ราคาน้ำมันดีเซล,วันที่,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,174
+ราคาน้ำมันดีเซล,ราคา/หน่วย,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,174

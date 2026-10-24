@@ -3,7 +3,7 @@ Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Ta
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,ID_ScanDocs,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1349
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,Scan_Invoice,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=AND(
  IN([_THIS], ตารางงานประจำวัน[Invoice No]),
- LOOKUP([_THIS], ""ตารางงาน ประจำวัน"", ""Invoice No"", ""Plan Delivery"") = [_THISROW].[เลือกวันที่],
+ LOOKUP([_THIS], ""ตารางงาน ประจำวัน"", ""Invoice No"", ""Plan Delivery"") = [_THISROW].[เลือก วันที่],
  LOOKUP([_THIS], ""ตารางงานประจำวัน"", ""Invoice No"", ""จำนวน_Invoice_ที่ต้องสแกน"") > 0,
  ISBLANK(
  SELECT(ScanDocs[ID_ScanDocs], 
@@ -11,42 +11,19 @@ Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Ta
  )
  )
 )",,,=ISBLANK([Select_Invoice]),,"=""Invoice นี้ไม่ถูกต้อง, ไม่ใช่งาน วันที่เลือก หรือสแกนรับไป แล้ว""",,1349
-Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,Select_Invoice,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
- ตารางงานประจำวัน[Invoice No],
- AND(
- [Plan Delivery] = [_THISROW].[เลือกวันที่],
- OR(ISBLANK([ScanStatus]), [ScanStatus] <> ""สแกนรับแล้ว""),
- [จำนวน_Invoice_ที่ต้องสแกน] > 0 
- )
-)
-- ScanDocs[Scan_Invoice]
-- ScanDocs[Select_Invoice]",,,=ISBLANK([Scan_Invoice]),,"=""เลข Invoice ไม่ถูกต้อง, ไม่ใช่งานของวันนี้/เมื่อวาน หรือถูกสแกนรับไป แล้ว""",,1350
+Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,Select_Invoice,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1350
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,Scan_DateTime,DateTime,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1351
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,Scan_By,Email,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1352
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,Scan_Method,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,=ISBLAN K([_THIS]),,,1353
-Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,Invoice_No,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,"=AND(
- ISNOTBLANK([_THIS]),
- IN(
-LOOKUP([_THIS], ""ตารางงานประจำวัน"", ""ID_งานประจำวัน"",""Plan Delivery""),
- LIST(TODAY(), TODAY() - 1)
- ),
-ISBLANK(
- SELECT(ScanDocs[ID_ScanDocs], 
- AND(
-[Invoice_No] = [_THIS], 
- [ID_ScanDocs] <> [_THISROW].[ID_ScanDocs]
- )
- )
-)
-)",,,,,,,1353
+Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,Invoice_No,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1353
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,ชื่อเจ้าของสินค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1354
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1355
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,Shipment No,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1356
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,วันที่ส่งสินค้า,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1356
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,หมายเหตุการรับเอกสาร,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,=ISNOTBLANK([Invoice_No]),,,,1357
-Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,จำนวน_ทั้งหมด,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1358
+Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,จำนวน_ทั้งหมด,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1358
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,จำนวน_สแกนแล้ว,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1358
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,จำนวน_รอสแกน,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1359
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,สรุปยอด,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1360
-Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,เลือกวันที่,"Date {""UseLongDateFormat"":false,""Valid_If"":null,""Error_Message_If_In",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1360
+Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,เลือกวันที่,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1360
 Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table,Update,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1361

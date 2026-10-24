@@ -61,16 +61,16 @@
 | คอลัมน์ทั้งหมด | **2,304** | `[data/columns/all_columns.csv]` |
 | ├ ในตารางจริง | 595 (คำนวณ 313) | `[data/tables/index.csv]` |
 | └ ในตารางบอท | 1,709 (คำนวณ 3) | `[data/tables/index.csv]` |
-| สูตร/นิพจน์ | **345** | `[data/formulas/formulas.csv]` |
+| สูตร/นิพจน์ | **347** | `[data/formulas/formulas.csv]` |
 | ├ ระดับคอลัมน์ | 316 (App formula 190 + Initial value 126) | `[data/formulas/formulas.csv]` |
 | └ ระดับตาราง | 29 (Expression for update mode 22 + Security filter 7) | `[data/formulas/formulas.csv]` |
 | วิว | **115** | `[data/views/views.csv]` |
 | แอกชัน | **214** | `[data/actions/actions.csv]` |
 | สไลซ์ | **8** | `[data/slices/slices.csv]` |
 | ฟอร์แมตรูล | **11** | `[data/format-rules/format_rules.csv]` |
-| ชนิดคอลัมน์ (ค่า `type` ที่ต่างกัน) | **113** | `[data/columns/by-type.csv]` |
-| ฟังก์ชันที่ใช้ | **50 ตัว / 569 ครั้ง** | `[data/references/function-usage.csv]` |
-| การอ้างอิงคอลัมน์ในสูตร | 637 (resolve ได้ 474 / ไม่ได้ 163) | `[data/references/column-references.csv]` |
+| ชนิดคอลัมน์ (ค่า `type` ที่ต่างกัน) | **23** | `[data/columns/by-type.csv]` |
+| ฟังก์ชันที่ใช้ | **50 ตัว / 593 ครั้ง** | `[data/references/function-usage.csv]` |
+| การอ้างอิงคอลัมน์ในสูตร | 637 (resolve ได้ 470 / ไม่ได้ 167) | `[data/references/column-references.csv]` |
 | Workflow Rules | **0** | หน้า 1 ของ PDF (`[data/schema/app-schema.json]`) |
 
 > ตัวเลขทุกตัวตรงกับที่แอปสรุปไว้เองในหน้าแรกของ PDF — ดูรายละเอียดการตรวจสอบใน `10-known-issues.md`
@@ -183,7 +183,7 @@ ADMIN/USER เสมอ — `[data/formulas/formulas.csv]` (ดูรายล�
 
 ### 5.3 เกือบทุกสูตรอยู่ที่ตารางจริง
 
-345 สูตร → 342 อยู่ที่ตารางจริง, 3 อยู่ที่ตารางบอท (ทั้งหมดที่ `_Per User Settings`)
+347 สูตร → 344 อยู่ที่ตารางจริง, 3 อยู่ที่ตารางบอท (ทั้งหมดที่ `_Per User Settings`)
 — `[data/formulas/formulas.csv]`
 แปลว่าตารางบอทเป็นแค่ท่อส่งข้อมูล ไม่ใช่ที่คำนวณธุรกิจ
 

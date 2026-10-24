@@ -1,51 +1,19 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
 Update Output,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,1362
-Update Output,ID_ScanDocs,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1363
-Update Output,Scan_Invoice,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=AND(
- IN([_THIS], ตารางงานประจำวัน[Invoice No]),
- LOOKUP([_THIS], ""ตารางงาน ประจำวัน"", ""Invoice No"", ""Plan Delivery"") = [_THISROW].[เลือกวันที่],
- LOOKUP([_THIS], ""ตารางงานประจำวัน"", ""Invoice No"", ""จำนวน_Invoice_ที่ต้องสแกน"") > 0,
- ISBLANK(
- SELECT(ScanDocs[ID_ScanDocs], 
- OR([Scan_Invoice] = [_THIS], [Select_Invoice] = [_THIS])
- )
- )
-)",,,=ISBLANK([Select_Invoice]),,"=""Invoice นี้ไม่ถูกต้อง, ไม่ใช่งาน วันที่เลือก หรือสแกนรับไป แล้ว""",,1363
-Update Output,Select_Invoice,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
- ตารางงานประจำวัน[Invoice No],
- AND(
- [Plan Delivery] = [_THISROW].[เลือกวันที่],
- OR(ISBLANK([ScanStatus]), [ScanStatus] <> ""สแกนรับแล้ว""),
- [จำนวน_Invoice_ที่ต้องสแกน] > 0 
- )
-)
-- ScanDocs[Scan_Invoice]
-- ScanDocs[Select_Invoice]",,,=ISBLANK([Scan_Invoice]),,"=""เลข Invoice ไม่ถูกต้อง, ไม่ใช่งานของวันนี้/เมื่อวาน หรือถูกสแกนรับไป แล้ว""",,1364
+Update Output,ID_ScanDocs,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1363
+Update Output,Scan_Invoice,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1363
+Update Output,Select_Invoice,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1364
 Update Output,Scan_DateTime,DateTime,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1365
 Update Output,Scan_By,Email,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1366
-Update Output,Scan_Method,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,=ISBLAN K([_THIS]),,,1366
-Update Output,Invoice_No,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,"=AND(
- ISNOTBLANK([_THIS]),
- IN(
-LOOKUP([_THIS], ""ตารางงานประจำวัน"", ""ID_งานประจำวัน"",""Plan Delivery""),
- LIST(TODAY(), TODAY() - 1)
- ),
-ISBLANK(
- SELECT(ScanDocs[ID_ScanDocs], 
- AND(
-[Invoice_No] = [_THIS], 
- [ID_ScanDocs] <> [_THISROW].[ID_ScanDocs]
- )
- )
-)
-)",,,,,,,1367
+Update Output,Scan_Method,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1366
+Update Output,Invoice_No,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1367
 Update Output,ชื่อเจ้าของสินค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1368
 Update Output,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1369
 Update Output,Shipment No,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1369
-Update Output,วันที่ส่งสินค้า,"Date {""UseLongDateFormat"":false,""Valid_If"":null,""Error_Message_If_In",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1370
+Update Output,วันที่ส่งสินค้า,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1370
 Update Output,หมายเหตุการรับเอกสาร,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,=ISNOTBLANK([Invoice_No]),,,,1371
 Update Output,จำนวน_ทั้งหมด,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1371
-Update Output,จำนวน_สแกนแล้ว,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits"" :null,""ShowThousandsSeparator"":true,""NumberDisplayMode"":""Au",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1372
+Update Output,จำนวน_สแกนแล้ว,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1372
 Update Output,จำนวน_รอสแกน,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1373
 Update Output,สรุปยอด,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1373
-Update Output,เลือกวันที่,"Date {""UseLongDateFormat"":false,""Valid_If"":null,""Error_Message_If_In",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1374
+Update Output,เลือกวันที่,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1374

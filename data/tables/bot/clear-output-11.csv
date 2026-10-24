@@ -1,12 +1,12 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
 Clear Output 11,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,1383
 Clear Output 11,ID_ปริ๊นใบวางบิล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1384
-Clear Output 11,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=ข้อมูลชื่องานต้นทาง ปลายทาง[ชื่องาน],,,,,,,1385
+Clear Output 11,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=ข้อมูลชื่องานต้นทาง ปลายทาง[ชื่อ งาน],,,,,,,1385
 Clear Output 11,StartDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1385
-Clear Output 11,EndDate,"Date {""UseLongDateFormat"":false,""Valid_If"":null,""Error_Message_If_In",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1386
+Clear Output 11,EndDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1386
 Clear Output 11,ราคารวม,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1387
 Clear Output 11,Export to xlsx,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1387
 Clear Output 11,Export to xlsx To Athens,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1388
 Clear Output 11,ปริ๊นใบวางบิลแยกตามชื่องาน,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1389
 Clear Output 11,วันที่ออกเอกสาร,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1389
-Clear Output 11,ผลลัพท์,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedRootTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1390
+Clear Output 11,ผลลัพท์,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1390

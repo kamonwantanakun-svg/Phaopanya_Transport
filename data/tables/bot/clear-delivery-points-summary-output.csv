@@ -1,15 +1,15 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
 เคลียสรุปจุดส่ง Output,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,654
 เคลียสรุปจุดส่ง Output,ID_เบิกค่าเข้ารับสินค้าคืนคลัง,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,655
-เคลียสรุปจุดส่ง Output,STARTDATE,"Date {""UseLongDateFormat"":false,""Valid_If"":null,""Error_Message_If_In",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,655
+เคลียสรุปจุดส่ง Output,STARTDATE,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,655
 เคลียสรุปจุดส่ง Output,ENDDATE,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,656
 เคลียสรุปจุดส่ง Output,วันที่ออกเอกสาร,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,656
 เคลียสรุปจุดส่ง Output,EXPORT TO PDF,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,657
 เคลียสรุปจุดส่ง Output,EXPORT TO Excel(สรุปจำนวนจุดส่งงาน),Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,658
 เคลียสรุปจุดส่ง Output,ราคา_ได้เพิ่ม200_ไม่มีสินค้าคืน_ร้านปิ ด_ไม่มีในจุดส่ง,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,658
 เคลียสรุปจุดส่ง Output,ได้เพิ่ม200_ไม่มีสินค้าคืน_ร้านปิ ด_ไม่มีในจุดส่ง,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,659
-เคลียสรุปจุดส่ง Output,สรุปจำนวนจุดส่งงาน,"List {""ElementType"":""Number"",""ElementTypeQualifier"":"" {\""MaxValue\"":null,\""MinValue\"":null,\""StepValue\"":null,\""Numeri cDigits\"":null,\""ShowThousandsSeparator\"":true,\""NumberDispl ayMode\"":\""Auto\"",\""Valid_If\"":null,\""Error_Message_If_Invalid\"":",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,660
-เคลียสรุปจุดส่ง Output,ทำเบิกค่ายกขึ้นชั้น,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedRootTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier \"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er ror_Message_If_Invalid\\\"":null,\\\""Show_If\\\"":null,\\\""Required",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,661
+เคลียสรุปจุดส่ง Output,สรุปจำนวนจุดส่งงาน,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,660
+เคลียสรุปจุดส่ง Output,ทำเบิกค่ายกขึ้นชั้น,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,661
 เคลียสรุปจุดส่ง Output,ราคา_ทำเบิกค่ายกขึ้นชั้น,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,662
 เคลียสรุปจุดส่ง Output,ได้เพิ่ม50%ของค่าเที่ยว,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,663
 เคลียสรุปจุดส่ง Output,ราคา_ได้เพิ่ม50%ของค่าเที่ยว,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,664

@@ -1,13 +1,13 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
 Process for สรุปส่วนต่าง - 1 Process Table,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,634
 Process for สรุปส่วนต่าง - 1 Process Table,ID_สรุปเบิกส่วนต่าง,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,635
-Process for สรุปส่วนต่าง - 1 Process Table,ID_Optimization,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,635
+Process for สรุปส่วนต่าง - 1 Process Table,ID_Optimization,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,635
 Process for สรุปส่วนต่าง - 1 Process Table,ID_เบิกส่วนต่างSCGวังน้อย,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,636
-Process for สรุปส่วนต่าง - 1 Process Table,_ComputedKey_ID_SCGนครหลวงJWDภูมิภาค,"Ref {""ReferencedTableName"":""SCGนครหลวงJWDภูมิภาค"",""Reference dRootTableName"":""SCGนครหลวงJWDภูมิภาค"",""ReferencedType"": ""Text"",""ReferencedTypeQualifier"":""",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,637
+Process for สรุปส่วนต่าง - 1 Process Table,_ComputedKey_ID_SCGนครหลวงJWDภูมิภาค,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,637
 Process for สรุปส่วนต่าง - 1 Process Table,วันที่เริ่มต้น,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,637
-Process for สรุปส่วนต่าง - 1 Process Table,วันที่สิ้นสุด,"Date {""UseLongDateFormat"":false,""Valid_If"":null,""Error_Message_If_In",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,638
+Process for สรุปส่วนต่าง - 1 Process Table,วันที่สิ้นสุด,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,638
 Process for สรุปส่วนต่าง - 1 Process Table,รวมค่าขนส่งส่วนเพิ่ม,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,639
 Process for สรุปส่วนต่าง - 1 Process Table,วันที่ออกเอกสาร,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,639
 Process for สรุปส่วนต่าง - 1 Process Table,Export to Excel,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,640
-Process for สรุปส่วนต่าง - 1 Process Table,สรุป_ทำเบิกส่วนต่างScgวังน้อย,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":""",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,641
+Process for สรุปส่วนต่าง - 1 Process Table,สรุป_ทำเบิกส่วนต่างScgวังน้อย,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,641
 Process for สรุปส่วนต่าง - 1 Process Table,ราคารวม_ทำเบิกส่วนต่างScgวังน้อย,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,642

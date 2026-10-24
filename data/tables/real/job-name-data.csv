@@ -1,10 +1,10 @@
 table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
 ข้อมูลชื่องานต้นทางปลายทาง,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,289
 ข้อมูลชื่องานต้นทางปลายทาง,Row ID,Text,ALWAYS,Yes,Yes,No,No,No,No,No,,"UNIQUEID(""PackedUUID"")",ID of this row,,,,,,,,289
-ข้อมูลชื่องานต้นทางปลายทาง,ID_ชื่องาน,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,Yes,Yes,No,No,Yes,,=UNIQUEID(),,,,,,,,,290
+ข้อมูลชื่องานต้นทางปลายทาง,ID_ชื่องาน,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,=UNIQUEID(),,,,,,,,,290
 ข้อมูลชื่องานต้นทางปลายทาง,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,291
 ข้อมูลชื่องานต้นทางปลายทาง,สถานที่รับสินค้า (ต้นทาง),Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,292
 ข้อมูลชื่องานต้นทางปลายทาง,สถานที่ส่งสินค้า (ปลายทาง),Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,292
-ข้อมูลชื่องานต้นทางปลายทาง,ประเภทการคำนวน,"Enum {""EnumValues"":[""กรอกเอง"",""ราคาคงที่"",""ระยะทาง คงที่"",""จากShipment""],""AllowOtherValues"":false,""AutoCompleteOt herValues"":true,""BaseType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,293
+ข้อมูลชื่องานต้นทางปลายทาง,ประเภทการคำนวน,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,293
 ข้อมูลชื่องานต้นทางปลายทาง,ระยะทางคงที่,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,294
 ข้อมูลชื่องานต้นทางปลายทาง,ราคาคงที่,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,294

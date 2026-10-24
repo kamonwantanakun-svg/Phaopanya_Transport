@@ -2,28 +2,28 @@ table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defi
 แจ้งปั ญหาระหว่างวัน,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,205
 แจ้งปั ญหาระหว่างวัน,ID_แจ้งปั ญหาระหว่างวัน,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,206
 แจ้งปั ญหาระหว่างวัน,กดปุ่ มนี้เพื่อส่งข้อมูลแจ้งปั ญหา,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,=false,,"=OR(
- ISBLANK([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้งปั ญหา]),
- NOT([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้งปั ญหา])
+ ISBLANK([กดปุ่ มนี้ เพื่อส่งข้อมูลแจ้งปั ญหา]),
+ NOT([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้ง ปั ญหา])
 )",,,"=AND(
  ISNOTBLANK([รูป1]),
  ISNOTBLANK([รูป2]),
  ISNOTBLANK([รูป3]),
- NOT([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้งปั ญหา])
+ NOT([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้ง ปั ญหา])
 )",,,,207
 แจ้งปั ญหาระหว่างวัน,ข้อมูลการแจ้งปั ญหา,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,207
 แจ้งปั ญหาระหว่างวัน,รูป1,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,208
-แจ้งปั ญหาระหว่างวัน,รูป2,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,209
+แจ้งปั ญหาระหว่างวัน,รูป2,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,209
 แจ้งปั ญหาระหว่างวัน,รูป3,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,210
 แจ้งปั ญหาระหว่างวัน,หมายเหตุ,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,210
 แจ้งปั ญหาระหว่างวัน,วันที่+เวลา,DateTime,ALWAYS,No,No,No,No,No,No,Yes,,=NOW(),,,,"=USERROLE() = ""ADMIN""",,,,,211
 แจ้งปั ญหาระหว่างวัน,ชื่อ - นามสกุล,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,=[ID_พนักงาน].[ชื่อ - นามสกุล],,,,,,,,,212
 แจ้งปั ญหาระหว่างวัน,ทะเบียนรถ,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,=[ID_พนักงาน].[ทะเบียนรถ],,,,,,,,,213
-แจ้งปั ญหาระหว่างวัน,รหัสผู้รับเหมา,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,Yes,No,No,No,No,No,Yes,,=[SM_Link].[รหัสผู้รับเหมา],,,,,,,,,213
+แจ้งปั ญหาระหว่างวัน,รหัสผู้รับเหมา,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,=[SM_Link].[รหัสผู้รับเหมา],,,,,=ISNOTBLANK([Invoice No]),,,,213
 แจ้งปั ญหาระหว่างวัน,ชื่อผู้รับเหมา,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,=[SM_Link].[ชื่อผู้รับเหมา],,,,,=ISNOTBLANK([Invoice No]),,,,214
 แจ้งปั ญหาระหว่างวัน,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(USERROLE() = ""ADMIN"",
  (SM_Today_User[Shipment No] + 
  SELECT(ข้อมูล งานRT[Shipment (รับคืน)], [วันที่เข้ารับ] = TODAY())),
- IF([ข้อมูลการแจ้งปั ญหา] = ""ไม่มีในจุดส่งงานวันนี้ ไม่สามารถเข้ารับงานคืนให้ ได้"",
+ IF([ข้อมูล การแจ้งปั ญหา] = ""ไม่มีในจุดส่งงานวันนี้ ไม่สามารถเข้ารับงานคืนให้ ได้"",
  SELECT(ข้อมูลงานRT[Shipment (รับคืน)], 
  AND([Email พนักงาน] = USEREMAIL(), [วันที่เข้ารับ] = TODAY())
  ),
@@ -55,22 +55,22 @@ AND(
 ) -LIST("""")",,,,,,,216
 แจ้งปั ญหาระหว่างวัน,รหัสลูกค้า,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,"=IF(ISNOTBLANK([SM_Link]), [SM_Link].[รหัสลูกค้า], IF(ISNOTBLANK([RT_Link]), [RT_Link].[รหัสลูกค้า], ""ไม่พบข้อมูล"" ) )",,,,,=ISNOTBLANK([Invoice No]),,,,217
 แจ้งปั ญหาระหว่างวัน,ชื่อปลายทาง,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,"=IF(ISNOTBLANK([SM_Link]), [SM_Link].[ชื่อปลายทาง], IF(ISNOTBLANK([RT_Link]), [RT_Link].[ชื่อลูกค้าที่เข้ารับ], ""ไม่พบ ข้อมูล"" ) )",,,,,=ISNOTBLANK([Invoice No]),,,,218
-แจ้งปั ญหาระหว่างวัน,ใส่ข้อมูลการแจ้งปั ญหา เพื่อนับจุดส่งงาน,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,=ISNOTBLANK([เพิ่มรูปแคปหน้าจอ นำกลับคืนคลัง]),,,,218
+แจ้งปั ญหาระหว่างวัน,ใส่ข้อมูลการแจ้งปั ญหา เพื่อนับจุดส่งงาน,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,218
 แจ้งปั ญหาระหว่างวัน,เพิ่มรูปแคปหน้าจอ นำกลับคืนคลัง,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,219
 แจ้งปั ญหาระหว่างวัน,อัพเดตข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,=false,,"=OR(
- ISBLANK([อัพเดตข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG]),
- NOT([อัพเดตข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG])
+ ISBLANK([อัพเดต ข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG]),
+ NOT([อัพเดตข้อมูล การแจ้งปั ญหา ไป ตารางส่ง งานSCG])
 )",,,"=AND(
  ISNOTBLANK([ใส่ข้อมูลการแจ้งปั ญหา เพื่อนับจุดส่งงาน]),
  ISNOTBLANK([เพิ่มรูปแคปหน้าจอ นำกลับคืนคลัง]),
- NOT([อัพเดตข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG])
+ NOT([อัพเดต ข้อมูลการแจ้งปั ญหา ไป ตารางส่ง งานSCG])
 )",,,,220
 แจ้งปั ญหาระหว่างวัน,Lat/Long,LatLong,ALWAYS,Yes,No,No,No,No,No,Yes,,=HERE(),,,,,,,,,221
-แจ้งปั ญหาระหว่างวัน,LatLong_ตรวจสอบ,"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_",ALWAYS,No,No,No,No,No,No,Yes,,=HERE(),,,,,,,,,221
+แจ้งปั ญหาระหว่างวัน,LatLong_ตรวจสอบ,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,=HERE(),,,,,,=ISNOTBLANK([เพิ่มรูปแคปหน้าจอ นำ กลับคืนคลัง]),,,221
 แจ้งปั ญหาระหว่างวัน,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,=USEREMAIL(),,,,"=USERROLE() = ""ADMIN""",,,,,222
-แจ้งปั ญหาระหว่างวัน,เดือน,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,Yes,No,No,No,No,No,Yes,,"=IF( ISBLANK([วันที่+เวลา]), """", (YEAR(DATE([วันที่+เวลา])) - IF(YEAR(DATE([วันที่+เวลา])) > 2500, 543, 0)) & ""-"" & TEXT(DATE([วันที่+เวลา]), ""MM"") )",,,,,,,,,223
+แจ้งปั ญหาระหว่างวัน,เดือน,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,"=IF( ISBLANK([วันที่+เวลา]), """", (YEAR(DATE([วันที่+เวลา])) - IF(YEAR(DATE([วันที่+เวลา])) > 2500, 543, 0)) & ""-"" & TEXT(DATE([วันที่+เวลา]), ""MM"") )",,,,,,,,,223
 แจ้งปั ญหาระหว่างวัน,SM_Link,Ref,ALWAYS,Yes,No,No,No,No,No,Yes,,"=ANY(SELECT(ตารางงานประจำวัน[ID_งานประจำวัน], AND([Invoice No] = ANY([_THISROW].[Invoice No]), [_ROWNUMBER] = MIN(SELECT(ตารางงานประจำ วัน[_ROWNUMBER], [Invoice No] = ANY([_THISROW].[Invoice No]))))))",,,,,,,,,223
 แจ้งปั ญหาระหว่างวัน,RT_Link,Ref,ALWAYS,Yes,No,No,No,No,No,Yes,,"=ANY(SELECT(ข้อมูลงานRT[ID_RT], [เลขที่เอกสารรับคืน] = ANY([_THISROW].[Invoice No])))",,,,,,,,,224
 แจ้งปั ญหาระหว่างวัน,SCGนครหลวงJWDภูมิภาค_ID,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,225
-แจ้งปั ญหาระหว่างวัน,ID_พนักงาน,"Ref {""ReferencedTableName"":""ข้อมูล พนักงาน"",""ReferencedRootTableName"":""ข้อมูล พนักงาน"",""ReferencedType"":""Text"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",ALWAYS,No,No,No,No,No,No,Yes,,"=LOOKUP(USEREMAIL(), ""ข้อมูลพนักงาน"", ""Email พนักงาน"", ""ID_พนักงาน"")",,,,,,,,,226
-แจ้งปั ญหาระหว่างวัน,LINK_Image_แจ้งปั ญหา,Text,ALWAYS,Yes,No,No,No,No,Yes,Yes,"{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":null,""Error_Message_If_I nvalid"":null,""Show_If"":null,""Required_If"":null,""Editable_If"":null,""Res et_If"":null,""Suggested_Values"":null} =TEXT( LIST( IF(ISNOTBLANK([รูป1]), CONCATENATE( ""https://www.appsheet.com/template/gettablefileurl?"", ""appName="", ENCODEURL(""เผ่าปั ญญาทรานสปอร์ต-915154893""), ""&appId="", ENCODEURL(""70999aca-5a1f-4dfc-907b- 417bc046f574""), ""&tableName="", ENCODEURL(""แจ้งปั ญหา ระหว่างวัน""), ""&fileName="", ENCODEURL([รูป1]) ), """"), IF(ISNOTBLANK([รูป2]), CONCATENATE( ""https://www.appsheet.com/template/gettablefileurl?"", ""appName="", ENCODEURL(""เผ่าปั ญญาทรานสปอร์ต-915154893""), ""&appId="", ENCODEURL(""70999aca-5a1f-4dfc-907b- 417bc046f574""), ""&tableName="", ENCODEURL(""แจ้งปั ญหา ระหว่างวัน""), ""&fileName="", ENCODEURL([รูป2]) ), """"), IF(ISNOTBLANK([รูป3]), CONCATENATE( ""https://www.appsheet.com/template/gettablefileurl?"", ""appName="", ENCODEURL(""เผ่าปั ญญาทรานสปอร์ต-915154893""), ""&appId="", ENCODEURL(""70999aca-5a1f-4dfc-907b- 417bc046f574""), ""&tableName="", ENCODEURL(""แจ้งปั ญหา ระหว่างวัน""), ""&fileName="", ENCODEURL([รูป3]) ), """") ) )",,,,,,,,,,227
+แจ้งปั ญหาระหว่างวัน,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,"=LOOKUP(USEREMAIL(), ""ข้อมูลพนักงาน"", ""Email พนักงาน"", ""ID_พนักงาน"")",,,,"=USERROLE() = ""ADMIN""","=USERROLE()= ""ADMIN""",,,,226
+แจ้งปั ญหาระหว่างวัน,LINK_Image_แจ้งปั ญหา,Text,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=TEXT( LIST( IF(ISNOTBLANK([รูป1]), CONCATENATE( ""https://www.appsheet.com/template/gettablefileurl?"", ""appName="", ENCODEURL(""เผ่าปั ญญาทรานสปอร์ต-915154893""), ""&appId="", ENCODEURL(""70999aca-5a1f-4dfc-907b- 417bc046f574""), ""&tableName="", ENCODEURL(""แจ้งปั ญหา ระหว่างวัน""), ""&fileName="", ENCODEURL([รูป1]) ), """"), IF(ISNOTBLANK([รูป2]), CONCATENATE( ""https://www.appsheet.com/template/gettablefileurl?"", ""appName="", ENCODEURL(""เผ่าปั ญญาทรานสปอร์ต-915154893""), ""&appId="", ENCODEURL(""70999aca-5a1f-4dfc-907b- 417bc046f574""), ""&tableName="", ENCODEURL(""แจ้งปั ญหา ระหว่างวัน""), ""&fileName="", ENCODEURL([รูป2]) ), """"),",,,,,,,,,,227

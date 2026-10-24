@@ -432,54 +432,180 @@ def merge_split_labels(events):
     return out
 
 
+def _group_value_cells(events, tol=4.5):
+    """Group the VALUE events into value *cells*.
+
+    A value cell is one table cell; Chrome renders it as several lines and
+    poppler sometimes emits those lines as separate blocks - with the label of
+    the *next* row in between.  Lines of the same cell are 4pt apart (line
+    leading); two different cells are at least 6pt apart (cell padding).
+    """
+    cells = []
+    for e in events:
+        if e['t'] != 'VALUE':
+            continue
+        same_page = bool(cells) and cells[-1]['events'][-1].get('page') == e.get('page')
+        if cells and same_page and (e['y0'] - cells[-1]['y1']) <= tol:
+            c = cells[-1]
+            c['lines'].extend(e['lines'])
+            c['y0'] = min(c['y0'], e['y0'])
+            c['y1'] = max(c['y1'], e['y1'])
+            c['events'].append(e)
+        else:
+            cells.append({'lines': list(e['lines']), 'y0': e['y0'], 'y1': e['y1'],
+                          'events': [e], 'claimed': False})
+    return cells
+
+
+def _value_blocks(events):
+    """The VALUE events of the whole document, in document order."""
+    out = []
+    for e in events:
+        if e['t'] != 'VALUE':
+            continue
+        out.append({'parts': [(e['y0'], list(e['lines']))], 'y0': e['y0'],
+                    'y1': e['y1'], 'page': e.get('page'), 'owner': None,
+                    'events': [e]})
+    return out
+
+
 def build_records(events):
     """Group the event stream into table / schema / column / slice / view /
     action / format_rule records.
 
-    A label and its value are paired by the row they share, not by the order
-    they appear in: when poppler splits a two-line label cell into two blocks
-    it emits both of them before the value of the row above, which shifts the
-    sequence.  Matching on the vertical position of the two cells recovers the
-    right pairing in every case.
+    Two steps:
 
-    A value cell is often split into several blocks by poppler; the pieces are
-    collected per field and joined once, so that a cell holding JSON can be
-    re-assembled correctly.
+      1. the value events of a record are grouped into *cells*.  A cell is
+         printed as one block, but poppler sometimes splits it - the label of
+         the next row then lands between the parts.  The parts of one cell are
+         at most 4.5pt apart, two different cells are at least 5pt apart.
+      2. every label is matched with the cell it belongs to.  A cell holds the
+         label whose vertical centre lies inside the cell; if several do, the
+         one closest to the middle of the cell wins.  A cell that contains no
+         label at all is given to the nearest label that is still free.
+
+    Both steps are geometric, so nothing is guessed from the wording.
     """
     records = []
     cur = None
-    pend = []              # labels waiting for their value
     stats = collections.Counter()
-    page_open = []         # value pieces that arrived before their label
 
-    def overlap(a, b):
-        return min(a['y1'], b['y1']) - max(a['y0'], b['y0'])
+    seq_counter = [0]
 
-    def finalize():
-        """Turn the collected value pieces of every pending label into text."""
-        for lb in pend:
-            if cur is None:
+    def next_seq():
+        seq_counter[0] += 1
+        return seq_counter[0]
+
+    def flush(rec):
+        """Match the labels of a record with its value cells."""
+        if rec is None:
+            return
+        labels = rec['labels']
+        cells = rec['cells']
+        # 1. group the value blocks into cells
+        merged = []
+        for b in cells:
+            if merged and merged[-1]['page'] == b['page'] and \
+                    (b['y0'] - merged[-1]['y1']) <= 4.2:
+                c = merged[-1]
+                c['parts'].append((next_seq(), list(b['parts'][0][1])))
+                c['y0'] = min(c['y0'], b['y0'])
+                c['y1'] = max(c['y1'], b['y1'])
+                b['owner'] = c
+            else:
+                c = {'parts': [(b['y0'], list(b['parts'][0][1]))], 'y0': b['y0'],
+                     'y1': b['y1'], 'page': b['page'], 'owner': None,
+                     'events': b['events']}
+                merged.append(c)
+                b['owner'] = c
+        # 1b. NOTE: a JSON value cell that was cut by a page break continues on
+        #     the top of the next page.  Re-joining it is possible but unsafe:
+        #     the top of a page may also start a new (nested) table, and the
+        #     merged value then no longer matches the page it claims.  The
+        #     truncated view configurations are documented as a known issue
+        #     instead - see docs/10-known-issues.md.
+        i = 0
+        while i < len(merged):
+            c = merged[i]
+            txt = _join_cell(c)
+            if not (txt.startswith('{') and txt.count('{') > txt.count('}')):
+                i += 1
                 continue
-            lines = [ln for blk in lb['prefix'] for ln in blk] + list(lb['lines'])
-            if not lines:
-                if lb.get('assigned'):
-                    cur['fields'][lb['text']] = ''
-                    stats['field_no_value'] += 1
+            if txt.rstrip().endswith('}'):
+                # the cell is complete - the next page starts a new one
+                i += 1
                 continue
-            cur['fields'][lb['text']] = join_value(lines, lb.get('cellw'),
-                                                    lb.get('right'))
-            lb['done'] = True
-        pend.clear()
+            # the continuation is the first value cell of the next page
+            j = None
+            for k in range(i + 1, len(merged)):
+                if merged[k]['page'] != c['page']:
+                    j = k
+                    break
+            if j is None:
+                i += 1
+                continue
+            nxt = merged[j]
+            if nxt['y0'] > 110 or _join_cell(nxt).startswith('{'):
+                i += 1
+                continue
+            before = txt.count('{') - txt.count('}')
+            if True:
+                i += 1
+                continue
+            c['parts'].append((next_seq(), list(nxt['parts'][0][1])))
+            c['parts'].extend(nxt['parts'][1:])
+            after_txt = _join_cell(c)
+            after = after_txt.count('{') - after_txt.count('}')
+            if after >= before:
+                # the merge did not close the JSON - it was not a continuation
+                c['parts'].pop()
+                for p_ in nxt['parts'][1:]:
+                    c['parts'].pop()
+                del merged[j]
+                i += 1
+                continue
+            del merged[j]
+        # 2. every cell that holds a label goes to the label it holds
+        taken = set()
+        deferred = []
+        for c in merged:
+            mid = (c['y0'] + c['y1']) / 2.0
+            inside = [lb for lb in labels
+                      if c['y0'] <= (lb['y0'] + lb['y1']) / 2.0 <= c['y1']
+                      and id(lb) not in taken]
+            if inside:
+                lb = min(inside, key=lambda l: abs((l['y0'] + l['y1']) / 2.0 - mid))
+                taken.add(id(lb))
+                lb['cell'] = c
+                lb['value'] = _join_cell(c)
+                stats['field'] += 1
+            else:
+                deferred.append(c)
+        # 3. a cell without a label goes to the nearest label that is still free
+        for c in deferred:
+            mid = (c['y0'] + c['y1']) / 2.0
+            free = [lb for lb in labels if id(lb) not in taken]
+            if not free:
+                stats['value_orphan'] += 1
+                continue
+            lb = min(free, key=lambda l: abs((l['y0'] + l['y1']) / 2.0 - mid))
+            taken.add(id(lb))
+            lb['cell'] = c
+            lb['value'] = _join_cell(c)
+            stats['field'] += 1
+        for lb in labels:
+            if 'cell' in lb:
+                rec['fields'][lb['text']] = lb['value']
+            else:
+                rec['fields'][lb['text']] = ''
+                stats['field_no_value'] += 1
 
-    prev_page = None
-    prev_type = None
     for e in events:
         if e['t'] == 'HEAD':
-            finalize()
+            flush(cur)
             if cur is not None:
                 records.append(cur)
-                cur = None
-            page_open = []
+            cur = None
             txt = e['text']
             kind = None
             if txt.startswith('Table name'):
@@ -497,63 +623,42 @@ def build_records(events):
             elif txt.startswith('Rule name'):
                 kind = 'format_rule'
             if kind:
-                cur = {'kind': kind, 'name': txt, 'page': e['page'], 'fields': {}}
+                cur = {'kind': kind, 'name': txt, 'page': e['page'],
+                       'fields': {}, 'labels': [], 'cells': []}
                 stats['record_' + kind] += 1
             else:
                 stats['section_title'] += 1
-            prev_page = e['page']
-            prev_type = 'HEAD'
             continue
 
         if e['t'] == 'LABEL':
             if cur is None:
                 stats['label_outside_record'] += 1
-                page_open = []
-                finalize()
-                prev_page = e['page']
-                prev_type = 'LABEL'
                 continue
-            finalize()
-            pend.append({'text': e['text'], 'lines': [], 'prefix': page_open,
-                         'assigned': False, 'cellw': None, 'right': None,
-                         'y0': e.get('y0', 0.0), 'y1': e.get('y1', 0.0)})
-            page_open = []
+            cur['labels'].append({'text': e['text'], 'y0': e.get('y0', 0),
+                                  'y1': e.get('y1', 0)})
             stats['label'] += 1
-            prev_page = e['page']
-            prev_type = 'LABEL'
             continue
 
         # VALUE
-        best, bestov = None, 0.0
-        for lb in pend:
-            ov = overlap(lb, e)
-            if ov > bestov:
-                best, bestov = lb, ov
-        if best is None and pend and prev_type == 'LABEL':
-            best = pend[0]
-        if best is not None:
-            best['lines'].extend(e['lines'])
-            best['assigned'] = True
-            best['cellw'] = e.get('cellw')
-            best['right'] = e.get('right')
-            stats['field'] += 1
-        elif prev_type == 'VALUE' and pend:
-            # poppler split this value cell into several blocks -> same field
-            pend[-1]['lines'].extend(e['lines'])
-            pend[-1]['assigned'] = True
-            stats['value_continuation'] += 1
-        else:
-            page_open.append(e['lines'])
+        if cur is None:
             stats['value_orphan'] += 1
-        prev_type = 'VALUE'
-        prev_page = e['page']
+            continue
+        cur['cells'].append({'y0': e['y0'], 'y1': e['y1'],
+                             'page': e.get('page'), 'owner': None,
+                             'parts': [(next_seq(), list(e['lines']))],
+                             'events': [e]})
 
-    finalize()
+    flush(cur)
     if cur is not None:
         records.append(cur)
     return records, stats
 
 
+def _join_cell(cell):
+    ev = cell['events'][0]
+    parts = sorted(cell.get('parts') or [], key=lambda t: t[0])
+    lines = [ln for _y0, lns in parts for ln in lns]
+    return join_value(lines, ev.get('cellw'), ev.get('right'))
 def parse_app_summary(pg):
     """Page 1 is the app summary card, not a regular table: a title, a
     generation stamp, three count boxes and a 7-row metadata table."""

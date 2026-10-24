@@ -26,6 +26,38 @@ Application Documentation.PDF
                                          build_readme.py
 ```
 
+> ### ⚠️ สถานะจริง ณ วันที่ส่งมอบ — อ่านก่อนรัน
+>
+> **`run_pipeline.sh` ยังรันครบสายไม่ได้** เพราะตั้ง `set -euo pipefail`:
+>
+> | ขั้น | สถานะวันนี้ |
+> |---|---|
+> | 1/4 `extract_words.py` | ✅ ผ่าน |
+> | 2/4 `appsheet_parse.py` | ✅ ผ่าน (ได้ `records.json` 2,834 records) |
+> | 3/4 `verify_roundtrip.py` | ❌ **exit 1** — ดูคำอธิบายด้านล่าง |
+> | 4/4 `build_repo.py` | ⚠️ **ไม่เคยถูกเรียก** เพราะขั้น 3 หยุดสายก่อน |
+>
+> **ทำไมขั้น 3/4 ถึง FAIL (ยืนยันด้วยการรันเองแล้ว — ไม่ใช่ปัญหาของข้อมูล):**
+> ตัว gate เทียบ **ข้อความทั้งหมดใน PDF** กับ **ข้อความที่ประกอบจาก records** แต่ record ของ parser
+> **ไม่มีหัวข้อโครงสร้าง** (`Data`, `Tables`, `Columns`, `UX`, `Behavior` …) ติดไปด้วย
+> ตัวอักษรที่ "หาย" 2,213 ตัวจึงเป็น **ตัวอักษรอังกฤษของหัวข้อ** (D,a,t,T,b,l,e,s,n,m — ไม่มีอักษรไทยหายเลย)
+> ส่วนตัวสคริปต์รุ่นก่อน (เทียบแบบเรียงลำดับ) รายงาน `CONTENT: MISMATCH - 19 regions`
+> ซึ่งเป็น **ลำดับการอ่าน** (2 ตารางแรกสลับกัน, คำไทยถูกตัดคนละจุด) ไม่ใช่เนื้อหาหาย
+>
+> **สรุป: gate ยังไม่ผ่าน แต่ข้อมูลที่ได้ไม่ได้หาย** — พิสูจน์ได้ด้วยการ rebuild ขั้น 2 → 4:
+> **102/105 ไฟล์ที่ `build_repo.py` สร้างตรงกับชุดที่ส่งมอบทุกไบต์**
+> (ต่างกันแค่ timestamp `extracted_at`/`generated_at` ใน `MANIFEST.json`, `app/app.json`,
+> `schema/app_schema.json`) → **ข้อมูลถูกต้องและสร้างซ้ำได้**
+>
+> **ทางออกสำหรับผู้ใช้:**
+> 1. รันขั้น 1, 2, 4 เอง (ดู §2) — ได้ข้อมูลชุดเดิมแบบ byte-identical
+> 2. ถ้าจะทำให้ gate ผ่าน: ให้ parser **emit หัวข้อโครงสร้างเป็น record** หรือให้ gate
+>    **ตัดหัวข้อออกจากฝั่ง PDF** ก่อนเทียบ (ทั้งสองฝั่งต้องตัดหักเหมือนกัน)
+>
+> ข้อควรรู้: ขั้น 3/4 เป็น **ตาข่ายนิภัย** โดยเจตนา — ถ้ามีตัวอักษรหายจริงต้องหยุด
+> แต่ ณ วันนี้ gate ยังเทียบผิดฝั่ง (ดูรายละเอียดข้างบน) → ให้ถือว่าเป็น **known issue**
+> ดู `../docs/VERIFICATION_REPORT.md` และบันทึกของทีมใน `.mavis/memory/`
+
 ---
 
 ## 2. รันซ้ำทั้งสาย (แนะนำ)
@@ -41,18 +73,19 @@ Application Documentation.PDF
 |---|---|---|
 | 1/4 | `pdftotext -bbox-layout` + `extract_words.py` | `words3.json` |
 | 2/4 | `appsheet_parse.parse()` | `records.json` |
-| 3/4 | `verify_roundtrip.py` | ตรวจว่าทุกตัวอักษรใน PDF ถูกอ่านครบและจับคู่กลับได้ |
+| 3/4 | `verify_roundtrip.py` | ตรวจว่าทุกตัวอักษรใน PDF ถูกอ่านครบและจับคู่กลับได้ (ตอนนี้ FAIL — ดู §1) |
 | 4/4 | `build_repo.py` | `tables/`, `columns/`, `formulas/`, `views/`, `actions/`, `slices/`, `format_rules/`, `schema/`, `app/`, `MANIFEST.json` |
 
 > ขั้น 3/4 คือ "กันพลาด" — ถ้ามีตัวอักษรหายหรือซ้ำ สคริปต์จะหยุดและไม่เขียนไฟล์ผลลัพธ์
+> (ผลจริงวันนี้: หยุดที่ขั้น 3 ด้วย exit 1 → ขั้น 4 ไม่ทำงาน ดู §1)
 
-### รันทีละส่วน
+### รันทีละส่วน (เส้นทางที่ใช้ได้จริงวันนี้)
 
 ```bash
 pdftotext -bbox-layout "Application Documentation.PDF" bbox.xhtml
 python3 extract_words.py bbox.xhtml words3.json
 python3 -c "import json,sys,appsheet_parse; r,s=appsheet_parse.parse(json.load(open('words3.json'))); json.dump(r,open('records.json','w'),ensure_ascii=False,indent=1)"
-python3 verify_roundtrip.py words3.json
+python3 verify_roundtrip.py words3.json     # ขั้นตรวจ — ตอนนี้ exit 1 (known issue: เทียบหัวข้อโครงสร้างด้วย)
 python3 build_repo.py records.json <out-dir>
 python3 build_workbook.py <out-dir> appsheet-export.xlsx
 python3 build_readme.py <out-dir>
