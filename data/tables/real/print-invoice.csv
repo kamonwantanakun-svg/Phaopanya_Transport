@@ -1,0 +1,12 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+ปริ๊นใบวางบิล,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,189
+ปริ๊นใบวางบิล,ID_ปริ๊นใบวางบิล,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,190
+ปริ๊นใบวางบิล,ชื่องาน,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,190
+ปริ๊นใบวางบิล,StartDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,191
+ปริ๊นใบวางบิล,EndDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,192
+ปริ๊นใบวางบิล,ราคารวม,Price,ALWAYS,No,No,No,No,No,No,Yes,"=SUM(SELECT(ข้อมูลการวางบิล[ราคา], AND([ชื่องาน]= [_THISROW].[ชื่องาน],[วันที่] >= [_THISROW].[Startdate], [วันที่] <= [_THISROW].[Enddate])))",,,,,,,,,,192
+ปริ๊นใบวางบิล,Export to xlsx,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,193
+ปริ๊นใบวางบิล,Export to xlsx To Athens,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,194
+ปริ๊นใบวางบิล,ปริ๊นใบวางบิลแยกตามชื่องาน,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,194
+ปริ๊นใบวางบิล,วันที่ออกเอกสาร,Date,ALWAYS,No,No,No,No,No,No,Yes,,=TODAY(),,,,,,,,,195
+ปริ๊นใบวางบิล,ผลลัพท์,List,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=FILTER(""ข้อมูลการวางบิล"",(AND([ชื่องาน]=[_THISROW].[ชื่องาน], [วันที่]>=[_THISROW].[StartDate],[วันที่]<=[_THISROW]. [EndDate])))",,,,,,,,,,196

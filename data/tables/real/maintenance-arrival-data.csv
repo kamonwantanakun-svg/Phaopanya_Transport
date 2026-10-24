@@ -1,0 +1,15 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+ข้อมูลการเข้าบำรุงรักษา,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,96
+ข้อมูลการเข้าบำรุงรักษา,ID_การเข้าบำรุงรักษา,Text,ALWAYS,Yes,No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,97
+ข้อมูลการเข้าบำรุงรักษา,วันที่เข้าบำรุงรักษา,DateTime,ALWAYS,No,No,No,No,No,No,Yes,,=NOW(),,,,"=USERROLE() = ""ADMIN""",,,,,98
+ข้อมูลการเข้าบำรุงรักษา,ชื่อ - นามสกุล,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,=[ID_พนักงาน].[ชื่อ - นามสกุล],,,,,,,,,99
+ข้อมูลการเข้าบำรุงรักษา,ทะเบียนรถ,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,=[ID_พนักงาน].[ทะเบียนรถ],,,,,,,,,99
+ข้อมูลการเข้าบำรุงรักษา,รูปถ่ายเลขไมล์รถยนต์ก่อนเข้าบำรุงรักษา,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,100
+ข้อมูลการเข้าบำรุงรักษา,OCR_เลขไมล์รถยนต์ก่อนเข้าบำรุงรักษา,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,101
+ข้อมูลการเข้าบำรุงรักษา,รูปถ่ายบิลหรือใบเสร็จ รายการเข้าบำรุงรักษา,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,101
+ข้อมูลการเข้าบำรุงรักษา,OCR_รายการเข้าบำรุงรักษา,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,102
+ข้อมูลการเข้าบำรุงรักษา,ราคา,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,103
+ข้อมูลการเข้าบำรุงรักษา,กรุณากรอกเลขไมล์รถยนต์ รอบบำรุงรักษาครั้งถัดไป,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,104
+ข้อมูลการเข้าบำรุงรักษา,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,=USEREMAIL(),,,,"=USERROLE() = ""ADMIN""",,,,,104
+ข้อมูลการเข้าบำรุงรักษา,เดือน,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,"=IF( ISBLANK([วันที่เข้าบำรุงรักษา]), """", CONCATENATE( YEAR([วันที่เข้าบำรุงรักษา]) - IF(YEAR([วันที่เข้าบำรุงรักษา]) > 2500, 543, 0),""-"", TEXT([วันที่เข้าบำรุงรักษา], ""MM"") ) )",,,,,,,,,105
+ข้อมูลการเข้าบำรุงรักษา,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,"=LOOKUP(USEREMAIL(), ""ข้อมูลพนักงาน"", ""Email พนักงาน"", ""ID_พนักงาน"")",,,,"=USERROLE() = ""ADMIN""","=USERROLE() = ""ADMIN""",,,,106

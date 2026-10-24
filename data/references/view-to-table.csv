@@ -1,0 +1,116 @@
+view_name,view_type,table_name,table_slug,table_file,match_method,confidence,match_evidence,doc_page
+Scan 📋,form,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,view_config_columns,low,Scan_Invoice; Select_Invoice,1743
+หน้าหลัก,gallery,หน้าหลัก,home,data/tables/real/home.csv,exact_name,high,หน้าหลัก,1743
+ฟอร์มรับทราบประกาศ,form,Acknowledge_Logs,acknowledge-logs,data/tables/real/acknowledge-logs.csv,view_config_columns,medium,ข้อความประกาศ; หมายเหตุ; เลือกเพื่อยืนยัน; ลงชื่อ พนักงาน; วันที่และเวลารับทราบ; ชื่อ - นามสกุล,1743
+รอการอนุมัติ,table,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,slice_name,high,รอการอนุมัติ,1744
+📦 สรุป_Shipment,deck,สรุป_Shipment,shipment-summary,data/tables/real/shipment-summary.csv,name_contains_table,medium,สรุป_Shipment,1745
+📦 สรุปรับเอกสาร,deck,สรุป_เจ้าของสินค้า,cargo-owner-summary,data/tables/real/cargo-owner-summary.csv,view_config_columns,medium,SoldToName; สรุป ยอด; PlanDelivery; _RowNumber,1745
+🧾 ที่สแกนรับ ✅,table,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,view_config_columns,medium,Scan_Invoice; Select_Invoice; ทะเบียนรถ; Shipment No; วันที่ส่ง สินค้า; _RowNumber,1746
+Acknowledge_Logs_Table,table,Acknowledge_Logs,acknowledge-logs,data/tables/real/acknowledge-logs.csv,name_pattern,high,Acknowledge_Logs_Table,1746
+Document_Return,table,,,,unmatched,none,,1747
+FILTER,detail,FILTER,filter,data/tables/real/filter.csv,exact_name,high,FILTER,1747
+Image_Document_Return,table,,,,unmatched,none,,1748
+Monitor_Dashboard,table,,,,unmatched,none,,1748
+PriceOverride,table,PriceOverride,price-override,data/tables/real/price-override.csv,exact_name,high,PriceOverride,1749
+SCGนครหลวงJWDภูมิภาค,table,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,exact_name,high,SCGนครหลวงJWDภูมิภาค,1749
+View ราคาไม่ตรง list,table,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,slice_name_affix,medium,View ราคาไม่ตรง,1750
+ข้อมูลการเข้าบำรุงรักษา,table,ข้อมูลการเข้าบำรุงรักษา,maintenance-arrival-data,data/tables/real/maintenance-arrival-data.csv,exact_name,high,ข้อมูลการเข้าบำรุงรักษา,1750
+ข้อมูลการวางบิล,table,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,exact_name,high,ข้อมูลการวางบิล,1751
+ข้อมูลการวางบิลแต่ละคน,table,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,name_contains_table,medium,ข้อมูลการวางบิล,1751
+ข้อมูลงานRT,table,ข้อมูลงานRT,rt-job-data,data/tables/real/rt-job-data.csv,exact_name,high,ข้อมูลงานRT,1752
+ข้อมูลงานRW,table,ข้อมูลงานRW,rw-job-data,data/tables/real/rw-job-data.csv,exact_name,high,ข้อมูลงานRW,1752
+ข้อมูลชื่องานต้นทางปลายทาง,table,ข้อมูลชื่องานต้นทางปลายทาง,job-name-data,data/tables/real/job-name-data.csv,exact_name,high,ข้อมูลชื่องานต้นทางปลายทาง,1753
+ข้อมูลพนักงาน,table,ข้อมูลพนักงาน,employee-data,data/tables/real/employee-data.csv,exact_name,high,ข้อมูลพนักงาน,1753
+ค่าใช้จ่าย,table,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,view_config_columns,medium,ระบุ การเติมน้ำมัน; ราคาที่เติม; รูปถ่ายใบเสร็จน้ำมัน_ใบเล็ก; ระบุทางด่วนM- Flow; จำนวนด่าน; รูปสลิปการโอน,1754
+แจ้งปั ญหา,table,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,view_config_columns,medium,ข้อมูลการแจ้งปั ญหา; รูป1; รูป2; รูป3; หมายเหตุ; วันที่+เวลา,1754
+ตารางงานประจำวัน,table,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,exact_name,high,ตารางงานประจำวัน,1755
+ตารางราคา,table,,,,unmatched,none,,1756
+ทำเบิกส่วนต่างScgวังน้อย,table,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,exact_name,high,ทำเบิกส่วนต่างScgวังน้อย,1756
+รับงานคืนได้เงิน200,table,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,exact_name,high,รับงานคืนได้เงิน200,1757
+ราคาน้ำมันดีเซล,table,ราคาน้ำมันดีเซล,diesel-price,data/tables/real/diesel-price.csv,exact_name,high,ราคาน้ำมันดีเซล,1757
+ราคาในระบบก่อนส่งสินค้า,table,ราคาในระบบก่อนส่งสินค้า,system-price-before-delivery,data/tables/real/system-price-before-delivery.csv,exact_name,high,ราคาในระบบก่อนส่งสินค้า,1757
+สร้างรายงาน,detail,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,view_config_columns,medium,ชื่อ งาน; StartDate; EndDate; Export to xlsx; Export to xlsx To Athens; ปริ๊นใบวางบิลแยกตามชื่องาน,1758
+สร้างเอกสาร,table,สร้างเอกสาร,create-document,data/tables/real/create-document.csv,exact_name,high,สร้างเอกสาร,1759
+สรุปจำนวนจุดส่งสินค้า,table,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,view_config_columns,medium,จำนวนปลายทาง; Shipment No; ชื่อ - นามสกุล; ทะเบียนรถ; Plan Delivery; ชื่อปลายทาง,1759
+สรุปเบิกส่วนต่าง,table,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,exact_name,high,สรุปเบิกส่วนต่าง,1759
+สรุปใบป่ ะหน้าคนขับ,detail,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,view_config_columns,medium,ชื่อ - นามสกุล; StartDate; EndDate; Export to XLSX; ชื่อ ไฟล์,1760
+Acknowledge_Logs_Detail,detail,Acknowledge_Logs,acknowledge-logs,data/tables/real/acknowledge-logs.csv,name_pattern,high,Acknowledge_Logs_Detail,1760
+Acknowledge_Logs_Form,form,Acknowledge_Logs,acknowledge-logs,data/tables/real/acknowledge-logs.csv,name_pattern,high,Acknowledge_Logs_Form,1761
+Acknowledge_Logs_Inline,table,Acknowledge_Logs,acknowledge-logs,data/tables/real/acknowledge-logs.csv,name_pattern,high,Acknowledge_Logs_Inline,1761
+Announcements_Detail,detail,Announcements,announcements,data/tables/real/announcements.csv,name_pattern,high,Announcements_Detail,1762
+Announcements_Form,form,Announcements,announcements,data/tables/real/announcements.csv,name_pattern,high,Announcements_Form,1762
+Doc_Return_Detail,detail,Doc_Return,doc-return,data/tables/real/doc-return.csv,name_pattern,high,Doc_Return_Detail,1763
+Doc_Return_Form,form,Doc_Return,doc-return,data/tables/real/doc-return.csv,name_pattern,high,Doc_Return_Form,1763
+FILTER_Detail,detail,FILTER,filter,data/tables/real/filter.csv,name_pattern,high,FILTER_Detail,1764
+FILTER_Form,form,FILTER,filter,data/tables/real/filter.csv,name_pattern,high,FILTER_Form,1764
+Image_Doc_Return_Detail,detail,Image_Doc_Return,image-doc-return,data/tables/real/image-doc-return.csv,name_pattern,high,Image_Doc_Return_Detail,1765
+Image_Doc_Return_Form,form,Image_Doc_Return,image-doc-return,data/tables/real/image-doc-return.csv,name_pattern,high,Image_Doc_Return_Form,1765
+Image_Doc_Return_Inline,deck,Image_Doc_Return,image-doc-return,data/tables/real/image-doc-return.csv,name_pattern,high,Image_Doc_Return_Inline,1765
+PDFชื่องาน_Detail,detail,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,view_config_columns,medium,ชื่อ งาน; StartDate; EndDate; Export to xlsx; Export to xlsx To Athens; ปริ๊นใบวางบิลแยกตามชื่องาน,1766
+PDFชื่องาน_Form,form,,,,unmatched,none,,1767
+PDFพนักงาน_Detail,detail,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,name_pattern,high,PDFพนักงาน_Detail,1767
+PDFพนักงาน_Form,form,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,name_pattern,high,PDFพนักงาน_Form,1768
+Price_Table_Detail,detail,Price_Table,price-table,data/tables/real/price-table.csv,name_pattern,high,Price_Table_Detail,1768
+Price_Table_Form,form,Price_Table,price-table,data/tables/real/price-table.csv,name_pattern,high,Price_Table_Form,1768
+PriceOverride_Detail,detail,PriceOverride,price-override,data/tables/real/price-override.csv,name_pattern,high,PriceOverride_Detail,1769
+PriceOverride_Form,form,PriceOverride,price-override,data/tables/real/price-override.csv,name_pattern,high,PriceOverride_Form,1769
+ScanDocs_Detail,detail,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,name_pattern,high,ScanDocs_Detail,1770
+ScanDocs_Form,form,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,name_pattern,high,ScanDocs_Form,1770
+ScanDocs_Inline,table,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,name_pattern,high,ScanDocs_Inline,1770
+SCGนครหลวงJWDภูมิภาค_Detail,detail,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,name_pattern,high,SCGนครหลวงJWDภูมิภาค_Detail,1771
+SCGนครหลวงJWDภูมิภาค_Form,form,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,name_pattern,high,SCGนครหลวงJWDภูมิภาค_Form,1771
+SCGนครหลวงJWDภูมิภาค_Inline,table,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,name_pattern,high,SCGนครหลวงJWDภูมิภาค_Inline,1772
+Slice_Monitor_Today_Detail,detail,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,slice_name_stripped,medium,Slice_Monitor_Today,1772
+Slice_Monitor_Today_Form,form,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,slice_name_stripped,medium,Slice_Monitor_Today,1773
+View ราคาไม่ตรง_Detail,detail,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,slice_name_stripped,medium,View ราคาไม่ตรง,1773
+ข้อมูลการเข้าบำรุงรักษา_Detail,detail,ข้อมูลการเข้าบำรุงรักษา,maintenance-arrival-data,data/tables/real/maintenance-arrival-data.csv,name_pattern,high,ข้อมูลการเข้าบำรุงรักษา_Detail,1774
+ข้อมูลการเข้าบำรุงรักษา_Form,form,ข้อมูลการเข้าบำรุงรักษา,maintenance-arrival-data,data/tables/real/maintenance-arrival-data.csv,name_pattern,high,ข้อมูลการเข้าบำรุงรักษา_Form,1774
+ข้อมูลการเข้าบำรุงรักษา_Inline,deck,ข้อมูลการเข้าบำรุงรักษา,maintenance-arrival-data,data/tables/real/maintenance-arrival-data.csv,name_pattern,high,ข้อมูลการเข้าบำรุงรักษา_Inline,1775
+ข้อมูลการวางของแต่ละคน_Detail,detail,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,slice_name_stripped,medium,ข้อมูลการวางของแต่ละคน,1775
+ข้อมูลการวางของแต่ละคน_Form,form,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,slice_name_stripped,medium,ข้อมูลการวางของแต่ละคน,1776
+ข้อมูลการวางบิล_Detail,detail,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,name_pattern,high,ข้อมูลการวางบิล_Detail,1776
+ข้อมูลการวางบิล_Form,form,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,name_pattern,high,ข้อมูลการวางบิล_Form,1780
+ข้อมูลการวางบิล_Inline,deck,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,name_pattern,high,ข้อมูลการวางบิล_Inline,1780
+ข้อมูลงานRT_Detail,detail,ข้อมูลงานRT,rt-job-data,data/tables/real/rt-job-data.csv,name_pattern,high,ข้อมูลงานRT_Detail,1781
+ข้อมูลงานRT_Form,form,ข้อมูลงานRT,rt-job-data,data/tables/real/rt-job-data.csv,name_pattern,high,ข้อมูลงานRT_Form,1781
+ข้อมูลงานRW_Detail,detail,ข้อมูลงานRW,rw-job-data,data/tables/real/rw-job-data.csv,name_pattern,high,ข้อมูลงานRW_Detail,1782
+ข้อมูลงานRW_Form,form,ข้อมูลงานRW,rw-job-data,data/tables/real/rw-job-data.csv,name_pattern,high,ข้อมูลงานRW_Form,1782
+ข้อมูลชื่องานต้นทางปลายทาง_Detail,detail,ข้อมูลชื่องานต้นทางปลายทาง,job-name-data,data/tables/real/job-name-data.csv,name_pattern,high,ข้อมูลชื่องานต้นทางปลายทาง_Detail,1782
+ข้อมูลชื่องานต้นทางปลายทาง_Form,form,ข้อมูลชื่องานต้นทางปลายทาง,job-name-data,data/tables/real/job-name-data.csv,name_pattern,high,ข้อมูลชื่องานต้นทางปลายทาง_Form,1783
+ข้อมูลพนักงาน_Detail,detail,ข้อมูลพนักงาน,employee-data,data/tables/real/employee-data.csv,name_pattern,high,ข้อมูลพนักงาน_Detail,1783
+ข้อมูลพนักงาน_Form,form,ข้อมูลพนักงาน,employee-data,data/tables/real/employee-data.csv,name_pattern,high,ข้อมูลพนักงาน_Form,1784
+ค้างสแกนวันนี้และเมื่อวาน_Detail,detail,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,slice_name_stripped,medium,ค้างสแกนวันนี้และเมื่อวาน,1784
+ค้างสแกนวันนี้และเมื่อวาน_Form,form,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,slice_name_stripped,medium,ค้างสแกนวันนี้และเมื่อวาน,1785
+แจ้งปั ญหาระหว่างวัน_Detail,detail,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,name_pattern,high,แจ้งปั ญหาระหว่างวัน_Detail,1785
+แจ้งปั ญหาระหว่างวัน_Form,form,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,name_pattern,high,แจ้งปั ญหาระหว่างวัน_Form,1789
+แจ้งปั ญหาระหว่างวัน_Inline,deck,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,name_pattern,high,แจ้งปั ญหาระหว่างวัน_Inline,1789
+ตารางงานประจำวัน_Detail,detail,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,name_pattern,high,ตารางงานประจำวัน_Detail,1790
+ตารางงานประจำวัน_Form,form,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,name_pattern,high,ตารางงานประจำวัน_Form,1790
+ทำเบิกส่วนต่างScgวังน้อย_Detail,detail,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,name_pattern,high,ทำเบิกส่วนต่างScgวังน้อย_Detail,1791
+ทำเบิกส่วนต่างScgวังน้อย_Form,form,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,name_pattern,high,ทำเบิกส่วนต่างScgวังน้อย_Form,1793
+ทำเบิกส่วนต่างScgวังน้อย_Inline,table,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,name_pattern,high,ทำเบิกส่วนต่างScgวังน้อย_Inline,1793
+รอการอนุมัติ_Detail,detail,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,slice_name_stripped,medium,รอการอนุมัติ,1794
+รอการอนุมัติ_Form,form,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,slice_name_stripped,medium,รอการอนุมัติ,1794
+รับงานคืนได้เงิน200_Detail,detail,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,name_pattern,high,รับงานคืนได้เงิน200_Detail,1795
+รับงานคืนได้เงิน200_Form,form,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,name_pattern,high,รับงานคืนได้เงิน200_Form,1795
+รับงานคืนได้เงิน200_Inline,deck,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,name_pattern,high,รับงานคืนได้เงิน200_Inline,1796
+ราคาน้ำมันดีเซล_Detail,detail,ราคาน้ำมันดีเซล,diesel-price,data/tables/real/diesel-price.csv,name_pattern,high,ราคาน้ำมันดีเซล_Detail,1796
+ราคาน้ำมันดีเซล_Form,form,ราคาน้ำมันดีเซล,diesel-price,data/tables/real/diesel-price.csv,name_pattern,high,ราคาน้ำมันดีเซล_Form,1797
+ราคาในระบบก่อนส่งสินค้า_Detail,detail,ราคาในระบบก่อนส่งสินค้า,system-price-before-delivery,data/tables/real/system-price-before-delivery.csv,name_pattern,high,ราคาในระบบก่อนส่งสินค้า_Detail,1797
+ราคาในระบบก่อนส่งสินค้า_Form,form,ราคาในระบบก่อนส่งสินค้า,system-price-before-delivery,data/tables/real/system-price-before-delivery.csv,name_pattern,high,ราคาในระบบก่อนส่งสินค้า_Form,1798
+ส่งงานที่ยังไม่มีข้อมูลในระบบ_Detail,detail,ส่งงานที่ยังไม่มีข้อมูลในระบบ,delivery-without-system-data,data/tables/real/delivery-without-system-data.csv,name_pattern,high,ส่งงานที่ยังไม่มีข้อมูลในระบบ_Detail,1798
+ส่งงานที่ยังไม่มีข้อมูลในระบบ_Form,form,ส่งงานที่ยังไม่มีข้อมูลในระบบ,delivery-without-system-data,data/tables/real/delivery-without-system-data.csv,name_pattern,high,ส่งงานที่ยังไม่มีข้อมูลในระบบ_Form,1799
+ส่งงานที่ยังไม่มีข้อมูลในระบบ_Inline,deck,ส่งงานที่ยังไม่มีข้อมูลในระบบ,delivery-without-system-data,data/tables/real/delivery-without-system-data.csv,name_pattern,high,ส่งงานที่ยังไม่มีข้อมูลในระบบ_Inline,1799
+สร้างเอกสาร_Detail,detail,สร้างเอกสาร,create-document,data/tables/real/create-document.csv,name_pattern,high,สร้างเอกสาร_Detail,1800
+สร้างเอกสาร_Form,form,สร้างเอกสาร,create-document,data/tables/real/create-document.csv,name_pattern,high,สร้างเอกสาร_Form,1800
+สรุป_Shipment_Detail,detail,สรุป_Shipment,shipment-summary,data/tables/real/shipment-summary.csv,name_pattern,high,สรุป_Shipment_Detail,1801
+สรุป_Shipment_Form,form,สรุป_Shipment,shipment-summary,data/tables/real/shipment-summary.csv,name_pattern,high,สรุป_Shipment_Form,1801
+สรุป_เจ้าของสินค้า_Detail,detail,สรุป_เจ้าของสินค้า,cargo-owner-summary,data/tables/real/cargo-owner-summary.csv,name_pattern,high,สรุป_เจ้าของสินค้า_Detail,1802
+สรุป_เจ้าของสินค้า_Form,form,สรุป_เจ้าของสินค้า,cargo-owner-summary,data/tables/real/cargo-owner-summary.csv,name_pattern,high,สรุป_เจ้าของสินค้า_Form,1802
+สรุปงานประจำวัน_Detail,detail,,,,unmatched,none,,1802
+สรุปงานประจำวัน_Form,form,,,,unmatched,none,,1803
+สรุปเบิกส่วนต่าง_Detail,detail,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,name_pattern,high,สรุปเบิกส่วนต่าง_Detail,1803
+สรุปเบิกส่วนต่าง_Form,form,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,name_pattern,high,สรุปเบิกส่วนต่าง_Form,1804
+สรุปเบิกส่วนต่าง_Inline,table,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,name_pattern,high,สรุปเบิกส่วนต่าง_Inline,1804
+หน้าหลัก_Detail,detail,หน้าหลัก,home,data/tables/real/home.csv,name_pattern,high,หน้าหลัก_Detail,1805
+หน้าหลัก_Form,form,หน้าหลัก,home,data/tables/real/home.csv,name_pattern,high,หน้าหลัก_Form,1805

@@ -1,0 +1,41 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+ตารางงานประจำวัน,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,143
+ตารางงานประจำวัน,ID_งานประจำวัน,Text,ALWAYS,Yes,No,Yes,Yes,No,No,Yes,,=UNIQUEID(),,,,,,,,,144
+ตารางงานประจำวัน,Plan Delivery,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,144
+ตารางงานประจำวัน,Invoice No,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,145
+ตารางงานประจำวัน,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,146
+ตารางงานประจำวัน,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,146
+ตารางงานประจำวัน,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,147
+ตารางงานประจำวัน,รหัสผู้รับเหมา,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,148
+ตารางงานประจำวัน,ชื่อผู้รับเหมา,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,148
+ตารางงานประจำวัน,รหัสลูกค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,149
+ตารางงานประจำวัน,ชื่อเจ้าของสินค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,150
+ตารางงานประจำวัน,ชื่อปลายทาง,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,150
+ตารางงานประจำวัน,ที่อยู่ปลายทาง,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,151
+ตารางงานประจำวัน,ที่อยู่ปลายทาง_LatLong,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,152
+ตารางงานประจำวัน,ชื่อวัสดุ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,152
+ตารางงานประจำวัน,จำนวนสินค้า,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,153
+ตารางงานประจำวัน,หน่วย,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,154
+ตารางงานประจำวัน,ItemWeight,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,155
+ตารางงานประจำวัน,DeliveryNo,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,155
+ตารางงานประจำวัน,จำนวนปลายทาง_System,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,156
+ตารางงานประจำวัน,รายชื่อปลายทาง_System,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,157
+ตารางงานประจำวัน,ScanStatus,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,157
+ตารางงานประจำวัน,DeliveryStatus,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,158
+ตารางงานประจำวัน,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,159
+ตารางงานประจำวัน,จำนวนสินค้ารวมของร้านนี้,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,159
+ตารางงานประจำวัน,น้ำหนักสินค้ารวมของร้านนี้,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,160
+ตารางงานประจำวัน,จำนวน_Invoice_ที่ต้องสแกน,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,161
+ตารางงานประจำวัน,LatLong_Actual,"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,162
+ตารางงานประจำวัน,ชื่อเจ้าของสินค้า_Invoice_ที่ต้องสแกน,LongText,ALWAYS,"{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":null,""Error_Message_If_I nvalid"":null,""Show_If"":null,""Required_If"":null,""Editable_If"":null,""Res et_If"":null,""Suggested_Values"":null} No",No,No,No,No,No,Yes,,,,,,,,,,,162
+ตารางงานประจำวัน,ShopKey,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,163
+ตารางงานประจำวัน,MATCH_KEY,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,164
+ตารางงานประจำวัน,MD_ID,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,164
+ตารางงานประจำวัน,LatLong_Actual_Status,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,165
+ตารางงานประจำวัน,จำนวนปลายทาง,Number,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=COUNT( UNIQUE( SELECT( ตารางงานประจำวัน[ชื่อปลายทาง], [Shipment No] = [_THISROW].[Shipment No] ) ) )",,,,,,,,,,166
+ตารางงานประจำวัน,ลำดับแรก,Yes/No,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=[_ROWNUMBER] = MIN( SELECT( ตารางงานประจำ วัน[_ROWNUMBER], [Shipment No] = [_THISROW].[Shipment No], ) )",,,,,,,,,,166
+ตารางงานประจำวัน,จำนวนจุดที่ส่งจริง,Number,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=COUNT( SELECT( SCGนครหลวงJWDภูมิภาค[Shipment No], [Shipment No] = [_THISROW].[Shipment No]) )",,,,,,,,,,167
+ตารางงานประจำวัน,เดือน,Text,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=IF( ISBLANK([Plan Delivery]), """", CONCATENATE( YEAR([Plan Delivery]) - IF(YEAR([Plan Delivery]) > 2500, 543, 0), ""-"", TEXT([Plan Delivery], ""MM"") ) )",,,,,,,,,,168
+ตารางงานประจำวัน,Related SCGนครหลวงJWDภูมิภาคs,List,ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"=REF_ROWS(""SCGนครหลวงJWDภูมิภาค"", ""SM_Link_SCG"")",,SCGนครหลวงJWDภูมิภาค entries that reference this entry in the SM_Link_SCG column,,,,,,,,169
+ตารางงานประจำวัน,Related แจ้งปั ญหาระหว่างวันs,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""แจ้งปั ญหาระหว่าง วัน\"",\""ReferencedRootTableName\"":\""แจ้งปั ญหาระหว่าง วัน\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain",ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"REF_ROWS(""แจ้งปั ญหาระหว่างวัน"", ""SM_Link"")",,แจ้งปั ญหาระหว่างวัน entries that reference this entry in the SM_Link column,,,,,,,,170
+ตารางงานประจำวัน,Related ScanDocs,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ScanDocs\"",\""ReferencedRootTabl eName\"":\""ScanDocs\"",\""ReferencedType\"":\""Text\"",\""Reference dTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er",ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"REF_ROWS(""ScanDocs"", ""Invoice_No"")",,ScanDocs entries that reference this entry in the Invoice_No column,,,,,,,,171

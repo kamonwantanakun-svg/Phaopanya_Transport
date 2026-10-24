@@ -1,0 +1,435 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+ไม่ผ่านNew step Output,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,1136
+ไม่ผ่านNew step Output,ID_ทำเบิกส่วนต่างScgวังน้อย,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1137
+ไม่ผ่านNew step Output,ID_SCGนครหลวงJWDภูมิภาค,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1137
+ไม่ผ่านNew step Output,Shipment No,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits"" :null,""ShowThousandsSeparator"":false,""NumberDisplayMode"":""A uto"",""Valid_If"":""=IF(USERROLE() = \""ADMIN\"",\n SORT(\n UNIQUE(\n LIST([_THIS]) + \n SELECT(\n SCGนครหลวงJWDภูมิภาค[Shipment No],\n AND(\n [วันที่ส่งสินค้า] >= EOMONTH(TODAY(), -2) + 1,\n NOT(IN([Shipment No], ทำเบิก",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1138
+ไม่ผ่านNew step Output,วันที่ส่งสินค้า,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,=[ตรวจสอบข้อมูล] =1,,,,,"=""Shipment นี้มีจุดส่งที่ไม่ผ่าน การตรวจสอบ กรุณาติดต่อผู้ดูแล ระบบ""",,1139
+ไม่ผ่านNew step Output,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=[ตรวจสอบข้อมูล] =1,,,,,"=""Shipment นี้มีจุดส่งที่ไม่ผ่าน การตรวจสอบ กรุณาติดต่อผู้ดูแล ระบบ""",,1140
+ไม่ผ่านNew step Output,ต้นทาง,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1140
+ไม่ผ่านNew step Output,GoogleMapsRoutesAPI,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1141
+ไม่ผ่านNew step Output,แสดงแผนที่_GoogleMapsRoutesAPI,"Url {""LaunchExternal"":false,""IsHyperLink"":false,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1142
+ไม่ผ่านNew step Output,ระยะทาง_GoogleMapAPI_Km,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"":",ALWAYS,"2,""NumericDigits"":null,""ShowThousandsSeparator"":false,""Numbe rDisplayMode"":""Auto"",""Valid_If"":null,""Error_Message_If_Invalid"":n ull,""Show_If"":null,""Required_If"":null,""Editable_If"":null,""Reset_If"":null ,""Suggested_Values"":null} No",No,No,No,No,No,Yes,,,,,,,,,,,1142
+ไม่ผ่านNew step Output,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(
+
+ USERROLE() = ""ADMIN"",
+
+ ข้อมูล พนักงาน[Email พนักงาน],
+
+ LIST(USEREMAIL())
+
+)",,"=USERROLE() = ""ADMIN""",,,,,1143
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_01,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1144
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_02,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_01]),,,,1144
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_03,"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลาย",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1145
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_04,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_03]),,,,1146
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_05,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_04]),,,,1147
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_06,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_05]),,,,1148
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_07,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_06]),,,,1148
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_08,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_07]),,,,1149
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_09,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_08]),,,,1150
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_10,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_09]),,,,1151
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_11,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_10]),,,,1152
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_12,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_11]),,,,1153
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_13,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_12]),,,,1154
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_14,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_13]),,,,1155
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_15,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_14]),,,,1156
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_16,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_15]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_15]),,,,1157
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_17,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_15] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_16] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_16]),,,,1158
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_18,"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลายทาง_01] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_02] & \"" ,\"" & \n [_THISROW].[Lat/Long_ปลายทาง_03] & \"" , \"" & \n[_THISROW].[Lat/Long_ปลายทาง_04] & \"" , \"" & \n [_THISROW].",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1159
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_19,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_15] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_16] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_17] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_18]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_18]),,,,1161
+ไม่ผ่านNew step Output,Lat/Long_ปลายทาง_20,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_15] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_16] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_17] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_18] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_19]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_19]),,,,1162
+ไม่ผ่านNew step Output,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=[ตรวจสอบข้อมูล] = 1,,,,,"=""Shipment นี้มีจุดส่งที่ไม่ผ่านการ ตรวจสอบ กรุณาติดต่อผู้ดูแล ระบบ""",,1163
+ไม่ผ่านNew step Output,จำนวนจุดส่งก่อนเริ่มงาน,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1164
+ไม่ผ่านNew step Output,จำนวนจุดส่งงานจริง,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1164
+ไม่ผ่านNew step Output,ตรวจสอบข้อมูล,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1165
+ไม่ผ่านNew step Output,ราคาในระบบก่อนส่งสินค้า,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1166
+ไม่ผ่านNew step Output,ระยะทางในระบบก่อนส่งสินค้า,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1166
+ไม่ผ่านNew step Output,สร้างPDFเบิกส่วนต่าง,Yes/No,ALWAYS,No,No,No,No,No,Yes No,,,,,,,"=USERROLE( )=""ADMIN""",,,,,1167
+ไม่ผ่านNew step Output,สถานะ,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE()=""ADMIN """,,,,,1168
+ไม่ผ่านNew step Output,เดือน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1168
+ไม่ผ่านNew step Output,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""","=USERROLE() = ""ADMIN""",,,,1169
+ไม่ผ่านNew step Output,สร้างPDFเบิกตามระยะทาง,"Yes/No {""YesLabel"":"""",""NoLabel"":"""",""Valid_If"":null,""Error_Message_If_Invali",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1170
+ไม่ผ่านNew step Output,Candidate_2_ระยะทาง_Km,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1171
+ไม่ผ่านNew step Output,Candidate_2_แสดงแผนที่,Url,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1172
+ไม่ผ่านNew step Output,Candidate_3_ระยะทาง_Km,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1172
+ไม่ผ่านNew step Output,Candidate_3_แสดงแผนที่,Url,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1173
+ไม่ผ่านNew step Output,เรท น้ำมันดีเซล,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1174
+ไม่ผ่านNew step Output,ราคาตามระยะทาง,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1174
+ไม่ผ่านNew step Output,ราคาจุดเพิ่ม,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1175
+ไม่ผ่านNew step Output,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1176
+ไม่ผ่านNew step Output,01เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,"Text"",""IsMulticolumnKey"":false,""Valid_If"":null,""Error_Message_If_I nvalid"":null,""Show_If"":null,""Required_If"":null,""Editable_If"":null,""Res et_If"":null,""Suggested_Values"":null} No",No,No,No,No,No,Yes,,,,,,,,,,,1176
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_01,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1177
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน01,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1178
+ไม่ผ่านNew step Output,รูปส่งสินค้า01,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1178
+ไม่ผ่านNew step Output,02เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1179
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_02,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1180
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน02,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1180
+ไม่ผ่านNew step Output,รูปส่งสินค้า02,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1181
+ไม่ผ่านNew step Output,03เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1181
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_03,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1182
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน03,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1183
+ไม่ผ่านNew step Output,รูปส่งสินค้า03,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1183
+ไม่ผ่านNew step Output,04เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1184
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_04,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1185
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน04,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1185
+ไม่ผ่านNew step Output,รูปส่งสินค้า04,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1186
+ไม่ผ่านNew step Output,05เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1187
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_05,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1187
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน05,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1188
+ไม่ผ่านNew step Output,รูปส่งสินค้า05,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1189
+ไม่ผ่านNew step Output,06เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1189
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_06,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1190
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน06,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1191
+ไม่ผ่านNew step Output,รูปส่งสินค้า06,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1191
+ไม่ผ่านNew step Output,07เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1192
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_07,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1192
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน07,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1193
+ไม่ผ่านNew step Output,รูปส่งสินค้า07,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1194
+ไม่ผ่านNew step Output,08เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1194
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_08,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1195
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน08,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1196
+ไม่ผ่านNew step Output,รูปส่งสินค้า08,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1196
+ไม่ผ่านNew step Output,09เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1197
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_09,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1198
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน09,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1198
+ไม่ผ่านNew step Output,รูปส่งสินค้า09,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1199
+ไม่ผ่านNew step Output,10เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1200
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_10,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1200
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน10,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1201
+ไม่ผ่านNew step Output,รูปส่งสินค้า10,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1202
+ไม่ผ่านNew step Output,11เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1202
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_11,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1203
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน11,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1203
+ไม่ผ่านNew step Output,รูปส่งสินค้า11,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1204
+ไม่ผ่านNew step Output,12เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1205
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_12,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1205
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน12,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1206
+ไม่ผ่านNew step Output,รูปส่งสินค้า12,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1207
+ไม่ผ่านNew step Output,13เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1207
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_13,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1208
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน13,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1209
+ไม่ผ่านNew step Output,รูปส่งสินค้า13,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1209
+ไม่ผ่านNew step Output,14เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1210
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_14,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1211
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน14,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1211
+ไม่ผ่านNew step Output,รูปส่งสินค้า14,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1212
+ไม่ผ่านNew step Output,15เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1213
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_15,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1213
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน15,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1214
+ไม่ผ่านNew step Output,รูปส่งสินค้า15,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1215
+ไม่ผ่านNew step Output,16เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1215
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_16,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1216
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน16,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1216
+ไม่ผ่านNew step Output,รูปส่งสินค้า16,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1217
+ไม่ผ่านNew step Output,17เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1218
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_17,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1218
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน17,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1219
+ไม่ผ่านNew step Output,รูปส่งสินค้า17,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1220
+ไม่ผ่านNew step Output,18เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1220
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_18,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1221
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน18,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1222
+ไม่ผ่านNew step Output,รูปส่งสินค้า18,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1222
+ไม่ผ่านNew step Output,19เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1223
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_19,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1224
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน19,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1224
+ไม่ผ่านNew step Output,รูปส่งสินค้า19,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1225
+ไม่ผ่านNew step Output,20เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1226
+ไม่ผ่านNew step Output,รูปบิลส่งสินค้า_20,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1226
+ไม่ผ่านNew step Output,รูปหน้าร้าน_บ้าน20,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1227
+ไม่ผ่านNew step Output,รูปส่งสินค้า20,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1228
+ไม่ผ่านNew step Output,ราคาที่สมควรได้,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"": 2,""NumericDigits"":null,""ShowThousandsSeparator"":true,""Number",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1228
+ไม่ผ่านNew step Output,ราคาหลังส่งสินค้า,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1229
+ไม่ผ่านNew step Output,ขออนุมัติเบิกค่าขนส่งส่วนเพิ่ม,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1230
+ไม่ผ่านNew step Output,QR code เส้นทางรวม,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1230
+ไม่ผ่านNew step Output,จุดส่งงานลำดับสุดท้าย,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1231
+ไม่ผ่านNew step Output,ชื่อปลายทาง_INV_จุดสุดท้าย,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1231

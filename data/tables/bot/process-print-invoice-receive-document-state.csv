@@ -1,0 +1,13 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,745
+Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table,ID_ปริ๊นใบวางบิล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,746
+Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=ข้อมูลชื่องานต้นทาง ปลายทาง[ชื่องาน],,,,,,,746
+Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table,StartDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,747
+Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table,EndDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,748
+Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table,ราคารวม,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,748
+Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table,Export to xlsx,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,749
+Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table,Export to xlsx To Athens,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,750
+Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table,ปริ๊นใบวางบิลแยกตามชื่องาน,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,750
+Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table,วันที่ออกเอกสาร,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,751
+Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table,ผลลัพท์,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":""",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,752
+Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table,Clear,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,753

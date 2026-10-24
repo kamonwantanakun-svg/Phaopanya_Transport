@@ -1,0 +1,12 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+PDFพนักงาน,_RowNumber,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,197
+PDFพนักงาน,ID_XLSXพนักงาน,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,198
+PDFพนักงาน,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=ข้อมูลพนักงาน[ชื่อ - นามสกุล],,,,,,,198
+PDFพนักงาน,StartDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,199
+PDFพนักงาน,EndDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,200
+PDFพนักงาน,ราคารวม,Price,ALWAYS,No,No,No,No,No,No,Yes,"=SUM(SELECT(ข้อมูลการวางบิล[ราคา], AND([ชื่อ - นามสกุล]=[_THISROW].[ชื่อ - นามสกุล],[วันที่] >= [_THISROW].[Startdate], [วันที่] <= [_THISROW].[Enddate])))",,,,,,,,,,200
+PDFพนักงาน,Export to XLSX,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,201
+PDFพนักงาน,ชื่อไฟล์,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,202
+PDFพนักงาน,ผลลัพท์.,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":""",ALWAYS,Yes,No,No,No,No,Yes Yes,,"{\""ReferencedTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedRootTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er ror_Message_If_Invalid\\\"":null,\\\""Show_If\\\"":null,\\\""Required _If\\\"":null,\\\""Editable_If\\\"":null,\\\""Reset_If\\\"":null,\\\""Sugges ted_Values\\\"":null}\"",\""ReferencedKeyColumn\"":\""ID_วาง บิล\"",\""IsAPartOf\"":false,\""RelationshipName\"":null,\""InputMode \"":\""Auto\"",\""Valid_If\"":null,\""Error_Message_If_Invalid\"":null,\""Sh ow_If\"":null,\""Required_If\"":null,\""Editable_If\"":null,\""Reset_If\"":nu ll,\""Suggested_Values\"":null}"",""ItemSeparator"":"" , "",""Valid_If"":null,""Error_Message_If_Invalid"":null,""Show_If"":null,""Req uired_If"":null,""Editable_If"":null,""Reset_If"":null,""Suggested_Values"": null} =FILTER(""ข้อมูลการวางบิล"",(AND([ชื่อ - นามสกุล]=[_THISROW].[ชื่อ - นามสกุล],[วันที่]>=[_THISROW].[StartDate],[วันที่]<=[_THISROW]. [EndDate])))",,,,,,,,,,203
+PDFพนักงาน,debugstartdate,Date,ALWAYS,Yes,No,No,No,No,Yes,Yes,=[StartDate],,,,,,,,,,204
+PDFพนักงาน,debugenddate,Date,ALWAYS,Yes,No,No,No,No,Yes,Yes,=[EndDate],,,,,,,,,,204

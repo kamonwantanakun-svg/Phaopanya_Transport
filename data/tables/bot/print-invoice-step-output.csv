@@ -1,0 +1,12 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+ปริ๊นใบวางบิล_step Output,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,534
+ปริ๊นใบวางบิล_step Output,ID_ปริ๊นใบวางบิล,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,535
+ปริ๊นใบวางบิล_step Output,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=ข้อมูลชื่องานต้นทาง ปลายทาง[ชื่องาน],,,,,,,535
+ปริ๊นใบวางบิล_step Output,StartDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,536
+ปริ๊นใบวางบิล_step Output,EndDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,537
+ปริ๊นใบวางบิล_step Output,ราคารวม,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,537
+ปริ๊นใบวางบิล_step Output,Export to xlsx,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,538
+ปริ๊นใบวางบิล_step Output,Export to xlsx To Athens,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,539
+ปริ๊นใบวางบิล_step Output,ปริ๊นใบวางบิลแยกตามชื่องาน,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,539
+ปริ๊นใบวางบิล_step Output,วันที่ออกเอกสาร,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,540
+ปริ๊นใบวางบิล_step Output,ผลลัพท์,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,540

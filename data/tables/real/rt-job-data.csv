@@ -1,0 +1,13 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+ข้อมูลงานRT,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,252
+ข้อมูลงานRT,ID_RT,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,=UNIQUEID(),,,,,,,,,253
+ข้อมูลงานRT,Shipment (หลัก),Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,254
+ข้อมูลงานRT,Shipment (รับคืน),Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,255
+ข้อมูลงานRT,วันที่เข้ารับ,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,255
+ข้อมูลงานRT,เลขที่เอกสารรับคืน,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,256
+ข้อมูลงานRT,ชื่อลูกค้าที่เข้ารับ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,257
+ข้อมูลงานRT,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,257
+ข้อมูลงานRT,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,258
+ข้อมูลงานRT,รหัสลูกค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,259
+ข้อมูลงานRT,เดือน,Text,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=IF( ISBLANK([วันที่เข้ารับ]), """", CONCATENATE( YEAR([วันที่เข้ารับ]) - IF(YEAR([วันที่เข้ารับ]) > 2500, 543, 0), ""-"", TEXT([วันที่เข้ารับ],""MM"") ) )",,,,,,,,,,259
+ข้อมูลงานRT,Related แจ้งปั ญหาระหว่างวันs,List,ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"=REF_ROWS(""แจ้งปั ญหาระหว่างวัน"", ""RT_Link"")",,แจ้งปั ญหาระหว่างวัน entries that reference this entry in the RT_Link column,,,,,,,,260

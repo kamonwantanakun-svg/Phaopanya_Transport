@@ -1,0 +1,18 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+ข้อมูลพนักงาน,_RowNumber,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,273
+ข้อมูลพนักงาน,Row ID,Text,ALWAYS,Yes,Yes,No,No,No,No No,,,"UNIQUEID(""PackedUUID"")",ID of this row,,,,,,,,274
+ข้อมูลพนักงาน,ID_พนักงาน,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,=UNIQUEID(),,,,,,,,,275
+ข้อมูลพนักงาน,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,275
+ข้อมูลพนักงาน,เบอร์โทรศัพท์,"Phone {""Callable"":true,""Textable"":true,""Valid_If"":null,""Error_Message_If_I",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,276
+ข้อมูลพนักงาน,เลขที่บัตรประชาชน,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,277
+ข้อมูลพนักงาน,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,278
+ข้อมูลพนักงาน,เลือกประเภทรถยนต์,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,278
+ข้อมูลพนักงาน,Email พนักงาน,"Email {""Valid_If"":null,""Error_Message_If_Invalid"":null,""Show_If"":null,""Req",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,279
+ข้อมูลพนักงาน,ROLE,Enum,ALWAYS,No,No,No,No,No,Yes No,,,,,,,,,,,,280
+ข้อมูลพนักงาน,Related SCGนครหลวงJWDภูมิภาคs,List,ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"REF_ROWS(""SCGนครหลวงJWDภูมิภาค"", ""ID_พนักงาน"")",,SCGนครหลวงJWDภูมิภาค entries that reference this entry in the ID_พนักงาน column,,,,,,,,281
+ข้อมูลพนักงาน,Related แจ้งปั ญหาระหว่างวันs,List,ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"REF_ROWS(""แจ้งปั ญหาระหว่างวัน"", ""ID_พนักงาน"")",,แจ้งปั ญหาระหว่างวัน entries that reference this entry in the ID_พนักงาน column,,,,,,,,282
+ข้อมูลพนักงาน,Related รับงานคืนได้เงิน200s,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedRootTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier \"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er",ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"REF_ROWS(""รับงานคืนได้เงิน200"", ""ID_พนักงาน"")",,รับงานคืนได้เงิน200 entries that reference this entry in the ID_พนักงาน column,,,,,,,,283
+ข้อมูลพนักงาน,Related ข้อมูลการเข้าบำรุงรักษาs,List,ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"REF_ROWS(""ข้อมูลการเข้าบำรุงรักษา"", ""ID_พนักงาน"")",,ข้อมูลการเข้าบำรุงรักษา entries that reference this entry in the ID_พนักงาน column,,,,,,,,284
+ข้อมูลพนักงาน,Related ข้อมูลการวางบิลs,List,ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"REF_ROWS(""ข้อมูลการวางบิล"", ""ID_พนักงาน"")",,ข้อมูลการวางบิล entries that reference this entry in the ID_พนักงาน column,,,,,,,,285
+ข้อมูลพนักงาน,Related ทำเบิกส่วนต่างScgวังน้อยs,List,ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"REF_ROWS(""ทำเบิกส่วนต่างScgวังน้อย"", ""ID_พนักงาน"")",,ทำเบิกส่วนต่างScgวังน้อย entries that reference this entry in the ID_พนักงาน column,,,,,,,,286
+ข้อมูลพนักงาน,Related ส่งงานที่ยังไม่มีข้อมูลในระบบs,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ส่งงานที่ยังไม่มีข้อมูลใน ระบบ\"",\""ReferencedRootTableName\"":\""ส่งงานที่ยังไม่มีข้อมูลใน ระบบ\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"": \"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er",ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"REF_ROWS(""ส่งงานที่ยังไม่มีข้อมูลในระบบ"", ""ID_พนักงาน"")",,ส่งงานที่ยังไม่มีข้อมูลในระบบ entries that reference this entry in the ID_พนักงาน column,,,,,,,,287

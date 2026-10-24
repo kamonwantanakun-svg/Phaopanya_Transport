@@ -1,0 +1,18 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Acknowledge_Logs,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,511
+Acknowledge_Logs,ID_รับทราบ,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,512
+Acknowledge_Logs,ID_ประกาศ,Ref,ALWAYS,No,No,No,No,No,No,Yes,,"=MAXROW( ""Announcements"", ""วันที่ประกาศ"", NOT(IN([ID_ประกาศ], SELECT(Acknowledge_Logs[ID_ประกาศ], [Email พนักงาน] = USEREMAIL()))) )",,,,,,,,,513
+Acknowledge_Logs,วันที่และเวลารับทราบ,DateTime,ALWAYS,No,No,No,No,No,No,Yes,,=NOW(),,,,,,,,,514
+Acknowledge_Logs,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,=USEREMAIL(),,,,,,,,,514
+Acknowledge_Logs,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,"=LOOKUP(USEREMAIL(), ""ข้อมูลพนักงาน"", ""Email พนักงาน"", ""ชื่อ - นามสกุล"")",,,,,,,,,515
+Acknowledge_Logs,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,"=LOOKUP(USEREMAIL(), ""ข้อมูลพนักงาน"", ""Email พนักงาน"", ""ทะเบียนรถ"")",,,,,,,,,516
+Acknowledge_Logs,เลือกเพื่อยืนยัน,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,517
+Acknowledge_Logs,หมายเหตุ,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,"=OR(
+
+ [เลือกเพื่อยืนยัน] = ""ติดขัดปั ญหา ไม่สามารถปฏิบัติตามได้"",
+
+ [ID_ประกาศ].[หัวข้อประกาศ] = ""สอบถามและรับฟั งความคิด เห็น""
+
+)",,,,517
+Acknowledge_Logs,ลงชื่อพนักงาน,Signature,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,518
+Acknowledge_Logs,ข้อความประกาศ,Show,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=CONCATENATE( "" ประกาศ/แจ้งเตือน"" ""เรื่อง: "", [ID_ประกาศ]. [หัวข้อประกาศ], "" ---------------------- "", [ID_ประกาศ].[เนื้อหาประกาศ], "" -- -------------------- "", [ID_ประกาศ].[Note], )",,,,,,,,,,519

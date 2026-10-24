@@ -1,0 +1,386 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+ทำเบิกส่วนต่างScgวังน้อย,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,313
+ทำเบิกส่วนต่างScgวังน้อย,ID_ทำเบิกส่วนต่างScgวังน้อย,Text,ALWAYS,Yes,No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,314
+ทำเบิกส่วนต่างScgวังน้อย,ID_SCGนครหลวงJWDภูมิภาค,Ref,ALWAYS,Yes,No,No,No,No,No,Yes,,"""SCGนครหลวงJWDภูมิภาค"", ""Shipment No"", ""ID_SCGนครหลวงJWDภูมิภาค"" )",,,,,,,,,315
+ทำเบิกส่วนต่างScgวังน้อย,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(USERROLE() = ""ADMIN"",
+ SORT(
+ UNIQUE(
+ LIST([_THIS]) + 
+ SELECT(
+ SCGนครหลวงJWDภูมิภาค[Shipment No],
+ AND(
+ [วันที่ส่งสินค้า] >= EOMONTH(TODAY(), -2) + 1,
+ NOT(IN([Shipment No], ทำเบิก ส่วนต่างScgวังน้อย[Shipment No]))
+ )
+ )
+ )
+ ),
+ SORT(
+ UNIQUE(
+ LIST([_THIS]) + 
+ SELECT(
+ SCGนครหลวงJWDภูมิภาค[Shipment No],
+ AND(
+ [Email พนักงาน] = USEREMAIL(),
+ [วันที่ส่งสินค้า] >= TODAY() - 1,
+ NOT(IN([Shipment No], ทำเบิกส่วนต่างScgวังน้อย[Shipment No]))
+ )
+ )
+ )
+ )
+)",,,,,,,316
+ทำเบิกส่วนต่างScgวังน้อย,วันที่ส่งสินค้า,Date,ALWAYS,Yes,No,No,No,No,No,Yes,,=[ID_SCGนครหลวงJWDภูมิภาค].[วันที่ส่งสินค้า],,=[ตรวจสอบข้อมูล] =1,,,,,"=""Shipment นี้มีจุดส่งที่ไม่ผ่าน การตรวจสอบ กรุณาติดต่อผู้ดูแล ระบบ""",,317
+ทำเบิกส่วนต่างScgวังน้อย,ชื่อ - นามสกุล,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,=[ID_SCGนครหลวงJWDภูมิภาค].[ชื่อ - นามสกุล],,=[ตรวจสอบข้อมูล] =1,,,,,"=""Shipment นี้มีจุดส่งที่ไม่ผ่าน การตรวจสอบ กรุณาติดต่อผู้ดูแล ระบบ""",,317
+ทำเบิกส่วนต่างScgวังน้อย,ต้นทาง,LatLong,ALWAYS,Yes,No,No,No,No,No,Yes,,"=""14.164671, 100.625358""",,,,,,,,,318
+ทำเบิกส่วนต่างScgวังน้อย,GoogleMapsRoutesAPI,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,319
+ทำเบิกส่วนต่างScgวังน้อย,แสดงแผนที่_GoogleMapsRoutesAPI,"Url {""LaunchExternal"":false,""IsHyperLink"":false,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,320
+ทำเบิกส่วนต่างScgวังน้อย,ระยะทาง_GoogleMapAPI_Km,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"": 2,""NumericDigits"":null,""ShowThousandsSeparator"":false,""Numbe",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,320
+ทำเบิกส่วนต่างScgวังน้อย,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,=USEREMAIL(),,"=IF(
+
+ USERROLE() = ""ADMIN"",
+
+ ข้อมูล พนักงาน[Email พนักงาน],
+
+ LIST(USEREMAIL())
+
+)",,"=USERROLE() = ""ADMIN""",,,,,321
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_01,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ [Shipment No] = [_THISROW].[Shipment No]
+)",,,,,,,322
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_02,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\n SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n [Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่ง",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,322
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_03,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_02]),,,,323
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_04,"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลาย",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,324
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_05,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\n SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,325
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_06,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_05]),,,,326
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_07,Text,ALWAYS,No,No,No,No,No,Yes No,,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_06]),,,,327
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_08,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_07]),,,,328
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_09,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,329
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_10,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_09]),,,,330
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_11,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_10]),,,,331
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_12,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_11]),,,,332
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_13,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,333
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_14,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_13]),,,,334
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_15,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_14]),,,,335
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_16,"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลายทาง_01] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_02] & \"" ,\"" & \n [_THISROW].[Lat/Long_ปลายทาง_03] & \"" , \"" & \n[_THISROW].[Lat/Long_ปลายทาง_04] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_05] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_06] & \"" , \"" & \n [_THISROW].",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,336
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_17,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_15] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_16] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_16]),,,,337
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_18,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_15] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_16] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_17] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_17]),,,,338
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_19,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_15] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_16] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_17] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_18]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_18]),,,,339
+ทำเบิกส่วนต่างScgวังน้อย,Lat/Long_ปลายทาง_20,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\n SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n [Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่ง",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,340
+ทำเบิกส่วนต่างScgวังน้อย,ชื่องาน,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,"ส่งสินค้า"", ""Shipment No"", ""Truck Type""), {""นครหลวง"", ""ภูมิภาค"", ""04JB_นครหลวง_ภูมิภาค"", ""Idem_04ID"",""น้ำมะปี๊ด(ปั้ม บางจาก)FarmZaa""} ), LOOKUP([_THISROW].[Shipment No], ""ราคาในระบบก่อนส่งสินค้า"", ""Shipment No"", ""Truck Type""), """" )",,=[ตรวจสอบข้อมูล] = 1,,,,,"=""Shipment นี้มีจุดส่งที่ไม่ผ่านการ ตรวจสอบ กรุณาติดต่อผู้ดูแล ระบบ""",,342
+ทำเบิกส่วนต่างScgวังน้อย,จำนวนจุดส่งก่อนเริ่มงาน,Number,ALWAYS,Yes,No,No,No,No,No,Yes,,"=COUNT( UNIQUE( SELECT( ตารางงานประจำวัน[ชื่อปลายทาง], [Shipment No] = [_THISROW].[Shipment No] ) ) )",,,,,,,,,343
+ทำเบิกส่วนต่างScgวังน้อย,จำนวนจุดส่งงานจริง,Number,ALWAYS,Yes,No,No,No,No,No,Yes,,"=COUNT( SELECT( SCGนครหลวงJWDภูมิภาค[Shipment No], [Shipment No] = [_THISROW].[Shipment No]) )",,,,,,,,,343
+ทำเบิกส่วนต่างScgวังน้อย,ตรวจสอบข้อมูล,Number,ALWAYS,No,No,No,No,No,No,Yes,"=IF( AND( ISNOTBLANK([ชื่องาน]), COUNT( SELECT(SCGนครหลวงJWDภูมิภาค[Shipment No], [Shipment No] =[_THISROW].[Shipment No] ) ) > 0, COUNT( SELECT(SCGนครหลวงJWDภูมิภาค[Shipment No], [Shipment No] =[_THISROW].[Shipment No] ) ) = COUNT( SELECT(SCGนครหลวงJWDภูมิภาค[Shipment No], AND( [Shipment No] =[_THISROW].[Shipment No], ISNOTBLANK([ชื่องาน]), [LAT] <>""0.000000"", [LONG] <> ""0.000000"", ISNOTBLANK([จุดส่งสินค้าปลายทาง]), [ระยะทางจากคลัง_Km] > 0 ) ) ), COUNT( SELECT(SCGนครหลวงJWDภูมิภาค[Shipment No], AND( [Shipment No] =[_THISROW].[Shipment No], [ผลการตรวจสอบงานส่ง] = ""FAIL"" ) ) )= 0 ), 1, 0 )",,,,,,,,,,344
+ทำเบิกส่วนต่างScgวังน้อย,ราคาในระบบก่อนส่งสินค้า,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"":",ALWAYS,Yes,No,No,No,"=LOOKUP([_THISROW].[Shipment No],""ราคาในระบบก่อนส่ง สินค้า"",""Shipment No"",""ราคา"") No",No,Yes,,,,,,,,,,,345
+ทำเบิกส่วนต่างScgวังน้อย,ระยะทางในระบบก่อนส่งสินค้า,Decimal,ALWAYS,Yes,No,No,No,No,No,Yes,,"=LOOKUP([_THISROW].[Shipment No],""ราคาในระบบก่อนส่ง สินค้า"",""Shipment No"",""ระยะทาง (km)"")",,,,,,,,,346
+ทำเบิกส่วนต่างScgวังน้อย,สร้างPDFเบิกส่วนต่าง,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE( )=""ADMIN""",,,,,347
+ทำเบิกส่วนต่างScgวังน้อย,สถานะ,Enum,ALWAYS,No,No,No,No,No,No,Yes,,"=""รอตรวจสอบ""",,,,"=USERROLE()=""ADMIN """,,,,,347
+ทำเบิกส่วนต่างScgวังน้อย,เดือน,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,"=IF( ISBLANK([วันที่ส่งสินค้า]), """", CONCATENATE( YEAR([วันที่ส่งสินค้า]) - IF(YEAR([วันที่ส่งสินค้า]) > 2500, 543, 0), ""-"", TEXT([วันที่ส่งสินค้า], ""MM"") ) )",,,,,,,,,348
+ทำเบิกส่วนต่างScgวังน้อย,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,"=LOOKUP(USEREMAIL(), ""ข้อมูลพนักงาน"", ""Email พนักงาน"", ""ID_พนักงาน"")",,,,"=USERROLE() = ""ADMIN""","=USERROLE() = ""ADMIN""",,,,349
+ทำเบิกส่วนต่างScgวังน้อย,สร้างPDFเบิกตามระยะทาง,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,350
+ทำเบิกส่วนต่างScgวังน้อย,Candidate_2_ระยะทาง_Km,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,350
+ทำเบิกส่วนต่างScgวังน้อย,Candidate_2_แสดงแผนที่,Url,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,351
+ทำเบิกส่วนต่างScgวังน้อย,Candidate_3_ระยะทาง_Km,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,352
+ทำเบิกส่วนต่างScgวังน้อย,Candidate_3_แสดงแผนที่,Url,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,353
+ทำเบิกส่วนต่างScgวังน้อย,เรท น้ำมันดีเซล,Decimal,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=IF( ISBLANK([_THISROW].[วันที่ส่งสินค้า]), """", IF( ISNOTBLANK(ANY( SELECT( PriceOverride[UsePriceDate], AND( [StartDate]<= [_THISROW].[วันที่ส่งสินค้า], [EndDate] >= [_THISROW].[วันที่ส่งสินค้า], [JobName] = [_THISROW].[ชื่องาน] ) ) ) ), ANY( SELECT(ราคาน้ำมันดีเซล[ราคา/หน่วย], [วันที่] = ANY( SELECT(PriceOverride[UsePriceDate], AND( [StartDate] <= [_THISROW].[วันที่ส่งสินค้า], [EndDate] >= [_THISROW].[วันที่ส่งสินค้า],[JobName] = [_THISROW].[ชื่องาน] ) ) ) ) ), IF( ISNOTBLANK(ANY( SELECT( PriceOverride[UsePriceDate], AND( [StartDate]<= [_THISROW].[วันที่ส่งสินค้า], [EndDate] >= [_THISROW].[วันที่ส่งสินค้า], ISBLANK([JobName]) ) ) ) ), ANY( SELECT( ราคาน้ำมันดีเซล[ราคา/หน่วย], [วันที่] = ANY( SELECT(PriceOverride[UsePriceDate], AND( [StartDate] <= [_THISROW].[วันที่ส่งสินค้า], [EndDate] >= [_THISROW].[วันที่ส่งสินค้า],ISBLANK([JobName]) ) ) ) ) ), ANY( SELECT( ราคาน้ำมันดีเซล[ราคา/หน่วย], [วันที่] = DATE( CONCATENATE(YEAR(EOMONTH([_THISROW].[วันที่ส่งสินค้า], -1)), ""-"", RIGHT(""0""& MONTH(EOMONTH([_THISROW].[วันที่ส่งสินค้า], -1)), 2), ""-25"" )) ) ) ) ) )",,,,,,,,,,353
+ทำเบิกส่วนต่างScgวังน้อย,ราคาตามระยะทาง,Decimal,ALWAYS,Yes,No,No,No,No,Yes,Yes,"น้ำมัน_Minimum] <= [_THISROW].[เรท น้ำมันดีเซล], [เรท น้ำมัน_Maximum] >= [_THISROW].[เรท น้ำมันดีเซล], [ระยะ ทาง_Minimum] <= NUMBER([_THISROW].[ระยะ ทาง_GoogleMapAPI_Km]), [ระยะทาง_Maximum] >= NUMBER([_THISROW].[ระยะทาง_GoogleMapAPI_Km]) ) ) ) ), ANY( SELECT( Price_Table[Price], AND( IN([_THISROW].[ชื่องาน], SPLIT([ชื่องาน], "","")), [เรทน้ำมัน_Minimum] <= [_THISROW].[เรท น้ำมันดีเซล], [เรทน้ำมัน_Maximum] >= [_THISROW].[เรท น้ำมัน ดีเซล], [ระยะทาง_Minimum] <= NUMBER([_THISROW].[ระยะ ทาง_GoogleMapAPI_Km]), [ระยะทาง_Maximum] >= NUMBER([_THISROW].[ระยะทาง_GoogleMapAPI_Km]) ) ) ), 0 )",,,,,,,,,,354
+ทำเบิกส่วนต่างScgวังน้อย,ราคาจุดเพิ่ม,Decimal,ALWAYS,Yes,No,No,No,No,Yes,Yes,"50, IF( AND( IN( [ชื่องาน], {""นครหลวง"", ""ภูมิภาค"", ""04JB_นครหลวง_ภูมิภาค""} ), ISNOTBLANK([จำนวนจุดส่งงานจริง]), [จำนวนจุดส่งงานจริง] > 10 ), ([จำนวนจุดส่งงานจริง] - 10) * 50, 0 ) )",,,,,,,,,,355
+ทำเบิกส่วนต่างScgวังน้อย,ทะเบียนรถ,Text,ALWAYS,Yes,No,No,No,No,Yes,Yes,=[ID_SCGนครหลวงJWDภูมิภาค].[ทะเบียนรถ],,,,,,,,,,356
+ทำเบิกส่วนต่างScgวังน้อย,01เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_01],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,357
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_01,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_01],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,358
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน01,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_01],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,358
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า01,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_01],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,359
+ทำเบิกส่วนต่างScgวังน้อย,02เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_02],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,360
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_02,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_02],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,361
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน02,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_02],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,361
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า02,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_02],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,362
+ทำเบิกส่วนต่างScgวังน้อย,03เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_03],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,363
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_03,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_03],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,364
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน03,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_03],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,364
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า03,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_03],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,365
+ทำเบิกส่วนต่างScgวังน้อย,04เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_04],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,366
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_04,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_04],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,367
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน04,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_04],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,367
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า04,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_04],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,368
+ทำเบิกส่วนต่างScgวังน้อย,05เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_05],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,369
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_05,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_05],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,370
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน05,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_05],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,370
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า05,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_05],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,371
+ทำเบิกส่วนต่างScgวังน้อย,06เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_06],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,372
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_06,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_06],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,373
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน06,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_06],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,373
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า06,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_06],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,374
+ทำเบิกส่วนต่างScgวังน้อย,07เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_07],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,375
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_07,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_07],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,376
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน07,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_07],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,376
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า07,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_07],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,377
+ทำเบิกส่วนต่างScgวังน้อย,08เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_08],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,378
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_08,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_08],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,379
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน08,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_08],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,379
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า08,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_08],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,380
+ทำเบิกส่วนต่างScgวังน้อย,09เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_09],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,381
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_09,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_09],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,382
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน09,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_09],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,382
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า09,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_09],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,383
+ทำเบิกส่วนต่างScgวังน้อย,10เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_10],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,384
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_10,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_10],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,385
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน10,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_10],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,385
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า10,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_10],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,386
+ทำเบิกส่วนต่างScgวังน้อย,11เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_11],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,387
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_11,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_11],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,388
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน11,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_11],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,388
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า11,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_11],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,389
+ทำเบิกส่วนต่างScgวังน้อย,12เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_12],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,390
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_12,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_12],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,391
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน12,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_12],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,391
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า12,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_12],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,392
+ทำเบิกส่วนต่างScgวังน้อย,13เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_13],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,393
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_13,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_13],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,394
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน13,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_13],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,394
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า13,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_13],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,395
+ทำเบิกส่วนต่างScgวังน้อย,14เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_14],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,396
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_14,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_14],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,397
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน14,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_14],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,397
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า14,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_14],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,398
+ทำเบิกส่วนต่างScgวังน้อย,15เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_15],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,399
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_15,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_15],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,400
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน15,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_15],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,400
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า15,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_15],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,401
+ทำเบิกส่วนต่างScgวังน้อย,16เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_16],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,402
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_16,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_16],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,403
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน16,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_16],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,403
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า16,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_16],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,404
+ทำเบิกส่วนต่างScgวังน้อย,17เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_17],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,405
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_17,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_17],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,406
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน17,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_17],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,406
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า17,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_17],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,407
+ทำเบิกส่วนต่างScgวังน้อย,18เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_18],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,408
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_18,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_18],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,409
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน18,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_18],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,409
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า18,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_18],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,410
+ทำเบิกส่วนต่างScgวังน้อย,19เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_19],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,411
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_19,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_19],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,412
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน19,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_19],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,412
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า19,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_19],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,413
+ทำเบิกส่วนต่างScgวังน้อย,20เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,Yes,No,No,No,No,Yes Yes,,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_20],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No"")",,,,,,,,,,414
+ทำเบิกส่วนต่างScgวังน้อย,รูปบิลส่งสินค้า_20,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_20],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปถ่ายบิลส่งสินค้า"")",,,,,,,,,,415
+ทำเบิกส่วนต่างScgวังน้อย,รูปหน้าร้าน_บ้าน20,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_20],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปหน้าร้าน / บ้าน"")",,,,,,,,,,415
+ทำเบิกส่วนต่างScgวังน้อย,รูปส่งสินค้า20,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[Lat/Long_ปลายทาง_20],""SCGนครหลวงJWDภูมิภาค"",""จุดส่งสินค้าปลายทาง"",""รูปสินค้าตอนส่ง"")",,,,,,,,,,416
+ทำเบิกส่วนต่างScgวังน้อย,ราคาที่สมควรได้,Decimal,ALWAYS,Yes,No,No,No,No,Yes,Yes,=[ราคาตามระยะทาง]+[ราคาจุดเพิ่ม],,,,,,,,,,417
+ทำเบิกส่วนต่างScgวังน้อย,ราคาหลังส่งสินค้า,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"":",ALWAYS,Yes,No,No,No,No,Yes,Yes,"=IF( ISNOTBLANK( LOOKUP([_THISROW].[Shipment No], ""ราคา ในระบบก่อนส่งสินค้า"", ""Shipment No"", ""ราคาหลังส่งสินค้า"") ), LOOKUP([_THISROW].[Shipment No], ""ราคาในระบบก่อนส่งสินค้า"", ""Shipment No"", ""ราคาหลังส่งสินค้า""), 0 )",,,,,,,,,,418
+ทำเบิกส่วนต่างScgวังน้อย,ขออนุมัติเบิกค่าขนส่งส่วนเพิ่ม,Decimal,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=IF( AND( ISNOTBLANK([ราคาที่สมควรได้]), ISNOTBLANK([ราคาหลังส่งสินค้า]) ), [ราคาที่สมควรได้] - [ราคาหลังส่งสินค้า], 0 )",,,,,,,,,,418
+ทำเบิกส่วนต่างScgวังน้อย,QR code เส้นทางรวม,Image,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=CONCATENATE( ""https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="",ENCODEURL(CONCATENATE([แสดงแผนที่_GoogleMapsRoutesAPI] )))",,,,,,,,,,419
+ทำเบิกส่วนต่างScgวังน้อย,จุดส่งงานลำดับสุดท้าย,LongText,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=IF( ISNOTBLANK([20เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [20เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([19เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [19เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([18เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [18เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([17เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [17เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([16เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [16เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([15เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [15เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([14เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [14เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([13เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [13เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([12เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [12เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([11เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [11เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([10เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [10เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([09เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [09เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([08เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [08เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([07เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [07เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([06เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [06เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([05เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [05เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([04เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [04เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([03เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [03เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], IF( ISNOTBLANK([02เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No]), [02เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No], [01เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No] ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )",,,,,,,,,,420
+ทำเบิกส่วนต่างScgวังน้อย,ชื่อปลายทาง_INV_จุดสุดท้าย,LongText,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=CONCATENATE( ปลายทาง , MID( [จุดส่งงานลำดับสุดท้าย],FIND(""ปลายทาง "", [จุดส่งงานลำดับสุดท้าย]) + LEN(""ปลายทาง ""),FIND(""Lat/Lng"", [จุดส่งงานลำดับสุดท้าย]) - FIND(""ปลายทาง "", [จุดส่งงานลำดับสุดท้าย]) - LEN(""ปลายทาง "") ), INV: , TRIM( MID( [จุดส่งงานลำดับสุดท้าย], FIND(""INV."", [จุดส่งงานลำดับสุดท้าย]) + 5,LEN([จุดส่งงานลำดับสุดท้าย]) ) ) )",,,,,,,,,,422

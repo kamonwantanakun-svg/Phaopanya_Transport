@@ -1,0 +1,8 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Announcements,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,520
+Announcements,ID_ประกาศ,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,521
+Announcements,วันที่ประกาศ,Date,ALWAYS,No,No,No,No,No,No,Yes,,=TODAY(),,,,,,,,,521
+Announcements,หัวข้อประกาศ,"Enum {""EnumValues"":[""กฎระเบียบและข้อบังคับ"",""แจ้งข้อมูล ข่าวสาร"",""ความปลอดภัยและอุบัติเหตุ"",""สอบถามและรับฟั งความคิด เห็น""],""AllowOtherValues"":false,""AutoCompleteOtherValues"":true,"" BaseType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,522
+Announcements,เนื้อหาประกาศ,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,523
+Announcements,Note,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,524
+Announcements,Related Acknowledge_Logs,List,ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"REF_ROWS(""Acknowledge_Logs"", ""ID_ประกาศ"")",,Acknowledge_Logs entries that reference this entry in the ID_ประกาศ column,,,,,,,,524

@@ -1,0 +1,80 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Process for Bot_รับสินค้าคืน - 1 Process Table,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,564
+Process for Bot_รับสินค้าคืน - 1 Process Table,ID_รับงานคืนได้เงิน200,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,565
+Process for Bot_รับสินค้าคืน - 1 Process Table,สถานะการเข้ารับสินค้า,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,566
+Process for Bot_รับสินค้าคืน - 1 Process Table,วันที่เข้ารับ,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERRO LE() = ""ADMIN""",,,,,567
+Process for Bot_รับสินค้าคืน - 1 Process Table,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,567
+Process for Bot_รับสินค้าคืน - 1 Process Table,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,568
+Process for Bot_รับสินค้าคืน - 1 Process Table,Shipment (หลัก),Number,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(
+
+USERROLE()= ""ADMIN"",
+ SELECT(
+ ข้อมูลงานRT[Shipment (หลัก)],
+ TRUE
+ ),
+ SELECT(
+ ข้อมูล งานRT[Shipment (หลัก)],
+ AND(
+ [ชื่อ - นามสกุล] =[_THISROW]. [ID_พนักงาน].[ชื่อ - นามสกุล],
+ [วันที่เข้ารับ] = TODAY()
+ )
+ )
+)",,,"=IN([สถานะการเข้ารับสินค้า],{""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"",""(ไม่ได้เพิ่ม) มีในจุดที่ ส่งงานวันนี้"", ""(ได้เพิ่ม50%) ของค่าเที่ยว"",""(ได้เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้าน ปิ ด""})",,,,569
+Process for Bot_รับสินค้าคืน - 1 Process Table,Shipment (รับคืน),Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,"=IN([สถานะการเข้ารับสินค้า],{""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"",""(ไม่ ได้เพิ่ม) มีในจุดที่ ส่งงานวันนี้"", ""(ได้เพิ่ม50%) ของค่าเที่ยว"",""(ได้ เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้าน ปิ ด""})",,,,569
+Process for Bot_รับสินค้าคืน - 1 Process Table,เลขที่เอกสารรับคืน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF( 
+USERROLE() = ""ADMIN"",
+ SELECT(
+ ข้อมูลงานRT[เลขที่เอกสารรับคืน],
+ IN([Shipment (รับคืน)], LIST([_THISROW].[Shipment (รับคืน)])) 
+ ),
+
+ SELECT(
+ ข้อมูลงานRT[เลขที่เอกสารรับคืน],
+ AND(
+ IN([Shipment (รับคืน)], LIST([_THISROW].[Shipment (รับคืน)])),
+ [ชื่อ - นามสกุล] = [_THISROW].[ID_พนักงาน].[ชื่อ - นามสกุล],
+ [วันที่เข้ารับ] = TODAY(),
+ NOT(IN([เลขที่เอกสารรับคืน], SELECT(รับงาน คืนได้เงิน200[เลขที่เอกสารรับคืน], TRUE)))
+ )
+ )
+)",,,"=IN([สถานะการเข้ารับสินค้า],{""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"",""(ไม่ได้เพิ่ม) มีในจุดที่ ส่งงานวันนี้"", ""(ได้เพิ่ม50%) ของค่าเที่ยว"",""(ได้เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้าน ปิ ด""})",,,,570
+Process for Bot_รับสินค้าคืน - 1 Process Table,จำนวนสินค้า,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits"" :null,""ShowThousandsSeparator"":true,""NumberDisplayMode"":""Au to"",""Valid_If"":null,""Error_Message_If_Invalid"":null,""Show_If"":""=IN([",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,571
+Process for Bot_รับสินค้าคืน - 1 Process Table,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,=SM_Today_User 2[Shipment No],,,"=IN([สถานะการเข้ารับสินค้า],{""เบิกค่าขนส่งตามระยะทาง"",""ทำเบิกค่ายกขึ้น ชั้น""})",,,,572
+Process for Bot_รับสินค้าคืน - 1 Process Table,Invoice No,EnumList,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(
+ ISBLANK([ShipmentNo]),
+ LIST(),
+ UNIQUE(
+ SELECT(
+ SM_Today_User2[Invoice No],
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No],
+ NOT(
+ IN(
+ [Invoice No],
+ รับงานคืนได้เงิน200[Invoice No]
+ )
+ )
+ )
+ )
+ + [_THISROW].[InvoiceNo]
+ )
+ -LIST("""")
+)",,,"=IN([สถานะการเข้ารับสินค้า],{""เบิกค่าขนส่งตามระยะทาง"",""ทำเบิกค่ายกขึ้นชั้น""})",,,,573
+Process for Bot_รับสินค้าคืน - 1 Process Table,ชื่อเจ้าของสินค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,574
+Process for Bot_รับสินค้าคืน - 1 Process Table,รหัสลูกค้า,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,574
+Process for Bot_รับสินค้าคืน - 1 Process Table,ชื่อลูกค้าที่เข้ารับ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,575
+Process for Bot_รับสินค้าคืน - 1 Process Table,รูปสินค้า,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,575
+Process for Bot_รับสินค้าคืน - 1 Process Table,รูปบิลรับคืน,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,576
+Process for Bot_รับสินค้าคืน - 1 Process Table,หมายเหตุ,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,"=IN([สถานะการเข้ารับสินค้า],{""ทำเบิกค่ายก ขึ้นชั้น"",""เบิกค่าขนส่งตามระยะทาง"",""(ได้เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้าน ปิ ด""})",,,,577
+Process for Bot_รับสินค้าคืน - 1 Process Table,รูปจุดที่ส่งงาน,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,"=IN([สถานะการเข้ารับสินค้า] , {""(ได้เพิ่ม200) ไม่มีสินค้าคืน หรือ ร้านปิ ด"",""(ได้เพิ่ม50%) ของค่า เที่ยว"",""(ได้เพิ่ม200) ไม่มีในจุด ที่ส่งงานวันนี้"",""เบิกค่าขนส่งตาม ระยะทาง"",""ทำเบิกค่ายกขึ้น ชั้น""})",,,,577
+Process for Bot_รับสินค้าคืน - 1 Process Table,Lat / Long,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,578
+Process for Bot_รับสินค้าคืน - 1 Process Table,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""",,,,,579
+Process for Bot_รับสินค้าคืน - 1 Process Table,ราคา,"Price {""CurrencySymbol"":""฿"",""MaxValue"":null,""MinValue"":null,""StepValu e"":null,""DecimalDigits"":2,""NumericDigits"":null,""ShowThousandsS eparator"":true,""NumberDisplayMode"":""Auto"",""Valid_If"":null,""Error_ Message_If_Invalid"":null,""Show_If"":""=IN([สถานะการเข้ารับสินค้า] ,",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,579
+Process for Bot_รับสินค้าคืน - 1 Process Table,สร้างPDFรับคืน,"Yes/No {""YesLabel"":"""",""NoLabel"":"""",""Valid_If"":null,""Error_Message_If_Invali",ALWAYS,"d"":null,""Show_If"":""=USERROLE() = \""ADMIN\"""",""Required_If"":null,""Editable_If"":""=USERROLE() = \""ADMIN\"""",""Reset_If"":null,""Suggested_Values"":null} No",No,No,No,No,No,Yes,,,,,,,,,,,580
+Process for Bot_รับสินค้าคืน - 1 Process Table,TimeChange,ChangeCounter,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,581
+Process for Bot_รับสินค้าคืน - 1 Process Table,ตรวจสอบก่อนบันทึกข้อมูล,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,582
+Process for Bot_รับสินค้าคืน - 1 Process Table,เดือน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,582
+Process for Bot_รับสินค้าคืน - 1 Process Table,ID_พนักงาน,"Ref {""ReferencedTableName"":""ข้อมูล พนักงาน"",""ReferencedRootTableName"":""ข้อมูล พนักงาน"",""ReferencedType"":""Text"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,583
+Process for Bot_รับสินค้าคืน - 1 Process Table,LINK_IMAGE,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,584
+Process for Bot_รับสินค้าคืน - 1 Process Table,รายชื่อจุดส่งในตารางงานประจำวัน,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,585
+Process for Bot_รับสินค้าคืน - 1 Process Table,เข้ารับสินค้าคืน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,585

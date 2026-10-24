@@ -1,0 +1,13 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Process for MeSpace Process Table,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,875
+Process for MeSpace Process Table,ID_ปริ๊นใบวางบิล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,876
+Process for MeSpace Process Table,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=ข้อมูลชื่องานต้นทาง ปลายทาง[ชื่องาน],,,,,,,877
+Process for MeSpace Process Table,StartDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,877
+Process for MeSpace Process Table,EndDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,878
+Process for MeSpace Process Table,ราคารวม,"Price {""CurrencySymbol"":""฿"",""MaxValue"":null,""MinValue"":null,""StepValu",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,879
+Process for MeSpace Process Table,Export to xlsx,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,879
+Process for MeSpace Process Table,Export to xlsx To Athens,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,880
+Process for MeSpace Process Table,ปริ๊นใบวางบิลแยกตามชื่องาน,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,881
+Process for MeSpace Process Table,วันที่ออกเอกสาร,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,881
+Process for MeSpace Process Table,ผลลัพท์,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,882
+Process for MeSpace Process Table,Clear,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,883

@@ -1,0 +1,432 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,1440
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ID_ทำเบิกส่วนต่างScgวังน้อย,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1440
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ID_SCGนครหลวงJWDภูมิภาค,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1441
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(USERROLE() = ""ADMIN"",
+ SORT(
+ UNIQUE(
+ LIST([_THIS]) + 
+ SELECT(
+ SCGนครหลวงJWDภูมิภาค[Shipment No],
+ AND(
+ [วันที่ส่งสินค้า] >= EOMONTH(TODAY(), -2) + 1,
+ NOT(IN([Shipment No], ทำเบิก ส่วนต่างScgวังน้อย[Shipment No]))
+ )
+ )
+ )
+ ),
+ SORT(
+ UNIQUE(
+ LIST([_THIS]) + 
+ SELECT(
+ SCGนครหลวงJWDภูมิภาค[Shipment No],
+ AND(
+ [Email พนักงาน] = USEREMAIL(),
+ [วันที่ส่งสินค้า] >= TODAY() - 1,
+ NOT(IN([Shipment No], ทำเบิกส่วนต่างScgวังน้อย[Shipment No]))
+ )
+ )
+ )
+ )
+)",,,,,,,1442
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,วันที่ส่งสินค้า,"Date {""UseLongDateFormat"":false,""Valid_If"":""=[ตรวจสอบข้อมูล]",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1443
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=[ตรวจสอบข้อมูล] =1,,,,,"=""Shipment นี้มีจุดส่งที่ไม่ผ่าน การตรวจสอบ กรุณาติดต่อผู้ดูแล ระบบ""",,1443
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ต้นทาง,LatLong,ALWAYS,No,No,No,No,No,Yes No,,,,,,,,,,,,1444
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,GoogleMapsRoutesAPI,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1445
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,แสดงแผนที่_GoogleMapsRoutesAPI,"Url {""LaunchExternal"":false,""IsHyperLink"":false,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1445
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ระยะทาง_GoogleMapAPI_Km,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1446
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Email พนักงาน,"Email {""Valid_If"":""=IF(\n\n USERROLE() = \""ADMIN\"",\n\n ข้อมูล",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1447
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_01,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ [Shipment No] = [_THISROW].[Shipment No]
+)",,,,,,,1447
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_02,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_01]),,,,1448
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_03,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_02]),,,,1449
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_04,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1450
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_05,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_04]),,,,1450
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_06,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_05]),,,,1451
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_07,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_06]),,,,1452
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_08,"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลาย",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1453
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_09,"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลายทาง_01] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_02] & \"" ,",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1454
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_10,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลายทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([Lat/Long_ปลายทาง_09]),,,,1455
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_11,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_10]),,,,1456
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_12,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_11]),,,,1457
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_13,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_12]),,,,1458
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_14,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_13]),,,,1459
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_15,"Text{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""PlainText"",""IsMulticolumnKey"":false,""Valid_If"":""=SELECT(\nSCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], \n AND(\n[Shipment No] = [_THISROW].[Shipment No], \n NOT(IN([จุดส่งสินค้าปลายทาง], SPLIT(TEXT(\n [_THISROW].[Lat/Long_ปลายทาง_01] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_02] & \"" ,\"" & \n [_THISROW].[Lat/Long_ปลายทาง_03] & \"" , \"" & \n[_THISROW].[Lat/Long_ปลายทาง_04] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_05] & \"" , \"" & \n [_THISROW].[Lat/Long_ปลายทาง_06] & \"" , \"" & \n [_THISROW].",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1460
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_16,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_15]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_15]),,,,1461
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_17,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_15] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_16] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_16]),,,,1462
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_18,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_15] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_16] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_17] 
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_17]),,,,1463
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_19,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_15] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_16] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_17] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_18]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_18]),,,,1464
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Lat/Long_ปลายทาง_20,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,"=SELECT(
+ SCGนครหลวงJWDภูมิภาค[จุดส่งสินค้าปลายทาง], 
+ AND(
+ [Shipment No] = [_THISROW].[Shipment No], 
+ NOT(IN([จุดส่ง สินค้าปลายทาง], SPLIT(TEXT(
+ [_THISROW].[Lat/Long_ปลาย ทาง_01] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_02] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_03] & "" , "" & 
+ [_THISROW].[Lat/Long_ปลายทาง_04] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_05] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_06] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_07] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_08] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_09] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_10] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_11] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_12] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_13] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_14] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_15] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_16] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_17] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_18] & "" , "" & 
+ [_THISROW]. [Lat/Long_ปลายทาง_19]
+ ), "" , ""))
+ )
+))",,,=ISNOTBLANK([ Lat/Long_ปลาย ทาง_19]),,,,1465
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=[ตรวจสอบข้อมูล] = 1,,,,,"=""Shipment นี้มีจุดส่งที่ไม่ผ่านการ ตรวจสอบ กรุณาติดต่อผู้ดูแล ระบบ""",,1467
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,จำนวนจุดส่งก่อนเริ่มงาน,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1467
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,จำนวนจุดส่งงานจริง,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1468
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ตรวจสอบข้อมูล,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1469
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ราคาในระบบก่อนส่งสินค้า,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1469
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ระยะทางในระบบก่อนส่งสินค้า,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"": 2,""NumericDigits"":null,""ShowThousandsSeparator"":false,""Numbe",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1470
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,สร้างPDFเบิกส่วนต่าง,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE( )=""ADMIN""",,,,,1471
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,สถานะ,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE()=""ADMIN """,,,,,1471
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,เดือน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1472
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""","=USERROLE() = ""ADMIN""",,,,1473
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,สร้างPDFเบิกตามระยะทาง,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1474
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Candidate_2_ระยะทาง_Km,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1474
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Candidate_2_แสดงแผนที่,Url,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1475
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Candidate_3_ระยะทาง_Km,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1476
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,Candidate_3_แสดงแผนที่,Url,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1476
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,เรท น้ำมันดีเซล,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1477
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ราคาตามระยะทาง,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1478
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ราคาจุดเพิ่ม,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1478
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1479
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,01เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1480
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_01,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1480
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน01,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1481
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า01,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1482
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,02เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1482
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_02,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1483
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน02,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1484
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า02,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1484
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,03เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1485
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_03,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1486
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน03,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1486
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า03,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1487
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,04เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1488
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_04,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1488
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน04,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1489
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า04,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1490
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,05เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1490
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_05,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1491
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน05,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1491
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า05,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1492
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,06เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1493
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_06,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1493
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน06,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1494
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า06,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1495
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,07เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1495
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_07,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1496
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน07,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1497
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า07,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1497
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,08เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1498
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_08,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1499
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน08,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1499
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า08,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1500
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,09เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1501
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_09,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1501
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน09,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1502
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า09,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1503
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,10เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1503
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_10,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1504
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน10,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1504
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า10,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1505
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,11เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1506
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_11,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1506
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน11,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1507
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า11,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1508
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,12เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1508
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_12,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1509
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน12,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1510
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า12,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1510
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,13เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1511
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_13,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1512
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน13,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1512
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า13,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1513
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,14เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1514
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_14,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1514
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน14,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1515
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า14,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1516
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,15เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1516
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_15,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1517
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน15,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1517
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า15,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1518
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,16เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1519
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_16,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1519
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน16,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1520
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า16,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1521
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,17เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1521
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_17,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1522
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน17,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1523
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า17,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1523
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,18เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1524
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_18,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1525
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน18,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1525
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า18,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1526
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,19เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1527
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_19,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1527
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน19,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1528
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า19,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1529
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,20เจ้าของสินค้า // ชื่อปลายทาง // Lat_Long // Inv No,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1529
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปบิลส่งสินค้า_20,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1530
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปหน้าร้าน_บ้าน20,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1530
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,รูปส่งสินค้า20,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1531
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ราคาที่สมควรได้,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1532
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ราคาหลังส่งสินค้า,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1532
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ขออนุมัติเบิกค่าขนส่งส่วนเพิ่ม,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1533
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,QR code เส้นทางรวม,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1534
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,จุดส่งงานลำดับสุดท้าย,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1534
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,ชื่อปลายทาง_INV_จุดสุดท้าย,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1535
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,เบิกตามระยะทาง,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1536
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,New step4,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1537
+Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table,New step3,"Ref {""ReferencedTableName"":""New step3 Output"",""ReferencedRootTableName"":null,""ReferencedType"":""Tex t"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1537

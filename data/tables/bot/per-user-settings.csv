@@ -1,0 +1,16 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+_Per User Settings,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,,,,,,,,,48
+_Per User Settings,_EMAIL,Email,ALWAYS,No,Yes,No,No,No,No,Yes,USEREMAIL(),,,,,,,,,,49
+_Per User Settings,_NAME,Name,ALWAYS,No,Yes,No,No,No,No,Yes,USERNAME(),,,,,,,,,,49
+_Per User Settings,_LOCATION,LatLong,ALWAYS,No,Yes,No,No,No,No,Yes,,,,,,,,,,,50
+_Per User Settings,Options Heading,Show,ALWAYS,Yes,Yes,No,No,No,No,Yes,,,,,,,,,,,51
+_Per User Settings,Option 1,Text,ALWAYS,No,Yes,No,No,No,No,Yes,,,,,,,,,,,51
+_Per User Settings,Option 2,Text,ALWAYS,No,Yes,No,No,No,No,Yes,,,,,,,,,,,52
+_Per User Settings,Option 3,Text,ALWAYS,No,Yes,No,No,No,No,Yes,,,,,,,,,,,53
+_Per User Settings,Option 4,Text,ALWAYS,No,Yes,No,No,No,No,Yes,,,,,,,,,,,53
+_Per User Settings,Option 5,Text,ALWAYS,No,Yes,No,No,No,No,Yes,,,,,,,,,,,54
+_Per User Settings,Option 6,Number,ALWAYS,No,Yes,No,No,No,No,Yes,,,,,,,,,,,55
+_Per User Settings,Option 7,Text,ALWAYS,No,Yes,No,No,No,No,Yes,,,,,,,,,,,56
+_Per User Settings,Option 8,Text,ALWAYS,No,Yes,No,No,No,No,Yes,,,,,,,,,,,56
+_Per User Settings,Option 9,Text,ALWAYS,No,Yes,No,No,No,No,Yes,,,,,,,,,,,57
+_Per User Settings,_THISUSER,Text,ALWAYS,No,Yes,Yes,Yes,No,No,Yes,,onlyvalue,,,,,,,,,58

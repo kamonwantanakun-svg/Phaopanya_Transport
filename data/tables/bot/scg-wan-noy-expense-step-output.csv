@@ -1,0 +1,3 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+ทำเบิกส่วนต่างScgวังน้อยstep Output,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,1038
+ทำเบิกส่วนต่างScgวังน้อยstep Output,Result,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1039

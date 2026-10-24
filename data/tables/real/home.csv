@@ -1,0 +1,5 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+หน้าหลัก,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,186
+หน้าหลัก,ชื่อรายการ,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,,,,,,,,,,187
+หน้าหลัก,ไอคอน,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,187
+หน้าหลัก,Link,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,188

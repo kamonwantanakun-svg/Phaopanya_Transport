@@ -1,0 +1,13 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,891
+Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table,ID_ปริ๊นใบวางบิล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,892
+Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,=ข้อมูลชื่องานต้นทาง ปลายทาง[ชื่องาน],,,,,,,893
+Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table,StartDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,893
+Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table,EndDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,894
+Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table,ราคารวม,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,895
+Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table,Export to xlsx,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,895
+Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table,Export to xlsx To Athens,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,896
+Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table,ปริ๊นใบวางบิลแยกตามชื่องาน,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,897
+Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table,วันที่ออกเอกสาร,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,897
+Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table,ผลลัพท์,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedRootTableName\"":\""ข้อมูลการวาง บิล\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,898
+Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table,Clear,"Ref {""ReferencedTableName"":""Clear Output 10"",""ReferencedRootTableName"":null,""ReferencedType"":""Text"",""R eferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,899

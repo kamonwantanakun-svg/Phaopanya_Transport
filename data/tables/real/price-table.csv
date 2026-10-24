@@ -1,0 +1,9 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Price_Table,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,495
+Price_Table,ชื่องาน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,495
+Price_Table,ID_Price Table,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,496
+Price_Table,เรทน้ำมัน_Minimum,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,497
+Price_Table,เรทน้ำมัน_Maximum,Decimal,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,497
+Price_Table,ระยะทาง_Minimum,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,498
+Price_Table,ระยะทาง_Maximum,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,499
+Price_Table,Price,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"":",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,500

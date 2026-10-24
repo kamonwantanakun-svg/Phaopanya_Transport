@@ -1,0 +1,54 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+SCGนครหลวงJWDภูมิภาค,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,58
+SCGนครหลวงJWDภูมิภาค,head,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,59
+SCGนครหลวงJWDภูมิภาค,ID_SCGนครหลวงJWDภูมิภาค,Text,ALWAYS,Yes,No,Yes,Yes,No,No,Yes,,=UNIQUEID(),,,,,,,,,60
+SCGนครหลวงJWDภูมิภาค,วันที่ส่งสินค้า,Date,ALWAYS,No,No,No,No,No,No,Yes,,=TODAY(),,,,"=USERRO LE()=""ADMIN""",,,,,61
+SCGนครหลวงJWDภูมิภาค,เวลาที่ส่งสินค้า,Time,ALWAYS,"{""MinValue"":null,""MaxValue"":null,""IgnoreSeconds"":false,""Valid_If"": null,""Error_Message_If_Invalid"":null,""Show_If"":null,""Required_If"":n ull,""Editable_If"":""=USERROLE()=\""ADMIN\"""",""Reset_If"":null,""Sugge sted_Values"":null} No",No,No,No,No,No,Yes,,=TIMENOW(),,,,,,,,,61
+SCGนครหลวงJWDภูมิภาค,จุดส่งสินค้าปลายทาง,"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_ If"":""=AND(\n ISNOTBLANK([_THIS]),\n [_THIS] <> \""0.000000, 0.000000\"",\n [_THIS] <> \""0,",ALWAYS,No,No,No,No,No,No,Yes,,=HERE(),,,,,,,,,62
+SCGนครหลวงJWDภูมิภาค,ชื่อ - นามสกุล,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,=[ID_พนักงาน].[ชื่อ - นามสกุล],,,,,,,,,63
+SCGนครหลวงJWDภูมิภาค,ทะเบียนรถ,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,=[ID_พนักงาน].[ทะเบียนรถ],,,,,,,,,63
+SCGนครหลวงJWDภูมิภาค,Shipment No,"Number {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""NumericDigits""",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,64
+SCGนครหลวงJWDภูมิภาค,Invoice No,"EnumList {""ItemSeparator"":"","",""EnumValues"": [],""AllowOtherValues"":true,""AutoCompleteOtherValues"":true,""Bas eType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\ ""Plain Text\"",\""IsMulticolumnKey\"":false,\""Valid_If\"":null,\""Error_Messa ge_If_Invalid\"":null,\""Show_If\"":null,\""Required_If\"":null,\""Editable",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,65
+SCGนครหลวงJWDภูมิภาค,รูปถ่ายบิลส่งสินค้า,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,66
+SCGนครหลวงJWDภูมิภาค,รหัสลูกค้า,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,=[SM_Link_SCG].[รหัสลูกค้า],,,,,,,,,67
+SCGนครหลวงJWDภูมิภาค,ชื่อเจ้าของสินค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,=[SM_Link_SCG].[ชื่อเจ้าของสินค้า],,,,"=USERROLE() = ""ADMIN""",=ISNOTBLANK([Invoice No]),=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No],,,67
+SCGนครหลวงJWDภูมิภาค,ชื่อปลายทาง,Text,ALWAYS,No,No,No,No,No,No,Yes,,=[SM_Link_SCG].[ชื่อปลายทาง],,,,"=USERROLE() = ""ADMIN""",=ISNOTBLANK([Invoice No]),=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No],,,68
+SCGนครหลวงJWDภูมิภาค,Email พนักงาน,Email,ALWAYS,No,No,No,No,No,No,Yes,,=USEREMAIL(),,,,"=USERROLE()=""ADMIN""",,,,,69
+SCGนครหลวงJWDภูมิภาค,LAT,Decimal,ALWAYS,Yes,No,No,No,No,No,Yes,,=LAT([จุดส่งสินค้าปลายทาง]),,,,,,,,,70
+SCGนครหลวงJWDภูมิภาค,LONG,Decimal,ALWAYS,Yes,No,No,No,No,No,Yes,,=LONG([จุดส่งสินค้าปลายทาง]),,,,,,,,,70
+SCGนครหลวงJWDภูมิภาค,ID_Doc_Return,"Ref {""ReferencedTableName"":""Doc_Return"",""ReferencedRootTableN ame"":""Doc_Return"",""ReferencedType"":""Text"",""ReferencedTypeQu alifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",ALWAYS,No,No,No,No,No,No,Yes,,"=LOOKUP( [_THISROW].[รหัสลูกค้า], ""Doc_Return"", ""รหัสลูกค้า"", ""ID_Doc_Return"" )",,,,,,,,,71
+SCGนครหลวงJWDภูมิภาค,คลังสินค้า เอสซีจี เจดับเบิ้ลยูดี วังน้อย,LatLong,ALWAYS,Yes,No,No,No,No,No,Yes,,"=""14.165716365156051, 100.62529569032515""",,,,,,,,,72
+SCGนครหลวงJWDภูมิภาค,ที่อยู่ปลายทาง,LongText,ALWAYS,No,No,No,No,No,No,Yes,,=[SM_Link_SCG].[ที่อยู่ปลายทาง],,,,"=USERROLE() = ""ADMIN""",=ISNOTBLANK([Invoice No]),=[_THISROW_BEFORE].[Invoice No] <> [_THISROW].[Invoice No],,,73
+SCGนครหลวงJWDภูมิภาค,รูปสินค้าตอนส่ง,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,73
+SCGนครหลวงJWDภูมิภาค,รูปหน้าร้าน / บ้าน,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,74
+SCGนครหลวงJWDภูมิภาค,หมายเหตุ,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,"=AND(
+ ISNOTBLANK([รูปถ่ายบิลส่งสินค้า]),
+ ISNOTBLANK([รูปสินค้าตอนส่ง]),
+ ISNOTBLANK([รูปหน้าร้าน / บ้าน])
+)",,,,75
+SCGนครหลวงJWDภูมิภาค,เดือน,Text,ALWAYS,Yes,No,No,No,No,No,Yes,,"=IF( ISBLANK([วันที่ส่งสินค้า]), """", CONCATENATE( YEAR([วันที่ส่งสินค้า]) - IF(YEAR([วันที่ส่งสินค้า]) > 2500, 543, 0), ""-"", TEXT([วันที่ส่งสินค้า], ""MM"") ) )",,,,,,,,,76
+SCGนครหลวงJWDภูมิภาค,ระยะทางจากคลัง_Km,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"":",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,76
+SCGนครหลวงJWDภูมิภาค,ชื่อที่อยู่จาก_LatLong,LongText,ALWAYS,No,No,No,No,No,Yes No,,,,,,,,,,,,77
+SCGนครหลวงJWDภูมิภาค,SM_Link_SCG,Ref,ALWAYS,No,No,No,No,No,No,Yes,,"=ANY(SELECT(ตารางงานประจำวัน[ID_งานประจำวัน], AND([Invoice No] = ANY([_THISROW].[Invoice No]), [_ROWNUMBER] = MIN(SELECT(ตารางงานประจำ วัน[_ROWNUMBER], [Invoice No] = ANY([_THISROW].[Invoice No]))))))",,,,,,,,,78
+SCGนครหลวงJWDภูมิภาค,ID_พนักงาน,Ref,ALWAYS,No,No,No,No,No,No,Yes,,"=LOOKUP(USEREMAIL(), ""ข้อมูลพนักงาน"", ""Email พนักงาน"", ""ID_พนักงาน"")",,,,"=USERROLE()= ""ADMIN""","=USERROLE()= ""ADMIN""",,,,79
+SCGนครหลวงJWDภูมิภาค,พิกัดตอนกดบันทึกงาน,"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_",ALWAYS,No,No,No,No,No,No,Yes,,=HERE(),,,,,,,,,80
+SCGนครหลวงJWDภูมิภาค,เวลาเริ่มกรอกงาน,Time,ALWAYS,Yes,No,No,No,No,No,Yes,,=TIMENOW(),,,,,,,,,80
+SCGนครหลวงJWDภูมิภาค,เวลาบันทึกงานสำเร็จ,Time,ALWAYS,No,No,No,No,No,No,Yes,,=TIMENOW(),,,,,,=ISNOTBLANK([หมายเหตุ]),,,81
+SCGนครหลวงJWDภูมิภาค,ระยะขยับจากจุดเริ่มต้น_เมตร,Decimal,ALWAYS,No,No,No,No,No,No,Yes,"=DISTANCE( [จุดส่งสินค้าปลายทาง], [พิกัดตอนกดบันทึกงาน] ) * 1000",,,,,,,,,,82
+SCGนครหลวงJWDภูมิภาค,ระยะเวลาใช้งาน_นาที,Duration,ALWAYS,No,No,No,No,No,No,Yes,=[เวลาบันทึกงานสำเร็จ] - [เวลาที่ส่งสินค้า],,,,,,,,,,82
+SCGนครหลวงJWDภูมิภาค,ความเร็วการเคลื่อนที่_เมตร_นาที,"Decimal {""MaxValue"":null,""MinValue"":null,""StepValue"":null,""DecimalDigits"": 2,""NumericDigits"":null,""ShowThousandsSeparator"":true,""Number",ALWAYS,No,No,No,No,No,No,Yes,"=IF( TOTALMINUTES([ระยะเวลาใช้งาน_นาที]) > 0, [ระยะขยับจากจุดเริ่มต้น_เมตร] / TOTALMINUTES([ระยะเวลาใช้งาน_นาที]), 0 )",,,,,,,,,,83
+SCGนครหลวงJWDภูมิภาค,ผลการตรวจสอบงานส่ง,"Enum {""EnumValues"": [""PASS"",""WARNING"",""FAIL""],""AllowOtherValues"":false,""AutoCompl eteOtherValues"":true,""BaseType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",ALWAYS,No,No,No,No,No,No,Yes,"AND([ระยะขยับจากจุดเริ่มต้น_เมตร] <= 60, TOTALMINUTES([ระยะเวลาใช้งาน_นาที]) <= 15), ""WARNING"", OR([ระยะขยับจากจุดเริ่มต้น_เมตร] > 100, [ความเร็วการเคลื่อนที่_เมตร_นาที]> 60), ""FAIL"",TRUE, ""WARNING"" )",,,,,,,,,,84
+SCGนครหลวงJWDภูมิภาค,เหตุผิดปกติที่ตรวจพบ,"EnumList {""ItemSeparator"":"","",""EnumValues"": [],""AllowOtherValues"":true,""AutoCompleteOtherValues"":true,""Bas eType"":""Text"",""BaseTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",ALWAYS,No,No,No,No,No,No,Yes,"=UNIQUE( LIST( IF([ระยะขยับจากจุดเริ่มต้น_เมตร] > 60, ""มีการเคลื่อนที่จากจุดเริ่มต้น"", """"), IF(TOTALMINUTES([ระยะเวลาใช้งาน_นาที]) > 15, ""ใช้เวลานานกว่าปกติ"", """"), IF([ความเร็วการเคลื่อนที่_เมตร_นาที] > 60, ""ความเร็วผิดปกติ"", """") ) ) - LIST("""")",,,,,,,,,,85
+SCGนครหลวงJWDภูมิภาค,เวลาถ่ายรูปหน้าร้าน_หน้าบ้าน,Time,ALWAYS,Yes,No,No,No,No,No,Yes,,"=IF( ISNOTBLANK([รูปหน้าร้าน / บ้าน]), TIMENOW(), [_THIS] )",,,,,,,,,86
+SCGนครหลวงJWDภูมิภาค,SYNC_STATUS,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,87
+SCGนครหลวงJWDภูมิภาค,MD_LINK,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,87
+SCGนครหลวงJWDภูมิภาค,MATCH_KEY,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,88
+SCGนครหลวงJWDภูมิภาค,POINTS_AT_TIME,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,89
+SCGนครหลวงJWDภูมิภาค,STATUS,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,89
+SCGนครหลวงJWDภูมิภาค,เจ้าของสินค้า//ชื่อปลายทาง//Lat_Long//Inv No,"LongText {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,Yes,No,No,No,No,Yes,Yes,"[ชื่อปลายทาง], "" ""), """"), IF(ISNOTBLANK([จุดส่งสินค้าปลายทาง]), CONCATENATE(""Lat/Lng "", TEXT([จุดส่งสินค้าปลายทาง]), "" ""), """"), IF(ISNOTBLANK([Invoice No]), CONCATENATE(""INV. "", INDEX([Invoice No], 1)), """") )",,,,,,,,,,90
+SCGนครหลวงJWDภูมิภาค,Document_Return,LongText,ALWAYS,Yes,No,No,No,No,Yes,Yes,=[ID_Doc_Return].[ข้อความอธิบาย_Document_Return],,,,,,,,,,91
+SCGนครหลวงJWDภูมิภาค,Image_Document_Return,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":""",ALWAYS,Yes,No,No,No,No,Yes,Yes,=[ID_Doc_Return].[Related Image_Doc_Returns],,,,,,,,,,92
+SCGนครหลวงJWDภูมิภาค,ที่อยู่ปลายทาง_LatLong_Api,"LatLong {""RealTime"":false,""PublishIfRowKey"":null,""KMLFileUrl"":null,""Valid_",ALWAYS,Yes,No,No,No,No,Yes,Yes,"=LOOKUP([_THISROW].[ชื่อปลายทาง],""ตารางงานประจำวัน"",""ชื่อ ปลายทาง"",""ที่อยู่ปลายทาง_LatLong"")",,,,,,,,,,93
+SCGนครหลวงJWDภูมิภาค,Related สรุปเบิกส่วนต่างs,"สรุปเบิกส่วนต่าง entries that reference this entry in the _ComputedKey_ID_SCGนครหลวงJWDภูมิภาค column List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""สรุปเบิกส่วน ต่าง\"",\""ReferencedRootTableName\"":\""สรุปเบิกส่วน ต่าง\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier\"":\ "" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor matting\\\"":\\\""Plain Text\\\"",\\\""IsMulticolumnKey\\\"":false,\\\""Valid_If\\\"":null,\\\""Er",ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"REF_ROWS(""สรุปเบิกส่วนต่าง"", ""_ComputedKey_ID_SCGนครหลวงJWDภูมิภาค"")",,,,,,,,,,93
+SCGนครหลวงJWDภูมิภาค,Related ทำเบิกส่วนต่างScgวังน้อยs,List,ALWAYS,Yes,No,No,No,Yes,Yes,Yes,"REF_ROWS(""ทำเบิกส่วนต่างScgวังน้อย"", ""ID_SCGนครหลวงJWDภูมิภาค"")",,ทำเบิกส่วนต่างScgวังน้อย entries that reference this entry in the _ComputedKey_ID_SCGนครหลวงJWDภูมิภาค column,,,,,,,,94
+SCGนครหลวงJWDภูมิภาค,พิกัดตอนกดบันทึก_เปลี่ยนแล้ว,Yes/No,ALWAYS,Yes,No,No,No,No,Yes,Yes,"=AND( ISNOTBLANK([พิกัดตอนกดบันทึกงาน]), [พิกัดตอนกดบันทึกงาน] <> [_THISROW_BEFORE].[พิกัดตอนกดบันทึกงาน] )",,,,,,,,,,96

@@ -1,0 +1,12 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Clear Output 13,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,1416
+Clear Output 13,ID_ปริ๊นใบวางบิล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1416
+Clear Output 13,ชื่องาน,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":""=ข้อมูลชื่องานต้นทาง",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1417
+Clear Output 13,StartDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1418
+Clear Output 13,EndDate,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1418
+Clear Output 13,ราคารวม,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1419
+Clear Output 13,Export to xlsx,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1420
+Clear Output 13,Export to xlsx To Athens,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1420
+Clear Output 13,ปริ๊นใบวางบิลแยกตามชื่องาน,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1421
+Clear Output 13,วันที่ออกเอกสาร,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1422
+Clear Output 13,ผลลัพท์,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,1422

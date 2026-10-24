@@ -1,0 +1,77 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,542
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,ID_แจ้งปั ญหาระหว่างวัน,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,542
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,กดปุ่ มนี้เพื่อส่งข้อมูลแจ้งปั ญหา,Yes/No,ALWAYS,No,No,No,No,No,Yes No,,,,,"=OR(
+ ISBLANK([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้งปั ญหา]),
+ NOT([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้งปั ญหา])
+)",,,"=AND(
+ ISNOTBLANK([รูป1]),
+ ISNOTBLANK([รูป2]),
+ ISNOTBLANK([รูป3]),
+ NOT([กดปุ่ มนี้เพื่อส่งข้อมูลแจ้งปั ญหา])
+)",,,,543
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,ข้อมูลการแจ้งปั ญหา,Enum,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,544
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,รูป1,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,545
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,รูป2,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,545
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,รูป3,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,546
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,หมายเหตุ,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,547
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,วันที่+เวลา,DateTime,ALWAYS,No,No,No,No,No,No,Yes,,,,,,"=USERROLE() = ""ADMIN""",,,,,547
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,ชื่อ - นามสกุล,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,548
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,ทะเบียนรถ,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,549
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,รหัสผู้รับเหมา,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,549
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,ชื่อผู้รับเหมา,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,=ISNOTBLANK([Invoice No]),,,,550
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,Shipment No,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,"=IF(USERROLE() = ""ADMIN"",
+ (SM_Today_User[Shipment No] + 
+ SELECT(ข้อมูล งานRT[Shipment (รับคืน)], [วันที่เข้ารับ] = TODAY())),
+ IF([ข้อมูลการแจ้งปั ญหา] = ""ไม่มีในจุดส่งงานวันนี้ ไม่สามารถเข้ารับงานคืนให้ ได้"",
+ SELECT(ข้อมูลงานRT[Shipment (รับคืน)], 
+ AND([Email พนักงาน] = USEREMAIL(), [วันที่เข้ารับ] = TODAY())
+ ),
+ SM_Today_User[Shipment No]
+ )
+)",,,,,,,551
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,Invoice No,EnumList,ALWAYS,No,No,No,No,No,No,Yes,,,,"=UNIQUE(
+ IF(USERROLE() =""ADMIN"",
+ SELECT(ตารางงานประจำวัน[Invoice No], [ShipmentNo] = [_THISROW].[Shipment No]) +
+ SELECT(ข้อมูลงานRT[เลขที่เอกสารรับคืน], [Shipment (รับคืน)] = [_THISROW].[ShipmentNo]),
+ IF([ข้อมูลการแจ้งปั ญหา] = ""ไม่มีในจุดส่งงานวันนี้ ไม่สามารถเข้ารับงานคืนให้ได้"",
+ SELECT(ข้อมูลงานRT[เลขที่เอกสารรับคืน],
+ AND(
+ [Shipment (รับคืน)] = [_THISROW].[ShipmentNo],
+ [Email พนักงาน] = USEREMAIL(),
+ [วันที่เข้ารับ] =TODAY()
+ )
+ ),
+ SELECT(SM_Today_User[Invoice No], 
+AND(
+ [Shipment No] = [_THISROW].[Shipment No],
+[DeliveryStatus] <> ""จัดส่งเรียบร้อย"",
+ NOT(IN([Invoice No],SELECT(แจ้งปั ญหาระหว่างวัน[Invoice No], [Shipment No] =[_THISROW].[Shipment No])))
+ )
+ )
+ )
+ ) 
+ + [_THISROW].[Invoice No]
+) -LIST("""")",,,,,,,551
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,รหัสลูกค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,=ISNOTBLANK([Invoice No]),,,,552
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,ชื่อปลายทาง,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,553
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,ใส่ข้อมูลการแจ้งปั ญหา เพื่อนับจุดส่งงาน,LongText,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,=ISNOTBLANK([เพิ่มรูปแคปหน้าจอ นำกลับคืนคลัง]),,,,554
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,เพิ่มรูปแคปหน้าจอ นำกลับคืนคลัง,Image,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,555
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,อัพเดตข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,"=OR(
+ ISBLANK([อัพเดตข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG]),
+ NOT([อัพเดตข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG])
+)",,,"=AND(
+ ISNOTBLANK([ใส่ข้อมูลการแจ้งปั ญหา เพื่อนับจุดส่งงาน]),
+ ISNOTBLANK([เพิ่มรูปแคปหน้าจอ นำกลับคืนคลัง]),
+ NOT([อัพเดตข้อมูลการแจ้งปั ญหา ไป ตารางส่งงานSCG])
+)",,,,555
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,Lat/Long,LatLong,ALWAYS,No,No,No,No,No,Yes No,,,,,,,,,,,,556
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,LatLong_ตรวจสอบ,LatLong,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,=ISNOTBLANK([เพิ่มรูปแคปหน้าจอ นำ กลับคืนคลัง]),,,557
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,Email พนักงาน,"Email {""Valid_If"":null,""Error_Message_If_Invalid"":null,""Show_If"":null,""Req",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,557
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,เดือน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,558
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,SM_Link,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,559
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,RT_Link,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,559
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,SCGนครหลวงJWDภูมิภาค_ID,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,560
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,ID_พนักงาน,"Ref {""ReferencedTableName"":""ข้อมูล พนักงาน"",""ReferencedRootTableName"":""ข้อมูล พนักงาน"",""ReferencedType"":""Text"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,561
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,LINK_Image_แจ้งปั ญหา,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,562
+Process for Telegram_แจ้งปั ญหา - 1 Process Table,Telegram_แจ้งปั ญหา2,"Ref {""ReferencedTableName"":""Telegram_แจ้งปั ญหา2 Output"",""ReferencedRootTableName"":null,""ReferencedType"":""Tex t"",""ReferencedTypeQualifier"":"" {\""MaxLength\"":null,\""MinLength\"":null,\""LongTextFormatting\"":\",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,562

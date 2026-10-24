@@ -1,0 +1,215 @@
+action_name,do_this,do_this_raw,table_name,table_slug,table_file,attach_to_column,attach_column_in_table,set_this_column,action_scope,modifies_data,prominence,visible,doc_page
+Compose Email (Email พนักงาน),EMAIL,EMAIL,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,Email พนักงาน,yes,Email พนักงาน,No,No,Display_Inline,ALWAYS,1811
+Add,ADD_RECORD,ADD_RECORD,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1811
+Compose Email (Email พนักงาน),EMAIL,EMAIL,ข้อมูลการเข้าบำรุงรักษา,maintenance-arrival-data,data/tables/real/maintenance-arrival-data.csv,Email พนักงาน,yes,Email พนักงาน,,No,Display_Inline,No ALWAYS,1812
+Compose Email (Email พนักงาน),EMAIL,EMAIL,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,Email พนักงาน,yes,Email พนักงาน,No,No,Display_Inline,ALWAYS,1812
+Compose Email (Email ผู้อนุมัติ),EMAIL,EMAIL,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,Email ผู้อนุมัติ,yes,Email ผู้อนุมัติ,No,No,Display_Inline,ALWAYS,1813
+Compose Email (Email พนักงาน),EMAIL,EMAIL,ข้อมูลพนักงาน,employee-data,data/tables/real/employee-data.csv,Email พนักงาน,yes,Email พนักงาน,No,No,Display_Inline,ALWAYS,1814
+Add,ADD_RECORD,ADD_RECORD,ข้อมูลการเข้าบำรุงรักษา,maintenance-arrival-data,data/tables/real/maintenance-arrival-data.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1814
+Add,ADD_RECORD,ADD_RECORD,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,,,,,Yes,Display_Overlay,Yes ALWAYS,1815
+Call Phone (เบอร์โทรศัพท์),CALL,CALL,ข้อมูลพนักงาน,employee-data,data/tables/real/employee-data.csv,เบอร์โทรศัพท์,yes,เบอร์โทรศัพท์,No,No,Display_Inline,ALWAYS,1815
+อนุมัติ,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,สถานะการอนุมัติ,yes,สถานะการอนุมัติ,No,Yes,Display_Prominently,ALWAYS,1816
+รอการอนุมัติ,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,สถานะการอนุมัติ,yes,สถานะการอนุมัติ,No,Yes,Display_Inline,ALWAYS,1817
+Edit,EDIT_RECORD,EDIT_RECORD,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,,,,No,Yes,Display_Overlay,ALWAYS,1818
+Edit,EDIT_RECORD,EDIT_RECORD,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,,,,No,Yes,Display_Overlay,ALWAYS,1818
+Edit,EDIT_RECORD,EDIT_RECORD,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,,,,No,Yes,Display_Overlay,ALWAYS,1819
+Add,ADD_RECORD,ADD_RECORD,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1819
+Add,ADD_RECORD,ADD_RECORD,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1820
+Clear,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1820
+CLEAR 2,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่องาน,no,ชื่อ - นามสกุล,No,Yes,Display_Prominently,ALWAYS,1821
+Edit,EDIT_RECORD,EDIT_RECORD,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,,,,No,Yes,Display_Overlay,ALWAYS,1822
+Edit,EDIT_RECORD,EDIT_RECORD,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,,,,No,Yes,Display_Overlay,ALWAYS,1822
+Compose Email (Email พนักงาน),EMAIL,EMAIL,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,Email พนักงาน,yes,Email พนักงาน,,No,Display_Inline,No ALWAYS,1823
+Add,ADD_RECORD,ADD_RECORD,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1823
+Add,ADD_RECORD,ADD_RECORD,ราคาน้ำมันดีเซล,diesel-price,data/tables/real/diesel-price.csv,,,,,Yes,Display_Overlay,Yes ALWAYS,1824
+Delete,DELETE_RECORD,DELETE_RECORD,ข้อมูลพนักงาน,employee-data,data/tables/real/employee-data.csv,,,,No,Yes,Display_Prominently,ADVANCED,1824
+Edit,EDIT_RECORD,EDIT_RECORD,ข้อมูลพนักงาน,employee-data,data/tables/real/employee-data.csv,,,,No,Yes,Display_Overlay,ALWAYS,1825
+Add,ADD_RECORD,ADD_RECORD,ข้อมูลพนักงาน,employee-data,data/tables/real/employee-data.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1825
+Add,ADD_RECORD,ADD_RECORD,ข้อมูลชื่องานต้นทางปลายทาง,job-name-data,data/tables/real/job-name-data.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1826
+Compose Email (Email พนักงาน),EMAIL,EMAIL,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,Email พนักงาน,yes,Email พนักงาน,No,No,Display_Inline,ALWAYS,1826
+Add,ADD_RECORD,ADD_RECORD,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1827
+Delete,DELETE_RECORD,DELETE_RECORD,ข้อมูลชื่องานต้นทางปลายทาง,job-name-data,data/tables/real/job-name-data.csv,,,,No,Yes,Display_Prominently,ADVANCED,1828
+Edit,EDIT_RECORD,EDIT_RECORD,ข้อมูลชื่องานต้นทางปลายทาง,job-name-data,data/tables/real/job-name-data.csv,,,,No,Yes,Display_Overlay,ALWAYS,1828
+Delete,DELETE_RECORD,DELETE_RECORD,ข้อมูลงานRT,rt-job-data,data/tables/real/rt-job-data.csv,,,,No,Yes,Display_Prominently,ADVANCED,1829
+Edit,UNKNOWN,,ข้อมูลงานRT,rt-job-data,data/tables/real/rt-job-data.csv,,,,No,Yes,Display_Overlay,ALWAYS,1829
+Add,ADD_RECORD,ADD_RECORD,ข้อมูลงานRT,rt-job-data,data/tables/real/rt-job-data.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1830
+Delete,DELETE_RECORD,DELETE_RECORD,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,,,,No,Yes,Display_Prominently,ADVANCED,1830
+Edit,EDIT_RECORD,EDIT_RECORD,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,,,,No,Yes,Display_Overlay,ALWAYS,1831
+Delete,DELETE_RECORD,DELETE_RECORD,ราคาน้ำมันดีเซล,diesel-price,data/tables/real/diesel-price.csv,,,,No,Yes,Display_Prominently,ADVANCED,1831
+Edit,EDIT_RECORD,EDIT_RECORD,ราคาน้ำมันดีเซล,diesel-price,data/tables/real/diesel-price.csv,,,,No,Yes,Display_Overlay,ALWAYS,1832
+Delete,DELETE_RECORD,DELETE_RECORD,ราคาในระบบก่อนส่งสินค้า,system-price-before-delivery,data/tables/real/system-price-before-delivery.csv,,,,No,Yes,Display_Prominently,ADVANCED,1832
+Edit,EDIT_RECORD,EDIT_RECORD,ราคาในระบบก่อนส่งสินค้า,system-price-before-delivery,data/tables/real/system-price-before-delivery.csv,,,,,Yes,Display_Overlay,No ALWAYS,1833
+Delete,UNKNOWN,,หน้าหลัก,home,data/tables/real/home.csv,,,,No,Yes,Display_Prominently,ADVANCED,1833
+Edit,EDIT_RECORD,EDIT_RECORD,หน้าหลัก,home,data/tables/real/home.csv,,,,No,Yes,Display_Overlay,ALWAYS,1834
+Delete,DELETE_RECORD,DELETE_RECORD,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,,,,No,Yes,Display_Prominently,ADVANCED,1834
+Delete,DELETE_RECORD,DELETE_RECORD,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,,,,No,Yes,Display_Prominently,ADVANCED,1835
+Add,ADD_RECORD,ADD_RECORD,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1835
+Add,ADD_RECORD,ADD_RECORD,ราคาในระบบก่อนส่งสินค้า,system-price-before-delivery,data/tables/real/system-price-before-delivery.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1836
+Add,ADD_RECORD,ADD_RECORD,หน้าหลัก,home,data/tables/real/home.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1836
+Delete,DELETE_RECORD,DELETE_RECORD,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,,,,No,Yes,Display_Prominently,ADVANCED,1837
+Delete,DELETE_RECORD,DELETE_RECORD,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,,,,No,Yes,Display_Prominently,ADVANCED,1837
+Delete,DELETE_RECORD,DELETE_RECORD,ข้อมูลการเข้าบำรุงรักษา,maintenance-arrival-data,data/tables/real/maintenance-arrival-data.csv,,,,No,Yes,Display_Prominently,ADVANCED,1838
+Edit,EDIT_RECORD,EDIT_RECORD,ข้อมูลการเข้าบำรุงรักษา,maintenance-arrival-data,data/tables/real/maintenance-arrival-data.csv,,,,No,Yes,Display_Overlay,ALWAYS,1838
+Delete,DELETE_RECORD,DELETE_RECORD,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,,,,No,Yes,Display_Prominently,ADVANCED,1839
+Delete,DELETE_RECORD,DELETE_RECORD,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,,,,No,Yes,Display_Prominently,ADVANCED,1839
+Edit,EDIT_RECORD,EDIT_RECORD,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,,,,No,Yes,Display_Overlay,ALWAYS,1840
+สร้างใบป่ ะหน้า_สำเริง แก้วกามเกตุ,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1840
+สร้างใบป่ ะหน้าทุกคน,COMPOSITE,COMPOSITE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,,,,No,Yes,Display_Prominently,ALWAYS,1841
+Clearหน้าจอ,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1842
+สร้างใบป่ ะหน้า_สุทิศ นันพนัก,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1843
+สร้างใบป่ ะหน้า_เอกรัฐ อนุรักษ์,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1844
+สร้างใบป่ ะหน้า_สุด พันพม่า,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1845
+สร้างใบป่ ะหน้า_ธวัชชัย หนูมา,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1845
+สร้างใบป่ ะหน้า_ปราโมทย์ เรียนพิษ,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1846
+สร้างใบป่ ะหน้า_กฤษฎา พิญญะดำ,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1847
+สร้างใบป่ ะหน้า_กิตติพงษ์ แหลมผักแว่น,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1848
+สร้างใบป่ ะหน้า_จักรภัทร วงทอง,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1848
+สร้างใบป่ ะหน้า_พีระพล รูปแก้ว,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1849
+สร้างใบป่ ะหน้า_อชิตพล ยังยิ้ม,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1850
+สร้างใบป่ ะหน้า_ธีรยุทธ นราทอง,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1851
+สร้างใบป่ ะหน้า_จิรายุ โคตรวงษ์,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1851
+สร้างใบป่ ะหน้า_ทัดเทพ พรมมา,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1852
+Delete,DELETE_RECORD,DELETE_RECORD,FILTER,filter,data/tables/real/filter.csv,,,,No,Yes,Display_Prominently,ADVANCED,1853
+Edit,EDIT_RECORD,EDIT_RECORD,FILTER,filter,data/tables/real/filter.csv,,,,No,Yes,Display_Overlay,ALWAYS,1853
+Add,ADD_RECORD,ADD_RECORD,FILTER,filter,data/tables/real/filter.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1854
+cLeAR_รับคืน,SET_COLUMN_VALUE,SET_COLUMN_VALUE,FILTER,filter,data/tables/real/filter.csv,STARTDATE,yes,STARTDATE,No,Yes,Display_Prominently,ALWAYS,1855
+View Map (Lat / Long),NAVIGATE_APP,NAVIGATE_APP,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,Lat / Long,yes,Lat / Long,No,No,Display_Inline,ALWAYS,1855
+Chart Data for รับงานคืนได้เงิน200,UNKNOWN,,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,,,,Yes,No,Display_Prominently,ALWAYS,1856
+Send SMS (เบอร์โทรศัพท์),SMS,SMS,ข้อมูลพนักงาน,employee-data,data/tables/real/employee-data.csv,เบอร์โทรศัพท์,yes,เบอร์โทรศัพท์,No,No,Display_Inline,ALWAYS,1857
+Delete,DELETE_RECORD,DELETE_RECORD,Price_Table,price-table,data/tables/real/price-table.csv,,,,No,Yes,Display_Prominently,ADVANCED,1857
+Edit,EDIT_RECORD,EDIT_RECORD,Price_Table,price-table,data/tables/real/price-table.csv,,,,No,Yes,Display_Overlay,ALWAYS,1858
+Add,ADD_RECORD,ADD_RECORD,Price_Table,price-table,data/tables/real/price-table.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1858
+View Map (จุดส่งสินค้าปลายทาง),NAVIGATE_APP,NAVIGATE_APP,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,จุดส่งสินค้าปลายทาง,yes,จุดส่งสินค้าปลายทาง,No,No,Display_Inline,ALWAYS,1859
+ส่งรูปจุดที่ส่งงาน,NAVIGATE_DIFFERENT_APP,NAVIGATE_DIFFERENT_APP,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,สถานะการเข้ารับสินค้า,yes,,No,No,Display_Prominently,ALWAYS,1860
+ส่งรูปวางบิลหรือสลิปโอนเงิน,NAVIGATE_DIFFERENT_APP,NAVIGATE_DIFFERENT_APP,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,จำนวนด่าน,yes,,No,No,Display_Prominently,ALWAYS,1861
+สร้างใบป่ ะหน้า_พงศธร หมวดไธสง,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1861
+สร้างใบป่ ะหน้า_เกียรติศักดิ์ พินิจเมือง,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1862
+ส่งรูปแจ้งปั ญหา,NAVIGATE_DIFFERENT_APP,NAVIGATE_DIFFERENT_APP,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,ID_วางบิล,no,,No,No,Display_Prominently,ALWAYS,1863
+View Ref (ID_เอกสารนำกลับคืนคลัง),NAVIGATE_APP,NAVIGATE_APP,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,ID_Doc_Return,yes,ID_Doc_Return,No,No,Display_Inline,ALWAYS,1863
+Delete,DELETE_RECORD,DELETE_RECORD,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,,,,No,Yes,Display_Prominently,ADVANCED,1864
+Edit,EDIT_RECORD,EDIT_RECORD,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,,,,No,Yes,Display_Overlay,ALWAYS,1865
+Add,ADD_RECORD,ADD_RECORD,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1865
+View Ref (_ComputedKey_ID_SCGนครหลวงJWDภูมิภาค),NAVIGATE_APP,NAVIGATE_APP,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,_ComputedKey_ID_SCGนครหลวงJWDภูมิภาค,yes,_ComputedKey_ID_SCGนครหลวงJWDภูมิภาค,No,No,Display_Inline,ALWAYS,1866
+Clearหน้าจอสรุปส่วนต่าง,SET_COLUMN_VALUE,SET_COLUMN_VALUE,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,ชื่อ - นามสกุล,no,วันที่เริ่มต้น,No,Yes,Display_Prominently,ALWAYS,1866
+Delete,DELETE_RECORD,DELETE_RECORD,Doc_Return,doc-return,data/tables/real/doc-return.csv,,,,No,Yes,Display_Prominently,ADVANCED,1867
+Edit,EDIT_RECORD,EDIT_RECORD,Doc_Return,doc-return,data/tables/real/doc-return.csv,,,,No,Yes,Display_Overlay,ALWAYS,1868
+Delete,DELETE_RECORD,DELETE_RECORD,Image_Doc_Return,image-doc-return,data/tables/real/image-doc-return.csv,,,,No,Yes,Display_Prominently,ADVANCED,1868
+Edit,EDIT_RECORD,EDIT_RECORD,Image_Doc_Return,image-doc-return,data/tables/real/image-doc-return.csv,,,,No,Yes,Display_Overlay,ALWAYS,1869
+Add,ADD_RECORD,ADD_RECORD,Doc_Return,doc-return,data/tables/real/doc-return.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1869
+Add,ADD_RECORD,ADD_RECORD,Image_Doc_Return,image-doc-return,data/tables/real/image-doc-return.csv,,,,,Yes,Display_Overlay,Yes ALWAYS,1870
+View Ref (ID_Doc_Return),NAVIGATE_APP,NAVIGATE_APP,Image_Doc_Return,image-doc-return,data/tables/real/image-doc-return.csv,ID_Doc_Return,yes,ID_Doc_Return,No,No,Display_Inline,ALWAYS,1870
+GoToView,NAVIGATE_APP,NAVIGATE_APP,หน้าหลัก,home,data/tables/real/home.csv,Link,yes,,No,No,Do_Not_Display,ALWAYS,1871
+สร้างใบป่ ะหน้า_เกียรติศักดิ์ ยอมใหญ่,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1872
+เคลียสรุปจุดส่ง Action - 1,SET_COLUMN_VALUE,SET_COLUMN_VALUE,FILTER,filter,data/tables/real/filter.csv,EXPORT TO Excel(สรุปจำนวนจุดส่งงาน),yes,EXPORT TO Excel(สรุปจำนวนจุดส่งงาน),No,Yes,Display_Prominently,ALWAYS,1872
+View Map (คลังสินค้า เอสซีจี เจดับเบิ้ลยูดี วังน้อย),NAVIGATE_APP,NAVIGATE_APP,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,คลังสินค้า เอสซีจี เจดับเบิ้ลยูดี วังน้อย,yes,คลังสินค้า เอสซีจี เจดับเบิ้ลยูดี วังน้อย,No,No,Display_Inline,ALWAYS,1873
+ไอโรบอท,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1874
+รับเอกสาร (งานพี่เหน่ง),SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1875
+โอนคลัง เอเธน,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1875
+โอนคลัง กระสอบ2(บางบัวทอง),SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1876
+คลังSCGJWDวังน้อย,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1877
+MeSpace,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1878
+โอนคลัง มโนยนต์ (นวนคร),SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1878
+โอนคลัง (GQ) จีคิว,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1879
+ปริ๊นวางบิลทุกงาน,COMPOSITE,COMPOSITE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,,,,,Yes,Display_Prominently,No ALWAYS,1880
+เคลียหน้าจอ,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Display_Prominently,ALWAYS,1881
+Delete,DELETE_RECORD,DELETE_RECORD,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,,,,No,Yes,Display_Prominently,ADVANCED,1882
+Edit,EDIT_RECORD,EDIT_RECORD,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,,,,No,Yes,Display_Overlay,ALWAYS,1882
+Add,ADD_RECORD,ADD_RECORD,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,,,,,Yes,Display_Overlay,Yes ALWAYS,1883
+View Ref (_ComputedKey_ID_SCGนครหลวงJWDภูมิภาค),NAVIGATE_APP,NAVIGATE_APP,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,ID_SCGนครหลวงJWDภูมิภาค,yes,ID_SCGนครหลวงJWDภูมิภาค,No,No,Display_Inline,ALWAYS,1883
+View Map (ต้นทาง),NAVIGATE_APP,NAVIGATE_APP,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,ต้นทาง,yes,ต้นทาง,No,No,Display_Inline,ALWAYS,1884
+Compose Email (Email พนักงาน),EMAIL,EMAIL,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,Email พนักงาน,yes,Email พนักงาน,No,No,Display_Inline,ALWAYS,1885
+รับเอกสาร (งานพี่เหน่ง) สตีเบล,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1885
+CLEAR_ปริ๊นใบวางบิล_Action,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1886
+View Map (Lat/Long),NAVIGATE_APP,NAVIGATE_APP,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,Lat/Long,yes,Lat/Long,No,No,Display_Inline,ALWAYS,1887
+เพิ่มข้อมูลแจ้งปั ญหาในจุดส่งงาน,ADD_RECORD_TO,ADD_RECORD_TO,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,,,,,Yes,Do_Not_Display,No ALWAYS,1888
+อัพเดตค่าสถานะผ่านการตรวจสอบ,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,สร้างแผนที่Google Map & QR Code,no,สถานะ,No,Yes,Display_Prominently,ALWAYS,1889
+Open Url (แสดงแผนที่_GoogleMapsRoutesAPI),NAVIGATE_URL,NAVIGATE_URL,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,แสดงแผนที่_GoogleMapsRoutesAPI,yes,แสดงแผนที่_GoogleMapsRoutesAPI,No,No,Display_Inline,ALWAYS,1890
+อัพเดตสถานะไม่ผ่านการตรวจสอบ,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,สถานะ,yes,สถานะ,No,Yes,Display_Prominently,ALWAYS,1890
+ปุ่ มเปิ ดYes 2,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,สร้างPDFเบิกส่วนต่าง,yes,สร้างPDFเบิกส่วนต่าง,No,Yes,Display_Prominently,ALWAYS,1891
+Edit,EDIT_RECORD,EDIT_RECORD,ข้อมูลงานRW,rw-job-data,data/tables/real/rw-job-data.csv,,,,,Yes,Display_Overlay,No ALWAYS,1892
+Add,ADD_RECORD,"{""Prominence"":""Display_Overlay"",""NeedsConfirmation"":false,""Con firmationMessage"":"""",""ModifiesData"":true,""BulkApplicable"":true} ADD_RECORD",ข้อมูลงานRW,rw-job-data,data/tables/real/rw-job-data.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1892
+View Map (ที่อยู่ปลายทาง_LatLong),NAVIGATE_APP,NAVIGATE_APP,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,ที่อยู่ปลายทาง_LatLong,yes,ที่อยู่ปลายทาง_LatLong,No,No,Display_Inline,ALWAYS,1893
+View Map (ที่อยู่ปลายทาง_LatLong_Api),NAVIGATE_APP,NAVIGATE_APP,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,ที่อยู่ปลายทาง_LatLong_Api,yes,ที่อยู่ปลายทาง_LatLong_Api,No,No,Display_Inline,ALWAYS,1894
+ข้อมูลการเข้าบำรุงรักษาcsv,EXPORT_VIEW,EXPORT_VIEW,ข้อมูลการเข้าบำรุงรักษา,maintenance-arrival-data,data/tables/real/maintenance-arrival-data.csv,,,,Yes,No,Display_Prominently,ALWAYS,1894
+ข้อมูลการวางบิลcsv,EXPORT_VIEW,EXPORT_VIEW,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,,,,Yes,No,Display_Prominently,ALWAYS,1895
+ตารางงานประจำวันcsv,EXPORT_VIEW,EXPORT_VIEW,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,,,,Yes,No,Display_Prominently,ALWAYS,1896
+แจ้งปั ญหาระหว่างวันcsv,EXPORT_VIEW,EXPORT_VIEW,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,,,,Yes,No,Display_Prominently,ALWAYS,1896
+ข้อมูลพนักงานcsv,EXPORT_VIEW,EXPORT_VIEW,ข้อมูลพนักงาน,employee-data,data/tables/real/employee-data.csv,,,,Yes,No,Display_Prominently,ALWAYS,1897
+ข้อมูลชื่องานต้นทางปลายทางcsv,EXPORT_VIEW,EXPORT_VIEW,ข้อมูลชื่องานต้นทางปลายทาง,job-name-data,data/tables/real/job-name-data.csv,,,,Yes,No,Display_Prominently,ALWAYS,1897
+ข้อมูลงานRWcsv,EXPORT_VIEW,EXPORT_VIEW,ข้อมูลงานRW,rw-job-data,data/tables/real/rw-job-data.csv,,,,Yes,No,Display_Prominently,ALWAYS,1898
+ข้อมูลงานRTcsv,EXPORT_VIEW,EXPORT_VIEW,ข้อมูลงานRT,rt-job-data,data/tables/real/rt-job-data.csv,,,,Yes,No,Display_Prominently,ALWAYS,1899
+ทำเบิกส่วนต่างScgวังน้อยcsv,EXPORT_VIEW,EXPORT_VIEW,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,,,,Yes,No,Display_Prominently,ALWAYS,1899
+ปริ๊นใบวางบิลcsv,EXPORT_VIEW,EXPORT_VIEW,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,,,,Yes,No,Display_Prominently,ALWAYS,1900
+รับงานคืนได้เงิน200csv,EXPORT_VIEW,EXPORT_VIEW,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,,,,Yes,No,Display_Prominently,ALWAYS,1900
+ราคาน้ำมันดีเซลcsv,EXPORT_VIEW,EXPORT_VIEW,ราคาน้ำมันดีเซล,diesel-price,data/tables/real/diesel-price.csv,,,,Yes,No,Display_Prominently,ALWAYS,1901
+ราคาในระบบก่อนส่งสินค้าcsv,EXPORT_VIEW,EXPORT_VIEW,ราคาในระบบก่อนส่งสินค้า,system-price-before-delivery,data/tables/real/system-price-before-delivery.csv,,,,Yes,No,Display_Prominently,ALWAYS,1902
+สรุปเบิกส่วนต่างcsv,EXPORT_VIEW,EXPORT_VIEW,สรุปเบิกส่วนต่าง,expense-summary,data/tables/real/expense-summary.csv,,,,Yes,No,Display_Prominently,ALWAYS,1902
+หน้าหลักcsv,EXPORT_VIEW,EXPORT_VIEW,หน้าหลัก,home,data/tables/real/home.csv,,,,Yes,No,Display_Prominently,ALWAYS,1903
+Doc_Return_csv,EXPORT_VIEW,EXPORT_VIEW,Doc_Return,doc-return,data/tables/real/doc-return.csv,,,,Yes,No,Display_Prominently,ALWAYS,1904
+FILTERcsv,EXPORT_VIEW,EXPORT_VIEW,FILTER,filter,data/tables/real/filter.csv,,,,Yes,No,Display_Prominently,ALWAYS,1904
+Image_Doc_Return_csv,EXPORT_VIEW,EXPORT_VIEW,Image_Doc_Return,image-doc-return,data/tables/real/image-doc-return.csv,,,,Yes,No,Display_Prominently,ALWAYS,1905
+PDFพนักงานcsv,EXPORT_VIEW,EXPORT_VIEW,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,,,,Yes,No,Display_Prominently,ALWAYS,1905
+Price_Table_csv,EXPORT_VIEW,EXPORT_VIEW,Price_Table,price-table,data/tables/real/price-table.csv,,,,Yes,No,Display_Prominently,ALWAYS,1906
+SCGนครหลวงJWDภูมิภาค_csv,EXPORT_VIEW,EXPORT_VIEW,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,,,,Yes,No,Display_Prominently,ALWAYS,1907
+View Ref (SM_Link),NAVIGATE_APP,NAVIGATE_APP,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,SM_Link,yes,SM_Link,No,No,Display_Inline,ALWAYS,1907
+View Ref (RT_Link),NAVIGATE_APP,NAVIGATE_APP,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,RT_Link,yes,RT_Link,No,No,Display_Inline,ALWAYS,1908
+Delete,DELETE_RECORD,DELETE_RECORD,สร้างเอกสาร,create-document,data/tables/real/create-document.csv,,,,No,Yes,Display_Prominently,ADVANCED,1909
+Edit,EDIT_RECORD,EDIT_RECORD,สร้างเอกสาร,create-document,data/tables/real/create-document.csv,,,,No,Yes,Display_Overlay,ALWAYS,1909
+Add,ADD_RECORD,ADD_RECORD,สร้างเอกสาร,create-document,data/tables/real/create-document.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1910
+Mark_As_Delivered,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,DeliveryStatus,yes,DeliveryStatus,No,Yes,Do_Not_Display,ALWAYS,1910
+Process_Delivery_Status_Bot Action - 1,REF_ACTION,REF_ACTION,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,,,,No,No,Do_Not_Display,ALWAYS,1911
+Mark_As_Delivered_not,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,DeliveryStatus,yes,DeliveryStatus,No,Yes,Do_Not_Display,ALWAYS,1912
+ACT_Create_SCG_Flow,COMPOSITE,COMPOSITE,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,,,,No,Yes,Do_Not_Display,ALWAYS,1912
+New Action,REF_ACTION,REF_ACTION,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,,,,No,No,Do_Not_Display,ALWAYS,1913
+View Ref (SM_Link_SCG),NAVIGATE_APP,NAVIGATE_APP,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,SM_Link_SCG,yes,SM_Link_SCG,No,No,Display_Inline,ALWAYS,1914
+Compose Email (Email พนักงาน),EMAIL,EMAIL,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,Email พนักงาน,yes,Email พนักงาน,No,No,Display_Inline,ALWAYS,1914
+View Ref (ID_พนักงาน),NAVIGATE_APP,NAVIGATE_APP,รับงานคืนได้เงิน200,delivery-200-baht,data/tables/real/delivery-200-baht.csv,ID_พนักงาน,yes,ID_พนักงาน,No,No,Display_Inline,ALWAYS,1915
+View Ref (ID_พนักงาน),NAVIGATE_APP,NAVIGATE_APP,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,ID_พนักงาน,yes,ID_พนักงาน,,No,Display_Inline,No ALWAYS,1916
+View Ref (ID_พนักงาน),NAVIGATE_APP,NAVIGATE_APP,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,ID_พนักงาน,yes,ID_พนักงาน,No,No,Display_Inline,ALWAYS,1916
+View Ref (ID_พนักงาน),NAVIGATE_APP,NAVIGATE_APP,ข้อมูลการวางบิล,billing-data,data/tables/real/billing-data.csv,ID_พนักงาน,yes,ID_พนักงาน,No,No,Display_Inline,ALWAYS,1917
+View Ref (ID_พนักงาน),NAVIGATE_APP,NAVIGATE_APP,ข้อมูลการเข้าบำรุงรักษา,maintenance-arrival-data,data/tables/real/maintenance-arrival-data.csv,ID_พนักงาน,yes,ID_พนักงาน,No,No,Display_Inline,ALWAYS,1918
+Delete,DELETE_RECORD,DELETE_RECORD,ข้อมูลงานRW,rw-job-data,data/tables/real/rw-job-data.csv,,,,No,Yes,Display_Prominently,ADVANCED,1919
+View Ref (ID_พนักงาน),NAVIGATE_APP,NAVIGATE_APP,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,ID_พนักงาน,yes,ID_พนักงาน,,No,Display_Inline,No ALWAYS,1919
+View Map (LatLong_Actual),NAVIGATE_APP,NAVIGATE_APP,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,LatLong_Actual,yes,LatLong_Actual,No,No,Display_Inline,ALWAYS,1920
+View Map (พิกัดตอนกดบันทึกงาน),NAVIGATE_APP,NAVIGATE_APP,SCGนครหลวงJWDภูมิภาค,scg-nakhonluang-jwd-region,data/tables/real/scg-nakhonluang-jwd-region.csv,พิกัดตอนกดบันทึกงาน,yes,พิกัดตอนกดบันทึกงาน,No,No,Display_Inline,ALWAYS,1920
+View Map (LatLong_ตรวจสอบ),NAVIGATE_APP,NAVIGATE_APP,แจ้งปั ญหาระหว่างวัน,daily-issue-report,data/tables/real/daily-issue-report.csv,LatLong_ตรวจสอบ,yes,LatLong_ตรวจสอบ,No,No,Display_Inline,ALWAYS,1921
+สร้างใบป่ ะหน้า_สิทธิชัย ทิศวงค์,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1922
+Delete,DELETE_RECORD,DELETE_RECORD,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,,,,No,Yes,Display_Prominently,ADVANCED,1923
+Edit,EDIT_RECORD,EDIT_RECORD,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,,,,No,Yes,Display_Overlay,ALWAYS,1923
+Compose Email (Scan_By),EMAIL,EMAIL,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,Scan_By,yes,Scan_By,No,No,Display_Inline,ALWAYS,1924
+Add,ADD_RECORD,ADD_RECORD,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1925
+Update ScanStatus,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ตารางงานประจำวัน,daily-job-schedule,data/tables/real/daily-job-schedule.csv,DeliveryStatus,yes,ScanStatus,No,Yes,Do_Not_Display,ALWAYS,1925
+ScanStatus,REF_ACTION,REF_ACTION,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,,,,No,No,Do_Not_Display,ALWAYS,1926
+View Ref (Invoice_No),NAVIGATE_APP,NAVIGATE_APP,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,Invoice_No,yes,Invoice_No,No,No,Display_Inline,ALWAYS,1926
+Delete,DELETE_RECORD,DELETE_RECORD,สรุป_เจ้าของสินค้า,cargo-owner-summary,data/tables/real/cargo-owner-summary.csv,,,,No,Yes,Display_Prominently,ADVANCED,1927
+Edit,EDIT_RECORD,EDIT_RECORD,สรุป_เจ้าของสินค้า,cargo-owner-summary,data/tables/real/cargo-owner-summary.csv,,,,No,Yes,Display_Overlay,ALWAYS,1928
+Add,ADD_RECORD,ADD_RECORD,สรุป_เจ้าของสินค้า,cargo-owner-summary,data/tables/real/cargo-owner-summary.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1928
+Update Action - 1,REF_ACTION,REF_ACTION,ScanDocs,scan-docs,data/tables/real/scan-docs.csv,,,,No,No,Display_Prominently,ALWAYS,1929
+Delete,DELETE_RECORD,DELETE_RECORD,สรุป_Shipment,shipment-summary,data/tables/real/shipment-summary.csv,,,,No,Yes,Display_Prominently,ADVANCED,1929
+Edit,EDIT_RECORD,EDIT_RECORD,สรุป_Shipment,shipment-summary,data/tables/real/shipment-summary.csv,,,,No,Yes,Display_Overlay,ALWAYS,1930
+Add,ADD_RECORD,ADD_RECORD,สรุป_Shipment,shipment-summary,data/tables/real/shipment-summary.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1930
+Delete,DELETE_RECORD,DELETE_RECORD,PriceOverride,price-override,data/tables/real/price-override.csv,,,,No,Yes,Display_Prominently,ADVANCED,1931
+Edit,EDIT_RECORD,EDIT_RECORD,PriceOverride,price-override,data/tables/real/price-override.csv,,,,No,Yes,Display_Overlay,ALWAYS,1931
+Add,ADD_RECORD,ADD_RECORD,PriceOverride,price-override,data/tables/real/price-override.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1932
+เบทาโกร+เหมาตู้,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1932
+Thai paper (SCG Express),SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1933
+LINEMAN (6W) (SCG Express),SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1934
+โอนคลัง บุญถาวร เกษตร_นวมินทร์,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ปริ๊นใบวางบิล,print-invoice,data/tables/real/print-invoice.csv,ชื่องาน,yes,ชื่องาน,No,Yes,Do_Not_Display,ALWAYS,1935
+ปุ่ มเปิ ดYes_ราคาตามระยะทาง,SET_COLUMN_VALUE,SET_COLUMN_VALUE,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,สร้างPDFเบิกส่วนต่าง,yes,สร้างPDFเบิกตามระยะทาง,No,Yes,Display_Prominently,ALWAYS,1935
+Delete,DELETE_RECORD,DELETE_RECORD,ส่งงานที่ยังไม่มีข้อมูลในระบบ,delivery-without-system-data,data/tables/real/delivery-without-system-data.csv,,,,No,Yes,Display_Prominently,ADVANCED,1936
+Edit,EDIT_RECORD,EDIT_RECORD,ส่งงานที่ยังไม่มีข้อมูลในระบบ,delivery-without-system-data,data/tables/real/delivery-without-system-data.csv,,,,No,Yes,Display_Overlay,ALWAYS,1937
+Compose Email (Email พนักงาน),EMAIL,EMAIL,ส่งงานที่ยังไม่มีข้อมูลในระบบ,delivery-without-system-data,data/tables/real/delivery-without-system-data.csv,Email พนักงาน,yes,Email พนักงาน,No,No,Display_Inline,ALWAYS,1937
+Add,ADD_RECORD,ADD_RECORD,ส่งงานที่ยังไม่มีข้อมูลในระบบ,delivery-without-system-data,data/tables/real/delivery-without-system-data.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1938
+View Map (จุดส่งสินค้าปลายทาง),NAVIGATE_APP,NAVIGATE_APP,ส่งงานที่ยังไม่มีข้อมูลในระบบ,delivery-without-system-data,data/tables/real/delivery-without-system-data.csv,จุดส่งสินค้าปลายทาง,yes,จุดส่งสินค้าปลายทาง,No,No,Display_Inline,ALWAYS,1938
+View Ref (ID_พนักงาน),NAVIGATE_APP,NAVIGATE_APP,ส่งงานที่ยังไม่มีข้อมูลในระบบ,delivery-without-system-data,data/tables/real/delivery-without-system-data.csv,ID_พนักงาน,yes,ID_พนักงาน,No,No,Display_Inline,ALWAYS,1939
+Delete,DELETE_RECORD,DELETE_RECORD,Acknowledge_Logs,acknowledge-logs,data/tables/real/acknowledge-logs.csv,,,,,Yes,Display_Prominently,,1940
+No ADVANCED Edit,EDIT_RECORD,EDIT_RECORD,Acknowledge_Logs,acknowledge-logs,data/tables/real/acknowledge-logs.csv,,,,No,Yes,Display_Overlay,ALWAYS,1940
+Delete,DELETE_RECORD,DELETE_RECORD,Announcements,announcements,data/tables/real/announcements.csv,,,,,Yes,Display_Prominently,No ADVANCED,1941
+Edit,EDIT_RECORD,EDIT_RECORD,Announcements,announcements,data/tables/real/announcements.csv,,,,No,Yes,Display_Overlay,ALWAYS,1942
+Compose Email (Email พนักงาน),EMAIL,EMAIL,Acknowledge_Logs,acknowledge-logs,data/tables/real/acknowledge-logs.csv,Email พนักงาน,yes,Email พนักงาน,No,No,Display_Inline,ALWAYS,1942
+Add,ADD_RECORD,ADD_RECORD,Acknowledge_Logs,acknowledge-logs,data/tables/real/acknowledge-logs.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1943
+Add,ADD_RECORD,ADD_RECORD,Announcements,announcements,data/tables/real/announcements.csv,,,,Yes,Yes,Display_Overlay,ALWAYS,1943
+View Ref (ID_ประกาศ),NAVIGATE_APP,NAVIGATE_APP,Acknowledge_Logs,acknowledge-logs,data/tables/real/acknowledge-logs.csv,ID_ประกาศ,yes,ID_ประกาศ,No,No,Display_Inline,ALWAYS,1944
+สร้างใบป่ ะหน้า_ไนยชน วงศ์บุญมา,SET_COLUMN_VALUE,SET_COLUMN_VALUE,PDFพนักงาน,employee-pdf,data/tables/real/employee-pdf.csv,ชื่อ - นามสกุล,yes,ชื่อ - นามสกุล,No,Yes,Do_Not_Display,ALWAYS,1944
+Open Url (Candidate_2_แสดงแผนที่),NAVIGATE_URL,NAVIGATE_URL,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,Candidate_2_แสดงแผนที่,yes,Candidate_2_แสดงแผนที่,No,No,Display_Inline,ALWAYS,1945
+Open Url (Candidate_3_แสดงแผนที่),NAVIGATE_URL,NAVIGATE_URL,ทำเบิกส่วนต่างScgวังน้อย,scg-wan-noy-expense,data/tables/real/scg-wan-noy-expense.csv,Candidate_3_แสดงแผนที่,yes,Candidate_3_แสดงแผนที่,No,No,Display_Inline,ALWAYS,1946

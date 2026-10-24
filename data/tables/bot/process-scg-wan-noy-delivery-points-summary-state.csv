@@ -1,0 +1,16 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,642
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,ID_เบิกค่าเข้ารับสินค้าคืนคลัง,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,643
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,STARTDATE,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,644
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,ENDDATE,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,644
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,วันที่ออกเอกสาร,"Date {""UseLongDateFormat"":false,""Valid_If"":null,""Error_Message_If_In",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,645
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,EXPORT TO PDF,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,646
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,EXPORT TO Excel(สรุปจำนวนจุดส่งงาน),Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,646
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,ราคา_ได้เพิ่ม200_ไม่มีสินค้าคืน_ร้านปิ ด_ไม่มีในจุดส่ง,"Price {""CurrencySymbol"":""฿"",""MaxValue"":null,""MinValue"":null,""StepValu",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,647
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,ได้เพิ่ม200_ไม่มีสินค้าคืน_ร้านปิ ด_ไม่มีในจุดส่ง,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,648
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,สรุปจำนวนจุดส่งงาน,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,649
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,ทำเบิกค่ายกขึ้นชั้น,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedRootTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,649
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,ราคา_ทำเบิกค่ายกขึ้นชั้น,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,650
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,ได้เพิ่ม50%ของค่าเที่ยว,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,651
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,ราคา_ได้เพิ่ม50%ของค่าเที่ยว,"Price {""CurrencySymbol"":""฿"",""MaxValue"":null,""MinValue"":null,""StepValu e"":null,""DecimalDigits"":2,""NumericDigits"":null,""ShowThousandsS",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,652
+Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table,เคลียสรุปจุดส่ง,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,653

@@ -1,0 +1,15 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,Instance Id,Text,ALWAYS,No,No,Yes,No,No,No,Yes,,,,,,,,,,,929
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,ID_เบิกค่าเข้ารับสินค้าคืนคลัง,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,929
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,STARTDATE,Date,ALWAYS,No,No,No,No,No,Yes No,,,,,,,,,,,,930
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,ENDDATE,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,931
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,วันที่ออกเอกสาร,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,931
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,EXPORT TO PDF,Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,932
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,EXPORT TO Excel(สรุปจำนวนจุดส่งงาน),Yes/No,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,933
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,ราคา_ได้เพิ่ม200_ไม่มีสินค้าคืน_ร้านปิ ด_ไม่มีในจุดส่ง,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,933
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,ได้เพิ่ม200_ไม่มีสินค้าคืน_ร้านปิ ด_ไม่มีในจุดส่ง,"List {""ElementType"":""Ref"",""ElementTypeQualifier"":"" {\""ReferencedTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedRootTableName\"":\""รับงานคืนได้ เงิน200\"",\""ReferencedType\"":\""Text\"",\""ReferencedTypeQualifier \"":\"" {\\\""MaxLength\\\"":null,\\\""MinLength\\\"":null,\\\""LongTextFor",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,934
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,สรุปจำนวนจุดส่งงาน,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,935
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,ทำเบิกค่ายกขึ้นชั้น,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,936
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,ราคา_ทำเบิกค่ายกขึ้นชั้น,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,937
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,ได้เพิ่ม50%ของค่าเที่ยว,List,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,937
+Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table,ราคา_ได้เพิ่ม50%ของค่าเที่ยว,Price,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,938

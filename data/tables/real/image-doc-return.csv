@@ -1,0 +1,5 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+Image_Doc_Return,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,310
+Image_Doc_Return,ID_Image_Doc_Return,Text,ALWAYS,No,No,Yes,Yes,No,No,Yes,,=UNIQUEID(),,,,,,,,,311
+Image_Doc_Return,ID_Doc_Return,Ref,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,312
+Image_Doc_Return,Image_Document_Return,"Image {""AllowDrawing"":false,""FolderLocation"":null,""Valid_If"":null,""Error_",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,313

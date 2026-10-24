@@ -1,0 +1,16 @@
+table_name,column_name,type,visible,read_only,hidden,key,part_of_key,system_defined,virtual,editable_initial_value,app_formula,initial_value,description,valid_if,required_if,editable_if,show_if,reset_if,error_message_if_invalid,suggested_values,doc_page
+ข้อมูลงานRW,_RowNumber,Number,ALWAYS,Yes,Yes,No,No,Yes,No,Yes,,,Number of this row,,,,,,,,423
+ข้อมูลงานRW,ID_ข้อมูลงานRW,Text,ALWAYS,"{""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain Text"",""IsMulticolumnKey"":false,""Valid_If"":null,""Error_Message_If_I nvalid"":null,""Show_If"":null,""Required_If"":null,""Editable_If"":null,""Res et_If"":null,""Suggested_Values"":null} No",No,Yes,Yes,No,No,Yes,,UNIQUEID(),,,,,,,,,423
+ข้อมูลงานRW,วันที่จัดงาน,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,424
+ข้อมูลงานRW,Due Date,Date,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,425
+ข้อมูลงานRW,ผรม.,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,425
+ข้อมูลงานRW,พขร.,Text,ALWAYS,No,No,No,No,No,Yes No,,,,,,,,,,,,426
+ข้อมูลงานRW,ทะเบียน,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,427
+ข้อมูลงานRW,Shipment,Number,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,427
+ข้อมูลงานRW,สินค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,428
+ข้อมูลงานRW,Model สินค้า,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,429
+ข้อมูลงานRW,เลขที่เอกสาร,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,429
+ข้อมูลงานRW,ชื่อร้าน,"Text {""MaxLength"":null,""MinLength"":null,""LongTextFormatting"":""Plain",ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,430
+ข้อมูลงานRW,จังหวัด,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,431
+ข้อมูลงานRW,ภาค,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,431
+ข้อมูลงานRW,ปั ญหา,Text,ALWAYS,No,No,No,No,No,No,Yes,,,,,,,,,,,432
