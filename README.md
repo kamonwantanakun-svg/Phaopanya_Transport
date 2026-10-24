@@ -94,7 +94,7 @@ Phaopanya_Transport/
 │   ├── 01-app-overview.md        แอปนี้คืออะไร ใช้ทำอะไร ใครใช้
 │   ├── 02-data-model.md          ตารางเชื่อมกันอย่างไร ข้อมูลไหลไปทางไหน
 │   ├── 03-table-catalogue.md     ตารางจริง 29 + ตารางบอท 61 ทีละตาราง
-│   ├── 04-columns.md             คอลัมน์สำคัญของแต่ละโดเมน + ชนิดข้อมูล 113 ชนิด
+│   ├── 04-columns.md             คอลัมน์สำคัญของแต่ละโดเมน + ชนิดข้อมูล 23 ชนิด
 │   ├── 05-formulas.md            สูตร 347 สูตร จัดกลุ่มตามรูปแบบ + ข้อควรระวัง
 │   ├── 06-views-actions.md       วิว 115 + แอคชัน 214 ว่าใช้ทำอะไร
 │   ├── 07-slices-format-rules.md สไลซ์ 8 (ตัวกรองแถว) + ฟอร์แมตรูล 11 (สัญญาณสี)
@@ -131,6 +131,15 @@ Phaopanya_Transport/
 ├── xlsx/appsheet-export.xlsx  ← workbook 14 ชีต (เปิดดู่าย)
 │
 └── tools/                 ← สคริปต์สกัดข้อมูลซ้ำจาก PDF ได้ (ดู tools/README.md)
+    ├── appsheet_parse.py     ตัวอ่าน PDF → records (จับคู่ label/ค่าด้วยเรขาคณิต)
+    ├── extract_words.py      PDF → word boxes (poppler -bbox-layout)
+    ├── verify_roundtrip.py   ตรวจว่าทุกค่าที่สกัดมาอยู่ใน PDF จริง
+    ├── build_repo.py         records → โครงสร้างแบน
+    ├── build_data_layer.py   → data/ (slug อังกฤษ) + references/
+    ├── build_digest.py       → digest/, build_manifest2.py → MANIFEST.json
+    ├── build_workbook.py     → xlsx/appsheet-export.xlsx
+    ├── check_repo.py         ตรวจความสอดคล้องของรีโพทั้งหมด
+    └── run_pipeline.sh       รันครบทุกขั้นตอนจาก PDF ไฟล์เดียว
 ```
 
 ---
