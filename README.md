@@ -54,7 +54,7 @@
 
 ตัวเลขทุกตัวตรงกับที่แอปสรุปไว้เองในหน้าแรกของ PDF
 (`90 Tables | 2304 Columns | 8 Slices | 115 Views | 11 Format Rules | 214 Actions | 0 Workflow Rules`)
-— ดูรายงานตรวจสอบที่ `[docs/../VERIFICATION_REPORT.md]` ได้
+— ดูรายงานตรวจสอบได้ที่ `docs/VERIFICATION_REPORT.md`
 
 ---
 

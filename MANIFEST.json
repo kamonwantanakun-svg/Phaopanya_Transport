@@ -49,7 +49,9 @@
     "encoding": "utf-8"
   },
   "files": [
+    ".gitignore",
     "AGENTS.md",
+    "MANIFEST.json",
     "README.md",
     "data/actions/actions.csv",
     "data/columns/all_columns.csv",
@@ -161,6 +163,17 @@
     "digest/functions.md",
     "digest/tables.md",
     "digest/views-actions.md",
+    "docs/01-app-overview.md",
+    "docs/02-data-model.md",
+    "docs/03-table-catalogue.md",
+    "docs/04-columns.md",
+    "docs/05-formulas.md",
+    "docs/06-views-actions.md",
+    "docs/07-slices-format-rules.md",
+    "docs/08-security-rules.md",
+    "docs/09-glossary.md",
+    "docs/10-known-issues.md",
+    "docs/VERIFICATION_REPORT.md",
     "tools/README.md",
     "tools/appsheet_parse.py",
     "tools/build_readme.py",
@@ -171,5 +184,5 @@
     "tools/verify_roundtrip.py",
     "xlsx/appsheet-export.xlsx"
   ],
-  "manifest_generated_at": "2026-10-24T18:53:27"
+  "manifest_generated_at": "2026-10-24T19:11:07"
 }
