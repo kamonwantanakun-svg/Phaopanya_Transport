@@ -98,7 +98,7 @@
 | ตารางที่มี `Security filter` | 7 |
 | ตารางที่มีแอกชัน | 29 (ครบทุกตาราง) |
 | ตารางที่มีสไลซ์ | 2 (`ข้อมูลการวางบิล` 3, `ตารางงานประจำวัน` 5) |
-| ตารางที่มีฟอร์แมตรูล | 4 (`ข้อมูลการวางบิล` 4, `ตารางงานประจำวัน` 3, `SCGภูมิภาค` 2, `ทำเบิกส่วนต่าง` 2) |
+| ตารางที่มีฟอร์แมตรูล | 4 (`ข้อมูลการวางบิล` 4, `ตารางงานประจำวัน` 3, `SCGนครหลวงJWDภูมิภาค` 2, `ทำเบิกส่วนต่าง` 2) |
 | ตารางที่มีวิว | 29 (จับคู่ได้ 108/115 วิว) — ดู `06-views-actions.md` |
 
 แหล่ง: `[data/tables/index.csv]`, `[data/slices/slices.csv]`, `[data/format-rules/format_rules.csv]`,
@@ -124,17 +124,17 @@
 | 6 | `ปริ๊นใบวางบิลเอเทน - 1` | Process for ปริ๊นใบวางบิลเอเทน - 1 Process Table (12) | Clear Output (11) | `Clear` | 22 |
 | 7 | `สรุปส่วนต่าง - 1` | Process for สรุปส่วนต่าง - 1 Process Table (12) | — | — | 23 |
 | 8 | `สรุปจำนวนจุดที่ส่งงานSCGวังน้อย` | Process for สรุปจำนวนจุดที่ส่งงานSCGวังน้อย Process Table (15) | เคลียสรุปจุดส่ง Output (14) | `เคลียสรุปจุดส่ง` | 24 |
-| 9 | `ปริ๊นใบวางบิลโอนคลัง มโนยนต์ (นวนคร)` | Process for …โอนคลัง มโนยนต์ (นวนคร) Process Table (12) | Clear Output 2 (11) | `Clear` | 25 |
-| 10 | `ปริ๊นใบวางบิล_โอนคลัง กระสอบ2(บางบัวทอง)` | Process for …กระสอบ2(บางบัวทอง) Process Table (12) | Clear Output 3 (11) | `Clear` | 26 |
+| 9 | `ปริ๊นใบวางบิลโอนคลัง มโนยนต์ (นวนคร)` | Process for ปริ๊นใบวางบิลโอนคลัง มโนยนต์ (นวนคร) Process Table (12) | Clear Output 2 (11) | `Clear` | 25 |
+| 10 | `ปริ๊นใบวางบิล_โอนคลัง กระสอบ2(บางบัวทอง)` | Process for ปริ๊นใบวางบิล_โอนคลัง กระสอบ2(บางบัวทอง) Process Table (12) | Clear Output 3 (11) | `Clear` | 26 |
 | 11 | `ปริ๊นใบวางบิล_ไอโรบอท` | Process for ปริ๊นใบวางบิล_ไอโรบอท Process Table (12) | Clear Output 4 (11) | `Clear` | 27 |
 | 12 | `ปริ๊นใบวางบิล_โอนคลัง เอเธน` | Process for ปริ๊นใบวางบิล_โอนคลัง เอเธน Process Table (12) | Clear Output 5 (11) | `Clear` | 28 |
-| 13 | `ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) สตีเบล` | Process for …รับเอกสาร (งานพี่เหน่ง) สตีเบล Process Table (12) | Clear Output 6 (11) | `Clear` | 29 |
-| 14 | `ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง)` | Process for …รับเอกสาร (งานพี่เหน่ง) Process Table (12) | Clear Output 7 (11) | `Clear` | 30 |
+| 13 | `ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) สตีเบล` | Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) สตีเบล Process Table (12) | Clear Output 6 (11) | `Clear` | 29 |
+| 14 | `ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง)` | Process for ปริ๊นใบวางบิล_รับเอกสาร (งานพี่เหน่ง) Process Table (12) | Clear Output 7 (11) | `Clear` | 30 |
 | 15 | `ฺ Bot_4ตัว_จัดเรียงเส้นทาง` | Process for ฺ Bot_4ตัว_จัดเรียงเส้นทาง Process Table (137) | GoogleMapsRoutesAPI_Step Output (1) | `GoogleMapsRoutesAPI_Step` | 31 |
 | 16 | `โอนคลัง (GQ) จีคิว` | Process for โอนคลัง (GQ) จีคิว Process Table (12) | Clear Output 8 (11) | `Clear` | 32 |
 | 17 | `MeSpace` | Process for MeSpace Process Table (12) | Clear Output 9 (11) | `Clear` | 33 |
 | 18 | `ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย` | Process for ปริ๊นใบวางบิล_คลังSCGJWDวังน้อย Process Table (12) | Clear Output 10 (11) | `Clear` | 34 |
-| 19 | `ได้เพิ่ม200_ไม่มีสินค้าคืน_ร้านปิ ด_ไม่มีในจุดส่ง` | Process for ได้เพิ่ม200_… Process Table (14) | — | — | 35 |
+| 19 | `ได้เพิ่ม200_ไม่มีสินค้าคืน_ร้านปิ ด_ไม่มีในจุดส่ง` | Process for ได้เพิ่ม200_ไม่มีสินค้าคืน_ร้านปิ ด_ไม่มีในจุดส่ง Process Table (14) | — | — | 35 |
 | 20 | `ทำเบิกค่ายกขึ้นชั้น` | Process for ทำเบิกค่ายกขึ้นชั้น Process Table (14) | — | — | 35 |
 | 21 | `ได้เพิ่ม25%ของค่าเที่ยว` | Process for ได้เพิ่ม25%ของค่าเที่ยว Process Table (14) | — | — | 36 |
 | 22 | `ทำเบิกส่วนต่างScgวังน้อย - 1` | Process for ทำเบิกส่วนต่างScgวังน้อย - 1 Process Table (139) | ทำเบิกส่วนต่างScgวังน้อยstep Output (2) · New step2 Output (136) · ไม่ผ่านNew step Output (136) | `ทำเบิกส่วนต่างScgวังน้อยstep` · `New step2` · `ไม่ผ่านNew step` | 36 |
@@ -142,9 +142,9 @@
 | 24 | `New bot - 1` | Process for New bot - 1 Process Table (30) | New step Output 3 (29) | `New step` | 40 |
 | 25 | `Update ScanStatus เมื่อสแกน Invoice - 1` | Process for Update ScanStatus เมื่อสแกน Invoice - 1 Process Table (19) | Update Output (18) | `Update` | 41 |
 | 26 | `ปริ๊นใบวางบิล_เบทาโกร+เหมาตู้` | Process for ปริ๊นใบวางบิล_เบทาโกร+เหมาตู้ Process Table (12) | Clear Output 11 (11) | `Clear` | 42 |
-| 27 | `ปริ๊นใบวางบิล_LINEMAN (6W) (SCG Express)` | Process for …_LINEMAN (6W) (SCG Express) Process Table (12) | Clear Output 12 (11) | `Clear` | 43 |
-| 28 | `ปริ๊นใบวางบิล_Thai paper (SCG Express) - 1` | Process for …_Thai paper (SCG Express) - 1 Process Table (12) | Clear Output 13 (11) | `Clear` | 44 |
-| 29 | `ปริ๊นใบวางบิล_โอนคลัง บุญถาวร เกษตร_นวมินทร์ - 1` | Process for …_โอนคลัง บุญถาวร เกษตร_นวมินทร์ - 1 Process Table (12) | Clear Output 14 (11) | `Clear` | 45 |
+| 27 | `ปริ๊นใบวางบิล_LINEMAN (6W) (SCG Express)` | Process for ปริ๊นใบวางบิล_LINEMAN (6W) (SCG Express) Process Table (12) | Clear Output 12 (11) | `Clear` | 43 |
+| 28 | `ปริ๊นใบวางบิล_Thai paper (SCG Express) - 1` | Process for ปริ๊นใบวางบิล_Thai paper (SCG Express) - 1 Process Table (12) | Clear Output 13 (11) | `Clear` | 44 |
+| 29 | `ปริ๊นใบวางบิล_โอนคลัง บุญถาวร เกษตร_นวมินทร์ - 1` | Process for ปริ๊นใบวางบิล_โอนคลัง บุญถาวร เกษตร_นวมินทร์ - 1 Process Table (12) | Clear Output 14 (11) | `Clear` | 45 |
 | 30 | `Bot_เบิกค่าขนส่งตามระยะทาง - 1` | Process for Bot_เบิกค่าขนส่งตามระยะทาง - 1 Process Table (139) | เบิกตามระยะทาง Output (2) · New step4 Output (136) · New step3 Output (136) | `เบิกตามระยะทาง` · `New step4` · `New step3` | 46 |
 
 ### B2. ตารางบอทแยกตามกลุ่มหน้าที่
